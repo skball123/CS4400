@@ -54,9 +54,9 @@ if($count==1) {
 		<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 		<html>
 		<head>
-		<meta http-equiv="REFRESH" content="3;url=http://aepizeta.com/rush/"></HEAD>
+		<meta http-equiv="REFRESH" content="3;url=http://samkirsch.net/cs4400"></HEAD>
 		<BODY>
-		Invalid/ wrong username or password... <br> Please try again. You will be redirected in 3 seconds.
+		Invalid/ wrong GTID or password... <br> Please try again. You will be redirected in 3 seconds.
 		</BODY>
 		</HTML>');
 }
