@@ -10,9 +10,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap theme -->
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    
-    <link href="css/signin.css" rel="stylesheet">
-	<script src="js/signin.js"></script>
+    <link href="css/student-menu.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -22,17 +20,18 @@
   </head>
   <body>
      <div class="container">
-
-      <form class="form-signin" role="form" method="post" action="checklogin.php">
-        <h2 class="form-signin-heading">GT Tutor</h2>
-        <input type="text" name="myusername" id="myusername" class="form-control" maxlength="9" placeholder="GTID" required autofocus>
-        <input type="password" name="mypassword" id="mypassword" class="form-control" placeholder="Password" required>
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="CheckLength('myusername')" >Sign in</button>
-      </form>
-
+     	<div class="content">
+	     	<form class="form-search" role="form" method="post">
+	     		<input type="search" class="form-control" placeholder="Find Course">
+				<div class="btn-group-wrap">
+					<div class="btn-container btn-group col-lg-1">
+						<button class="btn btn-primary">Find a Tutor</button>
+						<button class="btn btn-success btn-right">Rate a Tutor</button>
+					</div>
+				</div>
+				
+			</form>
+		</div>
     </div> <!-- /container -->
 
 

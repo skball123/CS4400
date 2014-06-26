@@ -1,0 +1,27 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+.container{
+	max-width: 550px;
+}
+.btn-group-wrap{
+	text-align: center;
+}
+.btn-container{
+	padding-top: 10px;
+	float: none;
+	margin: 0 auto;
+	text-align: center;
+	width: inherit;
+	display: inline-block;
+	
+}
+.btn-right{
+	float: left;
+}
+.content{
+	margin-top: auto;
+	margin-bottom:auto;
+}
