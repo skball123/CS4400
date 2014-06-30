@@ -11,6 +11,7 @@
     <!-- Bootstrap theme -->
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="css/student-menu.css" rel="stylesheet">
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -22,9 +23,11 @@
      <div class="container">
      	<div class="content">
 	     	<form class="form-search" role="form" method="post">
-	     		<input type="search" class="form-control" placeholder="Find Course">
+	     		<div id="dropdown">
+	     			<input id="course_search" type="search" class="form-control typeahead" placeholder="Course Name">
+	     		</div>
 				<div class="btn-group-wrap">
-					<div class="btn-container btn-group col-lg-1">
+					<div class="btn-container btn-group">
 						<button class="btn btn-primary">Find a Tutor</button>
 						<button class="btn btn-success btn-right">Rate a Tutor</button>
 					</div>
@@ -41,5 +44,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+ 	<script src="js/student-menu.js"></script>
   </body>
 </html>
