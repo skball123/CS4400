@@ -1,6 +1,28 @@
+<?php
+
+//=== Check if user is logged in ===
+session_start();
+if(!isset($_SESSION['myusername'])) //User is not logged in
+{
+  header("location:http://samkirsch.net/cs4400");
+    die("You are not logged in");
+}
+
+include 'functions.php';
+
+$states = FetchClasses();
+echo("
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html>
+<script> var states = " . $states . " </script>
+
+");
+?>
+
+
+
+
+  <head>	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">

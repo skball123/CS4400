@@ -25,7 +25,7 @@ var substringMatcher = function(strs) {
     cb(matches);
   };
 };
-
+/*
 var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
   'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
@@ -36,7 +36,7 @@ var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
   'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
 ];
- 
+*/ 
 $('#dropdown .typeahead').typeahead({
   hint: true,
   highlight: true,
