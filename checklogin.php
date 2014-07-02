@@ -38,17 +38,39 @@ $mypassword = mysqli_real_escape_string($link, $mypassword);
 /*
 	Authenticate user
 */
-$sql = "SELECT GT_ID, Password FROM $passwordtable WHERE GT_ID='$myusername' AND Password='$saltedhash'";
+$sql = "SELECT GT_ID, Password, User_Type FROM $passwordtable WHERE GT_ID='$myusername' AND Password='$saltedhash'";
 $result=mysqli_query($link,$sql) or die(mysqli_error($link));
 $count=mysqli_num_rows($result);
+$row = mysqli_fetch_row($result);
 if($count==1) {
 	//echo("validated");
 	//Start Session and Store username/password
 	session_start();
 	$_SESSION['myusername']=$myusername;
 	$_SESSION['mypassword']=$mypassword;
-
-	header("location:$redirectURL");
+	$type = $row[2];
+	//echo($type);
+	$_SESSION['type']=$type;
+	
+	switch($type) {
+		case "STU":
+			header("location:$redirectURL_STU");
+			echo("STU redirect");
+			break;
+		case "TUT":
+			header("location:$redicretURL_TUT");
+			echo("TUT redirect");	
+			break;
+		case "PRO":
+			header("locaton:$redirectURL_PRO");
+			echo("PRO redirect");
+			break;		
+		case "ADM":
+			header("location:$redirectURL_ADM");
+			echo("ADM redirect");
+			break;
+	}
+	
 } else {
 	echo('
 		<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">

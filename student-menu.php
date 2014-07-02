@@ -11,6 +11,7 @@ if(!isset($_SESSION['myusername'])) //User is not logged in
 include 'functions.php';
 
 $states = FetchClasses();
+
 echo("
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,6 @@ echo("
 
 ");
 ?>
-
 
 
 
