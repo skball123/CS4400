@@ -21,27 +21,31 @@
     <![endif]-->
   </head>
   <body>
+  	<div id="wrap">
      <div class="container">
-
-      <form class="form-signin" role="form" method="post" action="checklogin.php">
-        <h2 class="form-signin-heading">GT Tutor</h2>
-        <input type="text" name="myusername" id="myusername" class="form-control" maxlength="9" placeholder="GTID" required autofocus>
-        <input type="password" name="mypassword" id="mypassword" class="form-control" placeholder="Password" required>
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="CheckLength('myusername')" >Sign in</button>
-      </form>
-
+		<div id="content">
+	      <form class="form-signin" role="form" method="post" action="checklogin.php">
+	        <h2 class="form-signin-heading">GT Tutor</h2>
+	        <input type="text" name="myusername" id="myusername" class="form-control" maxlength="9" placeholder="GTID" required autofocus>
+	        <input type="password" name="mypassword" id="mypassword" class="form-control" placeholder="Password" required>
+	        <label class="checkbox">
+	          <input type="checkbox" value="remember-me"> Remember me
+	        </label>
+	        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="CheckLength('myusername')" >Sign in</button>
+	      </form>
+		</div>
+		<div id="push"></div>
     </div> <!-- /container -->
-
-
-    
+    </div>
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">Created By Idan Mintz, Sam Kirsch, Eric Pinsker, and James Lovas - GTL Summer 2014</p>
+      </div>
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <center><div class="footer">Created By Idan Mintz, Sam Kirsch, Eric Pinsker, and James Lovas - GTL Summer 2014</div></center>
   </body>
 </html>
