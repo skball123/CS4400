@@ -44,14 +44,13 @@ echo("
   <body>
      <div class="container">
      	<div class="content">
-	     	<form class="form-search" role="form" method="post">
+	     	<form action"/" id="seach-form" class="form-search" role="form" method="post">
 	     		<div id="dropdown">
 	     			<input id="course_search" type="search" class="form-control typeahead" placeholder="Course Name">
 	     		</div>
 				<div class="btn-group-wrap">
 					<div class="btn-container btn-group">
-						<button class="btn btn-primary">Find a Tutor</button>
-						<button class="btn btn-success btn-right">Rate a Tutor</button>
+						<button type="submit" class="btn btn-primary">Search for a Tutor</button>
 					</div>
 				</div>
 				
