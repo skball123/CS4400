@@ -74,3 +74,8 @@ body {
   outline: 0;
   background-color: #428bca;
 }
+
+.empty-message {
+  padding: 5px 10px;
+ text-align: center;
+}
