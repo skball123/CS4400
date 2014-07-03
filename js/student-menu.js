@@ -1,5 +1,21 @@
 $(function(){
 	$('.content').fadeIn();
+	
+	
+	$("#search-form").submit(function(event) {
+		event.preventDefault();
+		
+		var cn = $("#search-form").val();
+		
+		// get the elements on the page
+		var posting = $.post("student.php", { class_name: cn });
+		
+		
+		posting.done(afterPost(data));
+	});
+
+	
+	
 });
 
 var substringMatcher = function(strs) {
@@ -48,19 +64,5 @@ $('#dropdown .typeahead').typeahead({
 function afterPost(data){
 	alert("Posted");
 };
-
-$("#search-form").submit(function(event) {
-	event.preventDefault();
-	
-	var cn = $("#search-form").val();
-	
-	// get the elements on the page
-	var posting = $.post("student.php", { class_name: cn });
-	
-	
-	posting.done(afterPost(data));
-		
-	
-});
 
 
