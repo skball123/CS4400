@@ -1,8 +1,9 @@
 $(function(){
 	$('.content').fadeIn();
 	
-	
-	$("#search-form").submit(function(event) {
+	$(".btn-2").hide();
+	$("#course_search").css({"width":"500px"});
+	$(".btn").click(function(event) {
 		event.preventDefault();
 		
 		var cn = $("#search-form").val();
@@ -12,6 +13,10 @@ $(function(){
 		
 		
 		posting.done(afterPost(data));
+		/*
+		 * // Debug for running the function without posting
+		 * afterPostP1(cn);
+		 */
 	});
 
 	
@@ -61,8 +66,29 @@ $('#dropdown .typeahead').typeahead({
  
 });
 
-function afterPost(data){
-	alert("Posted");
+
+function afterPostP1(data){
+	if($(".btn-group-wrap").is(":visible")){
+		// Move the search bar to the top of the screen
+		$(".content").animate({
+			"marginTop" : "0%",
+		}, 2000, function(){
+			$("#course_search").animate({"width":"450px"});
+			$(".btn-2").fadeIn();
+			afterPostP2(data);
+		});
+		
+		// hide the search button
+		$(".btn-group-wrap").fadeOut();	
+	}else{
+		// If the layout has already changed, simply call part 2
+		afterPostP2(data);
+	}
+}
+
+function afterPostP2(data){
+	
+	alert(data);
 };
 
 

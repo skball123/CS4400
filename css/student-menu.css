@@ -22,6 +22,9 @@ body {
 .btn-right{
 	float: left;
 }
+.btn-2{
+	/*display: none;*/
+}
 .content{
 	display: none;
 	float: none;

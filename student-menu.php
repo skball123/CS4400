@@ -21,7 +21,6 @@ echo("
 ?>
 
 
-
   <head>	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,17 +43,25 @@ echo("
   <body>
      <div class="container">
      	<div class="content">
-	     	<form action"/" id="seach-form" class="form-search" role="form" method="post">
-	     		<div id="dropdown">
-	     			<input id="course_search" type="search" class="form-control typeahead" placeholder="Course Name">
+     		<div class="row">
+     			<div class="col-lg-6">
+		     		<div class="input-group">
+			     		<div id="dropdown">
+			     			<input id="course_search" type="search" class="form-control typeahead" placeholder="Course Name">
+			     		</div>
+			     		<span class="input-group-btn btn-2">
+			     		<button class="btn btn-primary " type="button">
+								<span class="glyphicon glyphicon-search col-lg-4" style="vertical-align:middle"></span>
+						</button>
+						</span>
+		     		</div>
 	     		</div>
-				<div class="btn-group-wrap">
-					<div class="btn-container btn-group">
-						<button type="submit" class="btn btn-primary">Search for a Tutor</button>
-					</div>
+     		</div>
+			<div class="btn-group-wrap">
+				<div class="btn-container btn-group">
+					<button type="button" class="btn btn-primary">Search for a Tutor</button>
 				</div>
-				
-			</form>
+			</div>
 		</div>
     </div> <!-- /container -->
 
