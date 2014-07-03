@@ -1,3 +1,18 @@
+<?php
+
+//=== Check if user is logged in ===
+session_start();
+if(!isset($_SESSION['myusername'])) //User is not logged in
+{
+  header("location:http://samkirsch.net/cs4400");
+    die("You are not logged in");
+}
+
+include 'functions.php';
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
