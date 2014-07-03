@@ -38,12 +38,12 @@ include 'functions.php';
   <body>
      <div class="container">
 	 <h2 class="form-heading">Recommendation</h2>
-      <form class="form-signin" role="form" method="post" action="professor-menu.php">
+      <form class="form-signin" role="form" method="post" action="php/recommend.php">
         <div id="dropdown">
-        	<input type="search" name="gtid" id="gtid" class="form-control" maxlength="9" placeholder="Tutor GTID" required autofocus>
+        	<input type="text" name="tutgtid" id="gtid" class="form-control" maxlength="9" placeholder="Tutor GTID" required autofocus>
         </div>
         <h5>Descriptive Evaluation</h5>
-        <textarea class="form-control" required rows="4" maxlength="300"></textarea>
+        <textarea class="form-control" required rows="4" maxlength="300" name="desc_eval"></textarea>
         
 		<div class="radio">
       		<label>

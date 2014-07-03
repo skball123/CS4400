@@ -62,7 +62,7 @@ if($count==1) {
 			echo("TUT redirect");	
 			break;
 		case "PRO":
-			header("locaton:$redirectURL_PRO");
+			header("location:$redirectURL_PRO");
 			echo("PRO redirect");
 			break;		
 		case "ADM":

@@ -34,15 +34,15 @@ $('#dropdown .typeahead').typeahead({
 {
   name: 'states',
   displayKey: 'value',
-  source: substringMatcher(states)
-/*  templates: {
+  source: substringMatcher(states),
+  templates: {
   	empty: [
   		'<div class="empty-message">',
       	'No classes match your current query',
       	'</div>'
   	].join('\n')
   }
- */ 
+ 
 });
 
 function afterPost(data){
