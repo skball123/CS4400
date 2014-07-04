@@ -4,15 +4,13 @@ $(function(){
 	$(".btn-2").hide();
 	$("#course_search").css({"width":"500px"});
 	$(".btn").click(function(event) {
-		event.preventDefault();
+		//event.preventDefault();
 		
 		var cn = $("#search-form").val();
 		
 		// get the elements on the page
-		var posting = $.post("student.php", { class_name: cn });
+		var posting = $.post("student.php", { class_name: cn }, afterPost(data), "json");
 		
-		
-		posting.done(afterPost(data));
 		/*
 		 * // Debug for running the function without posting
 		 * afterPostP1(cn);
