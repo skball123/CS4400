@@ -7,6 +7,8 @@ $(function(){
 		//event.preventDefault();
 		
 		var cn = $("#search-form").val();
+		cn = cn.replace(/\s/g, '');
+		
 		
 		// get the elements on the page
 		var posting = $.post("student.php", { class_name: cn }, afterPost(data), "json");

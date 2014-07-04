@@ -1,21 +1,5 @@
 $(function(){
 	$('.content').fadeIn();
-	
-	$(".btn-2").hide();
-	$("#tgid").css({"width":"500px"});
-	$(".btn").click(function(event) {
-		event.preventDefault();
-		
-		var cn = $("#search-form").val();
-		
-		// get the elements on the page
-		var posting = $.post("student.php", { class_name: cn });
-		
-	
-	});
-
-	
-	
 });
 
 var substringMatcher = function(strs) {

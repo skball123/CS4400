@@ -44,43 +44,44 @@ echo("
   </head>
   <body>
      <div class="container">
-	 <h2 class="form-heading">Recommendation</h2>
-      <form class="form-signin" role="form" method="post" action="php/recommend.php">
-        <div id="dropdown">
-        	<input type="search" name="tutgtid" id="tutgtid" class="form-control typeahead" maxlength="9" placeholder="Tutor GTID" required autofocus>
-        </div>
-        <h5>Descriptive Evaluation</h5>
-        <textarea class="form-control" required rows="4" maxlength="300" name="desc_eval"></textarea>
-        
-		<div class="radio">
-      		<label>
-      			<input required type="radio" name="num_eval" id="radio_4" value="4">
-      			4 Highly Recommend
-      		</label>
-      	</div>
-      	<div class="radio">
-      		<label>
-      			<input required type="radio" name="num_eval" id="radio_3" value="3">
-      			3 Recommend
-      		</label>
-      	</div>
-      	<div class="radio">
-      		<label>
-      			<input required type="radio" name="num_eval" id="radio_2" value="2">
-      			2 Recommend with reservations
-      		</label>
-      	</div>
-      	<div class="radio">
-      		<label>
-      			<input required type="radio" name="num_eval" id="radio_1" value="1">
-      			1 Do Not Recommend
-      		</label>
-      	</div>
-      	
-      	<button class="btn btn-lg btn-primary btn-block" type="submit" >Submit Recommendation</button>
-            	
-      </form>
-
+     	<div class="content">
+			 <h2 class="form-heading">Recommendation</h2>
+		      <form class="form-signin" role="form" method="post" action="php/recommend.php">
+		        <div id="dropdown">
+		        	<input type="search" name="tutgtid" id="tutgtid" class="form-control typeahead" maxlength="9" placeholder="Tutor GTID" required autofocus>
+		        </div>
+		        <h5>Descriptive Evaluation</h5>
+		        <textarea class="form-control" required rows="4" maxlength="300" name="desc_eval"></textarea>
+		        
+				<div class="radio">
+		      		<label>
+		      			<input required type="radio" name="num_eval" id="radio_4" value="4">
+		      			4 Highly Recommend
+		      		</label>
+		      	</div>
+		      	<div class="radio">
+		      		<label>
+		      			<input required type="radio" name="num_eval" id="radio_3" value="3">
+		      			3 Recommend
+		      		</label>
+		      	</div>
+		      	<div class="radio">
+		      		<label>
+		      			<input required type="radio" name="num_eval" id="radio_2" value="2">
+		      			2 Recommend with reservations
+		      		</label>
+		      	</div>
+		      	<div class="radio">
+		      		<label>
+		      			<input required type="radio" name="num_eval" id="radio_1" value="1">
+		      			1 Do Not Recommend
+		      		</label>
+		      	</div>
+		      	
+		      	<button class="btn btn-lg btn-primary btn-block" type="submit" >Submit Recommendation</button>
+		            	
+		      </form>
+		</div>
     </div> <!-- /container -->
 
 
