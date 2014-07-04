@@ -10,11 +10,18 @@ if(!isset($_SESSION['myusername'])) //User is not logged in
 
 include 'functions.php';
 
+$states = FetchTutors();
+
+
+echo("
+<!DOCTYPE html>
+<html>
+<script> var states = " . $states . " </script>
+
+");
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,7 +47,7 @@ include 'functions.php';
 	 <h2 class="form-heading">Recommendation</h2>
       <form class="form-signin" role="form" method="post" action="php/recommend.php">
         <div id="dropdown">
-        	<input type="text" name="tutgtid" id="gtid" class="form-control" maxlength="9" placeholder="Tutor GTID" required autofocus>
+        	<input type="search" name="tutgtid" id="tutgtid" class="form-control typeahead" maxlength="9" placeholder="Tutor GTID" required autofocus>
         </div>
         <h5>Descriptive Evaluation</h5>
         <textarea class="form-control" required rows="4" maxlength="300" name="desc_eval"></textarea>
@@ -83,5 +90,6 @@ include 'functions.php';
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+     	<script src="js/professor-menu.js"></script>
   </body>
 </html>
