@@ -63,7 +63,7 @@ StuEval($bool, $desc_eval, $num_eval, $tut_gtid, $stu_gtid, $coursenum, $school,
 	else {
 	$query = "INSERT INTO Rates VALUES ('$tut_gtid', '$stu_gtid', '$desc_eval', $num_eval', '$semester', $school', '$coursenum')";
 	$result = mysqli_query($con, $query);
-	echo('<script>alert("Evaluation Submitted."); window.location = "http://samkirsch.net/cs4400/professor-menu.php"</script>');
+	echo('<script>alert("Evaluation Submitted."); window.location = "http://samkirsch.net/cs4400/student-menu.php"</script>');
 	
 	}
 }

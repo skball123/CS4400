@@ -30,6 +30,29 @@ function FetchClasses() {
 	mysqli_close($con);
 }
 
+function FetchTutors() {
+	$con = mysqli_connect("localhost","kirsch_cs4400","cs4400GT","kirsch_cs4400");
+	// Check connection
+	if (mysqli_connect_errno())
+  		{
+  			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+	$query = "SELECT TGT_ID,TName FROM Tutor";
+	$result = mysqli_query($con, $query);
+	
+	$tutor_list = '[';
+	
+	while($row = mysqli_fetch_row($result) ) {  
+		$tutorgtid = $row[0];
+		$tutorname = $row[1];
+		
+		$tutor_list = $tutor_list . "'" . $tutorgtid . " (" . $tutorname . ")',";
+	
+	}
+	$tutor_list = substr_replace($tutor_list ,"]",-1);
+	return $tutor_list;
+	mysqli_close($con);
+}
 
 
 
