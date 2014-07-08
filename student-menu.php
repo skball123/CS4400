@@ -47,7 +47,7 @@ echo("
      			<div class="col-lg-6">
 		     		<div class="input-group">
 			     		<div id="dropdown">
-			     			<input id="course_search" type="search" class="form-control typeahead" placeholder="Course Name">
+			     			<input id="course_search" name="course" type="search" class="form-control typeahead" placeholder="Course Name">
 			     		</div>
 			     		<span class="input-group-btn btn-2">
 			     		<button class="btn btn-primary " type="button">

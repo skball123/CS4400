@@ -6,13 +6,25 @@ $(function(){
 	$(".btn").click(function(event) {
 		//event.preventDefault();
 		
-		var cn = $("#course_search").val();
-		cn = cn.replace(/\s/g, '');
+		var cn = $("#course_search").serialize();
+		
+		$.ajax({
+			      type: 'POST',
+			      //dataType: 'json',
+			      url: 'php/student.php',
+			      data: cn   
+			  }).done(function(data) { 
+				  	console.log(data);
+				  	//alert(data); 
+				  	afterPostP1(data);
+			  	})
+			    .fail(function() { alert("Failed to communicate"); })
+			    .always(function() { /*alert("complete"); */});
 		
 		// get the elements on the page
-		var posting = $.post("php/student.php", { class_name: cn }, afterPost(data), "json");
+		/*var posting = $.post("php/student.php", cn, afterPostP1(data), "json");
+		posting.always(afterPostP1(cn));
 		
-		/*
 		 * // Debug for running the function without posting
 		 * afterPostP1(cn);
 		 */
@@ -87,7 +99,7 @@ function afterPostP1(data){
 
 function afterPostP2(data){
 	
-	alert(data);
+	//after the animation
 };
 
 
