@@ -83,7 +83,7 @@ function afterPostP1(data){
 		// Move the search bar to the top of the screen
 		$(".content").animate({
 			"marginTop" : "0%",
-		}, 2000, function(){
+		}, 1000, function(){
 			$("#course_search").animate({"width":"450px"});
 			$(".btn-2").fadeIn();
 			afterPostP2(data);
@@ -98,8 +98,17 @@ function afterPostP1(data){
 }
 
 function afterPostP2(data){
+	var opener = '<table class="table"><tr class="table"> <td class="table">Tutor Name</td> <td class="table">GTA?</td> </tr>';
+	$(".tutor-list").append(opener);
 	
-	//after the animation
+	var length = data.length;
+	for(var i = 0; i < length; i++) { 
+		var table = '<tr class="table"><td class="table">' + data[i][0] + '</td> <td class="table">' + data[i][1] + "</td> </tr>";
+		$(".tutor-list").append(table);
+	}
+	
+	var closer = "</table>";
+	$(".tutor-list").append(closer);
 };
 
 
