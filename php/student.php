@@ -1,6 +1,6 @@
 <?php
 
-echo($_POST['search-form']);
+echo("<script>alert($_POST['search-form'])</script>");
 
 
 

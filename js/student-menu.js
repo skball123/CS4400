@@ -11,7 +11,7 @@ $(function(){
 		
 		
 		// get the elements on the page
-		var posting = $.post("student.php", { class_name: cn }, afterPost(data), "json");
+		var posting = $.post("php/student.php", { class_name: cn }, afterPost(data), "json");
 		
 		/*
 		 * // Debug for running the function without posting
