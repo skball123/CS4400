@@ -6,9 +6,8 @@ $(function(){
 	$(".btn").click(function(event) {
 		//event.preventDefault();
 		
-		var cn = $("#search-form").val();
+		var cn = $("#course_search").val();
 		cn = cn.replace(/\s/g, '');
-		
 		
 		// get the elements on the page
 		var posting = $.post("php/student.php", { class_name: cn }, afterPost(data), "json");
