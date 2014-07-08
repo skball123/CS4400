@@ -46,14 +46,14 @@ function FetchTutors() {
 		$tutorgtid = $row[0];
 		$tutorname = $row[1];
 		
-		$tutor_list = $tutor_list . "'" . $tutorgtid . " (" . $tutorname . ")',";
+		$tutor_list = $tutor_list . "'" . $tutorgtid . " " . $tutorname . "',";
 	
 	}
 	$tutor_list = substr_replace($tutor_list ,"]",-1);
 	return $tutor_list;
 	mysqli_close($con);
 }
-
+/*
 function FetchTutorClasses($class) {
 	$school = strtok($class, " ");
 	$number = strtok(" ");
@@ -71,12 +71,12 @@ function FetchTutorClasses($class) {
 	$query2 = "SELECT DayTime, Semester, Taken FROM TutorTimeSlots WHERE TutorGT_ID = '$tutorgtid' ORDER BY DayTime ASC";  //which mean we get Fridays, Mondays, Thursdays, Tuesdays, Wednesdays
 	$result2 = mysqli_query($con, $query);
 	
-	while($row = mysqli_fetch_row($result) && $row2 = mysqli_fetch_row($result2)  ) { 
+	while($row = mysqli_fetch_row($result) && $row2 = mysqli_fetch_row($result2) ) { 
 		$day = substr($row2[0], 0, 1); //gets out first letter for day
 		$time = substr($row2[0], 2, 3); //gets out 24hr time
 		$time = $time . ':00';
 		
-		switch $day {
+		switch ($day) {
 			
 			case 'M':
 				$day = 'Monday';
@@ -125,6 +125,6 @@ function TimeSlotCheck($tutorgtid, $con) {
 	}
 }
 
-
+*/
 
 ?>

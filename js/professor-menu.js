@@ -1,7 +1,3 @@
-$(function(){
-	$('.content').fadeIn();
-});
-
 var substringMatcher = function(strs) {
   return function findMatches(q, cb) {
     var matches, substringRegex;
@@ -44,4 +40,3 @@ $('#dropdown .typeahead').typeahead({
   }
  
 });
-
