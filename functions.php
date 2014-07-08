@@ -46,7 +46,7 @@ function FetchTutors() {
 		$tutorgtid = $row[0];
 		$tutorname = $row[1];
 		
-		$tutor_list = $tutor_list . "'" . $tutorgtid . " " . $tutorname . "',";
+		$tutor_list = $tutor_list . "'" . $tutorgtid . " (" . $tutorname . ")',";
 	
 	}
 	$tutor_list = substr_replace($tutor_list ,"]",-1);

@@ -34,7 +34,7 @@ $('#dropdown .typeahead').typeahead({
   templates: {
   	empty: [
   		'<div class="empty-message">',
-      	'No classes match your current query',
+      	'No tutors match your current query',
       	'</div>'
   	].join('\n')
   }
