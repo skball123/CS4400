@@ -30,7 +30,7 @@ function Checkteach($tut_gtid, $stu_gtid, $coursenum, $school, $semester) {
 	else {
 	 echo('<script>alert("You cannot rate this tutor without having a session with them."); window.location = "http://samkirsch.net/cs4400/student-menu.php"</script>');
 	 return 0; }
-
+	mysqli_close($con);
 }
 
 function Checkalready($tut_gtid, $stu_gtid, $coursenum, $school); {
@@ -45,7 +45,7 @@ function Checkalready($tut_gtid, $stu_gtid, $coursenum, $school); {
 	$count = mysqli_num_rows($result);
 	if($count) { return 1; }
 	else { return 0; }
-
+	mysqli_close($con);
 }
 
 StuEval($bool, $desc_eval, $num_eval, $tut_gtid, $stu_gtid, $coursenum, $school, $semester); {	//takes in bool for choice of update or insert record
@@ -66,6 +66,7 @@ StuEval($bool, $desc_eval, $num_eval, $tut_gtid, $stu_gtid, $coursenum, $school,
 	echo('<script>alert("Evaluation Submitted."); window.location = "http://samkirsch.net/cs4400/student-menu.php"</script>');
 	
 	}
+	mysqli_close($con);
 }
 
 

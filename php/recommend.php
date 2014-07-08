@@ -24,7 +24,7 @@ function CheckProfEval($tut_gtid, $profgtid) {
 	$count = mysqli_num_rows($result);
 	if($count) { return 1; }
 	else { return 0; }
-
+	mysqli_close($con);
 }
 
 function ProfEval($bool, $desc_eval, $num_eval, $tut_gtid, $profgtid) {	//takes in bool for choice of update or insert record
@@ -38,12 +38,13 @@ function ProfEval($bool, $desc_eval, $num_eval, $tut_gtid, $profgtid) {	//takes 
 	echo('<script>alert("There is already an evaluation for this Tutor. This will overwrite the previous evaluation."); window.location = "http://samkirsch.net/cs4400/professor-menu.php"</script>');
 	$query = "UPDATE Recommends SET Desc_Evaluation = '$desc_eval', Num_Evaluation = '$num_eval' WHERE TutGT_ID = '$tut_gtid' AND ProfGT_ID = '$profgtid'";
 	$result = mysqli_query($con, $query);	
+	mysqli_close($con);
 	}
 	else {
 	$query = "INSERT INTO Recommends VALUES ('$tut_gtid', '$profgtid', '$desc_eval', '$num_eval')";
 	$result = mysqli_query($con, $query);
 	echo('<script>alert("Recommendation Submitted!"); window.location = "http://samkirsch.net/cs4400/professor-menu.php"</script>');
-	
+	mysqli_close($con);
 	}
 }
 
