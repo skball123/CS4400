@@ -4,12 +4,13 @@ $(function(){
 	$('.btn').click(function(event) {
 		//event.preventDefault();
 		
-		
+		var cn = { button: $('.btn').val(), checkbox1: $('#semester1').is(':checked'), checkbox2: $('#semester2').is(':checked'), checkbox3: $('#semester3').is(':checked') };
+
 		$.ajax({
 			      type: 'POST',
-			      //dataType: 'json',
+			      dataType: 'json',
 			      url: 'php/admin.php',
-			      data: { button: $('.btn').val(), checkbox1: $('#semester1').is(':checked'), checkbox2: $('#semester2').is(':checked'), checkbox3: $('#semester3').is(':checked') },   
+			      data: cn,   
 			  }).done(function(data) { 
 				  	console.log(data);
 				  	//alert(data); 
@@ -36,7 +37,13 @@ function afterPostP1(data){
 }
 
 function afterPostP2(data){
-	alert(data);
+	
+	
+	var closer = "</tbody></table>";
+	$('.reports').append(closer);
+	$('.reports').fadeIn();
+	
+	
 };
 
 
