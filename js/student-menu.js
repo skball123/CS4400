@@ -100,18 +100,18 @@ function afterPostP1(data){
 function afterPostP2(data){
 	$(".tutor-list").empty();
 	
-	var opener = '<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>Tutor Name</th>
-								<th>Email</th>
-								<th>Avg Prof Rating</th>
-								<th># Professors</th>
-								<th>Avg Student Rating</th>
-								<th># Students</th>
-								<th> </th>
-							</tr>
-						</thead>
+	var opener = '<table class="table table-bordered">\
+						<thead>\
+							<tr>\
+								<th>Tutor Name</th>\
+								<th>Email</th>\
+								<th>Avg Prof Rating</th>\
+								<th># Professors</th>\
+								<th>Avg Student Rating</th>\
+								<th># Students</th>\
+								<th> </th>\
+							</tr>\
+						</thead>\
 						<tbody>';
 	$(".tutor-list").append(opener);
 	var mondays = [];
