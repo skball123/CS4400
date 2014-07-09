@@ -12,12 +12,12 @@ include 'functions.php';
 
 $states = FetchClasses();
 
-echo("
+echo('
 <!DOCTYPE html>
 <html lang="en">
-<script> var states = " . $states . " </script>
+<script> var states = '. $states .' </script>
 
-");
+');
 ?>
 
 
