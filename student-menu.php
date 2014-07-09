@@ -62,7 +62,7 @@ echo("
 					<button type="button" class="btn btn-primary">Search for a Tutor</button>
 				</div>
 			</div>
-			<div class="tutor-list">
+			<div class="tutor-list" style="display: none">
 			</div>
 		</div>
     </div> <!-- /container -->

@@ -98,7 +98,21 @@ function afterPostP1(data){
 }
 
 function afterPostP2(data){
-	var opener = '<table class="table table-bordered"><thead><tr class="table"> <th class="table">Tutor Name</th> <th class="table">GTA?</th> <th class="table">M</th> <th class="table">T</th> <th class="table">W</th> <th class="table">R</th> <th class="table">F</th> </thead> </tr><tbody>';
+	$(".tutor-list").empty();
+	
+	var opener = '<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Tutor Name</th>
+								<th>Email</th>
+								<th>Avg Prof Rating</th>
+								<th># Professors</th>
+								<th>Avg Student Rating</th>
+								<th># Students</th>
+								<th> </th>
+							</tr>
+						</thead>
+						<tbody>';
 	$(".tutor-list").append(opener);
 	var mondays = [];
 	var tuesdays = [];
@@ -128,12 +142,59 @@ function afterPostP2(data){
 					break;	
 			}
 		}
-		var table = '<tr class="table"><td class="table">' + data.tutor[i][0] + '</td> <td class="table">' + data.tutor[i][1] + '</td> <td class="table">' + mondays.join('<br>') + '</td> <td class="table">' + tuesdays.join('<br>') + '</td> <td class="table">' + wednesdays.join('<br>') + '</td> <td class="table">' + thursdays.join('<br>') + '</td> <td class="table">' + fridays.join('<br>') + '</td> </tr>';
+		var table = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.tutor[i][1] + '</td> <td>' + mondays.join('<br>') + '</td> <td>' + tuesdays.join('<br>') + '</td> <td>' + wednesdays.join('<br>') + '</td> <td>' + thursdays.join('<br>') + '</td> <td>' + fridays.join('<br>') + '</td> </tr>';
 		$(".tutor-list").append(table);
 	}
 	
+	/*var opener = '<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Tutor Name</th>
+								<th>GTA?</th>
+								<th>M</th>
+								<th>T</th>
+								<th>W</th>
+								<th>R</th>
+								<th>F</th>
+							</tr>
+						</thead>
+						<tbody>';
+	$(".tutor-list").append(opener);
+	var mondays = [];
+	var tuesdays = [];
+	var wednesdays = [];
+	var thursdays = [];
+	var fridays = [];
+	var length = data.tutor.length;
+	for(var i = 0; i < length; i++) { 
+		var length2 = data.times[i].length;
+		for(var j = 0; j < length2; j++) {
+			var check = data.times[i][j][0] //gets day
+			switch (check) {
+				case 'M':
+					mondays.push( '<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>' );
+					break;
+				case 'T':
+					tuesdays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');	
+					break;
+				case 'W':
+					wednesdays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');
+					break;	
+				case 'R':
+					thursdays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');
+					break;
+				case 'F':
+					fridays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');	
+					break;	
+			}
+		}
+		var table = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.tutor[i][1] + '</td> <td>' + mondays.join('<br>') + '</td> <td>' + tuesdays.join('<br>') + '</td> <td>' + wednesdays.join('<br>') + '</td> <td>' + thursdays.join('<br>') + '</td> <td>' + fridays.join('<br>') + '</td> </tr>';
+		$(".tutor-list").append(table);
+	}*/
+	
 	var closer = "</tbody></table>";
 	$(".tutor-list").append(closer);
+	$(".tutor-list").fadeIn();
 };
 
 
