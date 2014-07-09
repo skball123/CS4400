@@ -6,6 +6,7 @@ $(function(){
 	$(".btn-2").hide();
 	$("#course_search").css({"width":"500px"});
 	
+	
 	$(".btn").click(function(event) {
 		
 		$("#student_hours_modal").modal({
@@ -17,6 +18,19 @@ $(function(){
 	$("#student_hours_modal_btn").click(function(event){
 		$("#student_hours_modal").modal('hide');
 		searchSubmit();
+	});
+	
+	$(".day_btn").click(function(event){
+		var day = $(event.target).html();
+		switch(day){
+			case "Mo": $(event.target).html("Tu"); break;
+			case "Tu": $(event.target).html("We"); break;
+			case "We": $(event.target).html("Th"); break;
+			case "Th": $(event.target).html("Fr"); break;
+			case "Fr": $(event.target).html("Sa"); break;
+			case "Sa": $(event.target).html("Su"); break;
+			case "Su": $(event.target).html("Mo"); break;
+		}
 	});
 
 });

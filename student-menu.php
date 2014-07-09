@@ -65,26 +65,50 @@ echo('
 		</div>
     </div> <!-- /container -->
     <div class="container-fluid">
-    	<div class="tutor-list" style="display: none">
+    	<div class="tutor-list panel panel-default" style="display: none">
 		</div>
     </div>
     
     <!-- Modal -->
 	<div class="modal fade" id="student_hours_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
+	  <div class="modal-dialog modal-sm">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Select Your Available Hours</h4>
+	        <h4 class="modal-title" id="myModalLabel">Add Your Availability</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<form role="form">
-		        <div class="checkbox">
-		        	<label>
-		        		<input type="checkbox">
-		        	</label>
-		        </div>
-	        </form>
+	        <div class="input-group">
+	        	<span class="input-group-btn">
+	        		<button type="button" class="btn btn-default day_btn" name="day0">Mo</button>
+	        	</span>
+	        	<select class="form-control">
+	        		<option value="7">7:00AM</option>
+	        		<option value="8">8:00AM</option>
+	        		<option value="9">9:00AM</option>
+	        		<option value="10">10:00AM</option>
+	        		<option value="11">11:00AM</option>
+	        		<option value="12">12:00PM</option>
+	        		<option value="13">1:00PM</option>
+	        		<option value="14">2:00PM</option>
+	        		<option value="15">3:00PM</option>
+	        		<option value="16">4:00PM</option>
+	        		<option value="17">5:00PM</option>
+	        		<option value="18">6:00PM</option>
+	        		<option value="19">7:00PM</option>
+	        		<option value="20">8:00PM</option>
+	        		<option value="21">9:00PM</option>
+	        		<option value="22">10:00PM</option>
+	        		<option value="23">11:00PM</option>
+	        		<option value="0">8:00AM</option>
+	        		<option value="1">9:00AM</option>
+	        		<option value="2">10:00AM</option>
+	        		<option value="3">7:00AM</option>
+	        		<option value="4">8:00AM</option>
+	        		<option value="5">9:00AM</option>
+	        		<option value="6">10:00AM</option>
+	        	</select>
+	        	
+	        </div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" id="student_hours_modal_btn" class="btn btn-primary">Submit</button>
