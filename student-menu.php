@@ -14,7 +14,7 @@ $states = FetchClasses();
 
 echo("
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <script> var states = " . $states . " </script>
 
 ");
@@ -62,10 +62,12 @@ echo("
 					<button type="button" class="btn btn-primary">Search for a Tutor</button>
 				</div>
 			</div>
-			<div class="tutor-list" style="display: none">
-			</div>
 		</div>
     </div> <!-- /container -->
+    <div class="container-fluid">
+    	<div class="tutor-list" style="display: none">
+		</div>
+    </div>
     
     <!-- Modal -->
 	<div class="modal fade" id="student_hours_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
