@@ -37,7 +37,24 @@ function afterPostP1(data){
 }
 
 function afterPostP2(data){
-	
+	if( !(data.gradfall == undefined) ) {
+		var length = data.gradfall.length;	
+	}	
+	if( !(data.undgradfall == undefined) ) {
+		var length = data.undgradfall.length;	
+	}
+	if( !(data.gradspring == undefined) ) {
+		var length = data.gradspring.length;	
+	}	
+	if( !(data.undgradspring == undefined) ) {
+		var length = data.undgradspring.length;	
+	}
+	if( !(data.gradsummer == undefined) ) {
+		var length = data.gradsummer.length;	
+	}	
+	if( !(data.undgradsummer == undefined) ) {
+		var length = data.undgradsummer.length;	
+	}
 	
 	var closer = "</tbody></table>";
 	$('.reports').append(closer);
