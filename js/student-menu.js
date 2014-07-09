@@ -98,16 +98,41 @@ function afterPostP1(data){
 }
 
 function afterPostP2(data){
-	var opener = '<table class="table"><tr class="table"> <td class="table">Tutor Name</td> <td class="table">GTA?</td> </tr>';
+	var opener = '<table class="table table-bordered"><thead><tr class="table"> <th class="table">Tutor Name</th> <th class="table">GTA?</th> <th class="table">M</th> <th class="table">T</th> <th class="table">W</th> <th class="table">R</th> <th class="table">F</th> </thead> </tr><tbody>';
 	$(".tutor-list").append(opener);
-	
-	var length = data.length;
+	var mondays = [];
+	var tuesdays = [];
+	var wednesdays = [];
+	var thursdays = [];
+	var fridays = [];
+	var length = data.tutor.length;
 	for(var i = 0; i < length; i++) { 
-		var table = '<tr class="table"><td class="table">' + data[i][0] + '</td> <td class="table">' + data[i][1] + "</td> </tr>";
+		var length2 = data.times[i].length;
+		for(var j = 0; j < length2; j++) {
+			var check = data.times[i][j][0] //gets day
+			switch (check) {
+				case 'M':
+					mondays.push( '<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>' );
+					break;
+				case 'T':
+					tuesdays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');	
+					break;
+				case 'W':
+					wednesdays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');
+					break;	
+				case 'R':
+					thursdays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');
+					break;
+				case 'F':
+					fridays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');	
+					break;	
+			}
+		}
+		var table = '<tr class="table"><td class="table">' + data.tutor[i][0] + '</td> <td class="table">' + data.tutor[i][1] + '</td> <td class="table">' + mondays.join('<br>') + '</td> <td class="table">' + tuesdays.join('<br>') + '</td> <td class="table">' + wednesdays.join('<br>') + '</td> <td class="table">' + thursdays.join('<br>') + '</td> <td class="table">' + fridays.join('<br>') + '</td> </tr>';
 		$(".tutor-list").append(table);
 	}
 	
-	var closer = "</table>";
+	var closer = "</tbody></table>";
 	$(".tutor-list").append(closer);
 };
 
