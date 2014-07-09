@@ -100,10 +100,10 @@ function afterPostP1(data){
 function afterPostP2(data){
 	$(".tutor-list").empty();
 	
-	var opener = '<table class="table table-bordered">\
+	var opener = '<table class="table table-hover">\
 						<thead>\
 							<tr>\
-								<th>Tutor Name</th>\
+								<th>Name</th>\
 								<th>Email</th>\
 								<th>Avg Prof Rating</th>\
 								<th># Professors</th>\
