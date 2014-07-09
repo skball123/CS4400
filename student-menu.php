@@ -47,10 +47,10 @@ echo("
      			<div class="col-lg-6">
 		     		<div class="input-group">
 			     		<div id="dropdown">
-			     			<input id="course_search" name="course" type="search" class="form-control typeahead" placeholder="Course Name">
+			     			<input id="course_search" name="course" type="search" class="form-control typeahead" placeholder="Course Name" onkeydown="if (event.keyCode == 13) document.getElementById('search_btn').click()">
 			     		</div>
 			     		<span class="input-group-btn btn-2">
-			     		<button class="btn btn-primary " type="button">
+			     		<button id="search_btn" class="btn btn-primary " type="button">
 								<span class="glyphicon glyphicon-search col-lg-4" style="vertical-align:middle"></span>
 						</button>
 						</span>
@@ -66,6 +66,30 @@ echo("
 			</div>
 		</div>
     </div> <!-- /container -->
+    
+    <!-- Modal -->
+	<div class="modal fade" id="student_hours_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Select Your Available Hours</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<form role="form">
+		        <div class="checkbox">
+		        	<label>
+		        		<input type="checkbox">
+		        	</label>
+		        </div>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="student_hours_modal_btn" class="btn btn-primary">Submit</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 
     

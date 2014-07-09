@@ -1,38 +1,50 @@
+var times = null;
+
 $(function(){
 	$('.content').fadeIn();
 	
 	$(".btn-2").hide();
 	$("#course_search").css({"width":"500px"});
+	
 	$(".btn").click(function(event) {
-		//event.preventDefault();
 		
-		var cn = $("#course_search").serialize();
-		
-		$.ajax({
-			      type: 'POST',
-			      //dataType: 'json',
-			      url: 'php/student.php',
-			      data: cn   
-			  }).done(function(data) { 
-				  	console.log(data);
-				  	//alert(data); 
-				  	afterPostP1(data);
-			  	})
-			    .fail(function() { alert("Failed to communicate"); })
-			    .always(function() { /*alert("complete"); */});
-		
-		// get the elements on the page
-		/*var posting = $.post("php/student.php", cn, afterPostP1(data), "json");
-		posting.always(afterPostP1(cn));
-		
-		 * // Debug for running the function without posting
-		 * afterPostP1(cn);
-		 */
+		$("#student_hours_modal").modal({
+			keyboard: false,
+			backdrop: 'static'
+		});
+	});
+	
+	$("#student_hours_modal_btn").click(function(event){
+		$("#student_hours_modal").modal('hide');
+		searchSubmit();
 	});
 
-	
-	
 });
+
+function searchSubmit(){
+	var cn = $("#course_search").serialize();
+		
+	$.ajax({
+		      type: 'POST',
+		      //dataType: 'json',
+		      url: 'php/student.php',
+		      data: cn   
+		  }).done(function(data) { 
+			  	console.log(data);
+			  	//alert(data); 
+			  	afterPostP1(data);
+		  	})
+		    .fail(function() { alert("Failed to communicate"); })
+		    .always(function() { /*alert("complete"); */});
+	
+	// get the elements on the page
+	/*var posting = $.post("php/student.php", cn, afterPostP1(data), "json");
+	posting.always(afterPostP1(cn));
+	
+	 * // Debug for running the function without posting
+	 * afterPostP1(cn);
+	 */
+};
 
 var substringMatcher = function(strs) {
   return function findMatches(q, cb) {
@@ -105,10 +117,10 @@ function afterPostP2(data){
 							<tr>\
 								<th>Name</th>\
 								<th>Email</th>\
-								<th>Avg Prof Rating</th>\
-								<th># Professors</th>\
-								<th>Avg Student Rating</th>\
-								<th># Students</th>\
+								<th>Prof Rating</th>\
+								<th>Professors</th>\
+								<th>Stud Rating</th>\
+								<th>Students</th>\
 								<th> </th>\
 							</tr>\
 						</thead>\
