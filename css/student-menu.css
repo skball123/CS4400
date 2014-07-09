@@ -83,3 +83,6 @@ body {
   padding: 3px 10px;
  text-align: center;
 }
+.tutor-list{
+	max-width: 60%;
+}

@@ -125,7 +125,19 @@ function afterPostP2(data){
 							</tr>\
 						</thead>\
 						<tbody>';
-	$(".tutor-list").append(opener);
+	
+	/* Test debug row
+	 var row = '<tr>\
+				<td>John Smith</td>\
+				<td>asdf@gremail.ch</td>\
+				<td>9.248</td>\
+				<td>13.41</td>\
+				<td>4024</td>\
+				<td>134</td>\
+				<td> </td>\
+				</tr>';*/
+	
+	
 	var mondays = [];
 	var tuesdays = [];
 	var wednesdays = [];
@@ -154,58 +166,12 @@ function afterPostP2(data){
 					break;	
 			}
 		}
-		var table = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.tutor[i][1] + '</td> <td>' + mondays.join('<br>') + '</td> <td>' + tuesdays.join('<br>') + '</td> <td>' + wednesdays.join('<br>') + '</td> <td>' + thursdays.join('<br>') + '</td> <td>' + fridays.join('<br>') + '</td> </tr>';
-		$(".tutor-list").append(table);
+		var row = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.tutor[i][1] + '</td> <td>' + mondays.join('<br>') + '</td> <td>' + tuesdays.join('<br>') + '</td> <td>' + wednesdays.join('<br>') + '</td> <td>' + thursdays.join('<br>') + '</td> <td>' + fridays.join('<br>') + '</td> </tr>';
 	}
 	
-	/*var opener = '<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>Tutor Name</th>
-								<th>GTA?</th>
-								<th>M</th>
-								<th>T</th>
-								<th>W</th>
-								<th>R</th>
-								<th>F</th>
-							</tr>
-						</thead>
-						<tbody>';
-	$(".tutor-list").append(opener);
-	var mondays = [];
-	var tuesdays = [];
-	var wednesdays = [];
-	var thursdays = [];
-	var fridays = [];
-	var length = data.tutor.length;
-	for(var i = 0; i < length; i++) { 
-		var length2 = data.times[i].length;
-		for(var j = 0; j < length2; j++) {
-			var check = data.times[i][j][0] //gets day
-			switch (check) {
-				case 'M':
-					mondays.push( '<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>' );
-					break;
-				case 'T':
-					tuesdays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');	
-					break;
-				case 'W':
-					wednesdays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');
-					break;	
-				case 'R':
-					thursdays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');
-					break;
-				case 'F':
-					fridays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');	
-					break;	
-			}
-		}
-		var table = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.tutor[i][1] + '</td> <td>' + mondays.join('<br>') + '</td> <td>' + tuesdays.join('<br>') + '</td> <td>' + wednesdays.join('<br>') + '</td> <td>' + thursdays.join('<br>') + '</td> <td>' + fridays.join('<br>') + '</td> </tr>';
-		$(".tutor-list").append(table);
-	}*/
-	
 	var closer = "</tbody></table>";
-	$(".tutor-list").append(closer);
+	var together = opener.concat(row, closer);
+	$(".tutor-list").append(together);
 	$(".tutor-list").fadeIn();
 };
 
