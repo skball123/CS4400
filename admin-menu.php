@@ -34,7 +34,7 @@ include 'functions.php';
   <body>
      <div class="container">
      	<div class="content">
-			 <h2 class="form-heading">Administrator Reports</h2>
+			 <h2 class="heading">Administrator Reports</h2>
 			 <div class="open">
 			 	<div class="checkbox">
 		      			<input type="checkbox" name="semester" id="semester1" value="Fall">Fall
@@ -47,6 +47,18 @@ include 'functions.php';
 		      	</div>
 		      	<button class="btn btn-lg btn-primary btn-block" type="submit" id="button" name="button" value="0">Create Course Numbers Report</button>
 		        <button class="btn btn-lg btn-primary btn-block" type="submit" id="button" name="button" value="1">Create Average Ratings Report</button>    	
+			</div>
+			<div class="reports" style="display: none">
+			<table class="table">
+				<thead>
+					<tr>
+						<td>School</td>
+						<td>Number</td>
+						<td># of Tutors</td>
+						<td>Average Rating</td>
+					</tr>
+				</thead>
+				<tbody>
 			</div>
 		</div>
     </div> <!-- /container -->
