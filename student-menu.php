@@ -65,7 +65,9 @@ echo('
 		</div>
     </div> <!-- /container -->
     <div class="container-fluid">
-    	<div class="tutor-list panel panel-default" style="display: none">
+		<div class="row">
+			<div class="tutor-list panel panel-default span12" style="display: none; float: none; margin: 0 auto;">
+			</div>
 		</div>
     </div>
     
