@@ -50,7 +50,7 @@ echo('
 			     			<input id="course_search" name="course" type="search" class="form-control typeahead" placeholder="Course Name" onkeydown="if (event.keyCode == 13) document.getElementById('search_btn').click()">
 			     		</div>
 			     		<span class="input-group-btn btn-2">
-			     		<button id="search_btn" class="btn btn-primary " type="button">
+			     		<button id="search_btn" class="btn btn-primary search_btn" type="button">
 								<span class="glyphicon glyphicon-search col-lg-4" style="vertical-align:middle"></span>
 						</button>
 						</span>
@@ -59,7 +59,7 @@ echo('
      		</div>
 			<div class="btn-group-wrap">
 				<div class="btn-container btn-group">
-					<button type="button" class="btn btn-primary">Search for a Tutor</button>
+					<button type="button" class="btn btn-primary search_btn">Search for a Tutor</button>
 				</div>
 			</div>
 		</div>
@@ -78,8 +78,8 @@ echo('
 	      <div class="modal-header">
 	        <h4 class="modal-title" id="myModalLabel">Add Your Availability</h4>
 	      </div>
-	      <div class="modal-body">
-	        <div class="input-group">
+	      <div class="modal-body" id="modal_form">
+	        <div class="input-group time_input">
 	        	<span class="input-group-btn">
 	        		<button type="button" class="btn btn-default day_btn" name="day0">Mo</button>
 	        	</span>
@@ -113,6 +113,7 @@ echo('
 	        </div>
 	      </div>
 	      <div class="modal-footer">
+			<button type="button" id="add_time_btn" class="btn btn-default">Add Time</button>
 	        <button type="button" id="student_hours_modal_btn" class="btn btn-primary">Submit</button>
 	      </div>
 	    </div>

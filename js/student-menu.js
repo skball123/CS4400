@@ -1,14 +1,17 @@
 var times = null;
-
+var timeAdded = 0;
+var stud_avail = null;
 $(function(){
+	stud_avail = null;
 	$('.content').fadeIn();
 	
 	$(".btn-2").hide();
 	$("#course_search").css({"width":"500px"});
 	
 	
-	$(".btn").click(function(event) {
-		
+	$(".search_btn").click(function(event) {
+		resetModal();
+		addListeners();
 		$("#student_hours_modal").modal({
 			keyboard: false,
 			backdrop: 'static'
@@ -20,24 +23,95 @@ $(function(){
 		searchSubmit();
 	});
 	
-	$(".day_btn").click(function(event){
-		var day = $(event.target).html();
-		switch(day){
-			case "Mo": $(event.target).html("Tu"); break;
-			case "Tu": $(event.target).html("We"); break;
-			case "We": $(event.target).html("Th"); break;
-			case "Th": $(event.target).html("Fr"); break;
-			case "Fr": $(event.target).html("Sa"); break;
-			case "Sa": $(event.target).html("Su"); break;
-			case "Su": $(event.target).html("Mo"); break;
+	$("#add_time_btn").click(function(event){
+		timeAdded++;
+		addDayTime();
+		
+		if(timeAdded == 15){
+			$("#add_time_btn").attr("disabled","disabled");
 		}
+		addListeners();
 	});
 
 });
 
+function addDayTime(){
+	var newName = "day" + timeAdded;
+	var toappend = '<div class="input-group time_input" style="display: none;">\
+						<span class="input-group-btn">\
+							<button type="button" class="btn btn-default day_btn" name="' + newName + '">Mo</button>\
+						</span>\
+						<input type="text" style="display: none" name="' + newName + '" class="' + newName + '" value="M">\
+						<select name="time' + timeAdded + '" class="form-control">\
+							<option value="7">7:00AM</option>\
+							<option value="8">8:00AM</option>\
+							<option value="9">9:00AM</option>\
+							<option value="10">10:00AM</option>\
+							<option value="11">11:00AM</option>\
+							<option value="12">12:00PM</option>\
+							<option value="13">1:00PM</option>\
+							<option value="14">2:00PM</option>\
+							<option value="15">3:00PM</option>\
+							<option value="16">4:00PM</option>\
+							<option value="17">5:00PM</option>\
+							<option value="18">6:00PM</option>\
+							<option value="19">7:00PM</option>\
+							<option value="20">8:00PM</option>\
+							<option value="21">9:00PM</option>\
+							<option value="22">10:00PM</option>\
+							<option value="23">11:00PM</option>\
+							<option value="0">8:00AM</option>\
+							<option value="1">9:00AM</option>\
+							<option value="2">10:00AM</option>\
+							<option value="3">7:00AM</option>\
+							<option value="4">8:00AM</option>\
+							<option value="5">9:00AM</option>\
+							<option value="6">10:00AM</option>\
+						</select>\
+						\
+					</div>'
+					
+	$(toappend).appendTo('.modal-body').show('slow');
+}
+
+function resetModal(){
+	$("#modal_form").empty();
+	timeAdded = 0;
+	addDayTime();
+}
+
+function addListeners(){
+	$(".day_btn").unbind("click");
+	$(".day_btn").click(function(event){
+		var day = $(event.target).html();
+		switch(day){
+			case "Mo": $(event.target).html("Tu");
+						$('.' + $(event.target).attr("name")).attr("value", "T"); 
+						break;
+			case "Tu": $(event.target).html("We");
+						$('.' + $(event.target).attr("name")).attr("value", "W"); 
+						break;
+			case "We": $(event.target).html("Th");
+						$('.' + $(event.target).attr("name")).attr("value", "R"); 
+						break;
+			case "Th": $(event.target).html("Fr");
+						$('.' + $(event.target).attr("name")).attr("value", "F"); 
+						break;
+			case "Fr": $(event.target).html("Sa");
+						$('.' + $(event.target).attr("name")).attr("value", "S"); 
+						break;
+			case "Sa": $(event.target).html("Su");
+						$('.' + $(event.target).attr("name")).attr("value", "Z"); 
+						break;
+			case "Su": $(event.target).html("Mo");
+						$('.' + $(event.target).attr("name")).attr("value", "M"); 
+						break;
+		}
+	});
+}
+
 function searchSubmit(){
-	var cn = $("#course_search").serialize();
-		
+	var cn = $("select, input").serialize();
 	$.ajax({
 		      type: 'POST',
 		      //dataType: 'json',

@@ -85,4 +85,17 @@ body {
 }
 .tutor-list{
 	max-width: 60%;
+	margin-top: 30px;
+	box-shadow: 3px 3px 12px black;
+	padding: 10px;
+}
+.container{
+	margin-bottom: 20px;
+}
+.time_input{
+	margin-bottom: 5px;
+}
+.modal-body{
+	padding-bottom: 0px;
+	padding-top: 15px;
 }
