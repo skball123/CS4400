@@ -1,6 +1,9 @@
 var times = null;
 var timeAdded = 0;
 var stud_avail = null;
+var selected_course = null;
+var selected_tut_name = null;
+var selected_tut_gtid = null;
 $(function(){
 	stud_avail = null;
 	$('.content').fadeIn();
@@ -31,6 +34,22 @@ $(function(){
 			$("#add_time_btn").attr("disabled","disabled");
 		}
 		addListeners();
+	});
+	
+	$("#rate_tutor_modal_btn").click(function(event){
+		var toPost = $("#modal_rate_form").serialize();
+		$.ajax({
+		      type: 'POST',
+		      //dataType: 'json',
+		      url: 'php/rate_tutor.php',
+		      data: toPost   
+		  }).done(function(data) { 
+			  	console.log(data);
+			  	//alert(data); 
+			  	afterPostRating(data);
+		  	})
+		    .fail(function() { alert("Failed to communicate"); })
+		    .always(function() { /*alert("complete"); */});
 	});
 
 });
@@ -71,7 +90,7 @@ function addDayTime(){
 						\
 					</div>'
 					
-	$(toappend).appendTo('.modal-body').show('slow');
+	$(toappend).appendTo('#modal_form').show('slow');
 }
 
 function resetModal(){
@@ -111,8 +130,11 @@ function addListeners(){
 }
 
 function searchSubmit(){
+	//store global variable for the course being searched
+	selected_course = $("#course_search").val();
+	
 	var toAppend = '<input type="text" style="display: none" name="numTimes" value="' + timeAdded + '">';
-	$(toAppend).appendTo('.modal-body');
+	$(toAppend).appendTo('#modal_form');
 	var cn = $("select, input").serialize();
 	$.ajax({
 		      type: 'POST',
@@ -266,4 +288,7 @@ function afterPostP2(data){
 	$(".tutor-list").fadeIn();
 };
 
+function afterPostRating(data){
+	$("#student_hours_modal").modal('hide');
+);
 

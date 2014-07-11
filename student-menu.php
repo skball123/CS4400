@@ -71,7 +71,7 @@ echo('
 		</div>
     </div>
     
-    <!-- Modal -->
+    <!-- Time Availability Modal -->
 	<div class="modal fade" id="student_hours_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-sm">
 	    <div class="modal-content">
@@ -115,6 +115,59 @@ echo('
 	      <div class="modal-footer">
 			<button type="button" id="add_time_btn" class="btn btn-default">Add Time</button>
 	        <button type="button" id="student_hours_modal_btn" class="btn btn-primary">Submit</button>
+	      </div>
+	    </div>
+	  </div>
+	</div> <!-- End Time Availability Modal -->
+	
+	<!-- Tutor Rate Modal -->
+	<div class="modal fade" id="rate_tutor_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title" id="myModalLabel">Rate this Tutor</h4>
+	      </div>
+	      <div class="modal-body" id="modal_rate_form">
+			<div class="row">
+				<div class="span6">
+					<div class="col-lg-3">
+						<input type="text" name="tutgtid" id="tutgtid" class="form-control" maxlength="9" placeholder="Tutor GTID or Name" disabled="disabled">
+					</div>
+					<div class="col-lg-3">
+						<input type="text" name="courseName" id="rateCourseName" class="form-control" maxlength="9" placeholder="Course Name" disabled="disabled">
+					</div>
+				</div>
+			</div>
+			<h5>Descriptive Evaluation</h5>
+			<textarea class="form-control" required rows="4" maxlength="300" name="desc_eval"></textarea>
+			
+			<div class="radio">
+				<label>
+					<input required type="radio" name="num_eval" id="radio_4" value="4">
+					4 Highly Recommend
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+					<input required type="radio" name="num_eval" id="radio_3" value="3">
+					3 Recommend
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+					<input required type="radio" name="num_eval" id="radio_2" value="2">
+					2 Recommend with reservations
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+					<input required type="radio" name="num_eval" id="radio_1" value="1">
+					1 Do Not Recommend
+				</label>
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="rate_tutor_modal_btn" class="btn btn-primary">Submit</button>
 	      </div>
 	    </div>
 	  </div>
