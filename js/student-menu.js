@@ -111,6 +111,8 @@ function addListeners(){
 }
 
 function searchSubmit(){
+	var toAppend = '<input type="text" style="display: none" name="numTimes" value="' + timeAdded + '">'
+	$(toAppend).appendTo('.modal-body');
 	var cn = $("select, input").serialize();
 	$.ajax({
 		      type: 'POST',
