@@ -111,7 +111,7 @@ function addListeners(){
 }
 
 function searchSubmit(){
-	var toAppend = '<input type="text" style="display: none" name="numTimes" value="' + timeAdded + '">'
+	var toAppend = '<input type="text" style="display: none" name="numTimes" value="' + timeAdded + '">';
 	$(toAppend).appendTo('.modal-body');
 	var cn = $("select, input").serialize();
 	$.ajax({
@@ -257,10 +257,11 @@ function afterPostP2(data){
 			}
 		}
 		var row = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.tutor[i][1] + '</td> <td>' + mondays.join('<br>') + '</td> <td>' + tuesdays.join('<br>') + '</td> <td>' + wednesdays.join('<br>') + '</td> <td>' + thursdays.join('<br>') + '</td> <td>' + fridays.join('<br>') + '</td> </tr>';
+		opener = opener.concat(row);
 	}
 	
 	var closer = "</tbody></table>";
-	var together = opener.concat(row, closer);
+	together = opener.concat(closer);
 	$(".tutor-list").append(together);
 	$(".tutor-list").fadeIn();
 };
