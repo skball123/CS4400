@@ -257,6 +257,7 @@ function afterPostP2(data){
 	var fridays = [];
 	var length = data.tutor.length;
 	for(var i = 0; i < length; i++) { 
+		/*
 		var length2 = data.times[i].length;
 		for(var j = 0; j < length2; j++) {
 			var check = data.times[i][j][0] //gets day
@@ -278,7 +279,10 @@ function afterPostP2(data){
 					break;	
 			}
 		}
-		var row = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.tutor[i][1] + '</td> <td>' + mondays.join('<br>') + '</td> <td>' + tuesdays.join('<br>') + '</td> <td>' + wednesdays.join('<br>') + '</td> <td>' + thursdays.join('<br>') + '</td> <td>' + fridays.join('<br>') + '</td> </tr>';
+		*/
+		
+		
+		var row = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.email[i] + '</td> <td>' + data.Pavg[i] + '</td> <td>' + data.Pnum[i] + '</td> <td>' + data.STavg[i] + '</td> <td>' + data.STnum[i] + '</td> <td>' + 'button' + '</td> </tr>';
 		opener = opener.concat(row);
 	}
 	
@@ -290,5 +294,5 @@ function afterPostP2(data){
 
 function afterPostRating(data){
 	$("#student_hours_modal").modal('hide');
-);
+};
 
