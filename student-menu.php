@@ -100,14 +100,6 @@ echo('
 	        		<option value="20">8:00PM</option>
 	        		<option value="21">9:00PM</option>
 	        		<option value="22">10:00PM</option>
-	        		<option value="23">11:00PM</option>
-	        		<option value="0">12:00AM</option>
-	        		<option value="1">1:00AM</option>
-	        		<option value="2">2:00AM</option>
-	        		<option value="3">3:00AM</option>
-	        		<option value="4">4:00AM</option>
-	        		<option value="5">5:00AM</option>
-	        		<option value="6">6:00AM</option>
 	        	</select>
 	        	
 	        </div>
