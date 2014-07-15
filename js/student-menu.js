@@ -91,6 +91,7 @@ function addDayTime(){
 
 function resetModal(){
 	$("#modal_form").empty();
+	$("#add_time_btn").removeAttr("disabled");
 	timeAdded = 0;
 	addDayTime();
 }

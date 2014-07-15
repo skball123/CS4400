@@ -126,6 +126,10 @@ echo('
 					<div class="col-lg-3">
 						<input type="text" name="tutgtid" id="tutgtid" class="form-control" maxlength="9" placeholder="Tutor GTID or Name" disabled="disabled">
 					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span6">
 					<div class="col-lg-3">
 						<input type="text" name="courseName" id="rateCourseName" class="form-control" maxlength="9" placeholder="Course Name" disabled="disabled">
 					</div>
@@ -157,6 +161,33 @@ echo('
 					<input required type="radio" name="num_eval" id="radio_1" value="1">
 					1 Do Not Recommend
 				</label>
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="rate_tutor_modal_btn" class="btn btn-primary">Submit</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- Tutor Schedule Modal -->
+	<div class="modal fade" id="schedule_tutor_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Schedule a Tutoring Session</h4>
+	      </div>
+	      <div class="modal-body" id="modal_schedule_form">
+		  <div class="row">
+				<div class="span6">
+					<div class="col-lg-3">
+						<input type="text" name="tutgtid" id="tutgtid_sched" class="form-control" maxlength="9" placeholder="Tutor GTID or Name" disabled="disabled">
+					</div>
+					<div class="col-lg-3">
+						<input type="text" name="courseName" id="schedCourseName" class="form-control" maxlength="9" placeholder="Course Name" disabled="disabled">
+					</div>
+				</div>
 			</div>
 	      </div>
 	      <div class="modal-footer">
