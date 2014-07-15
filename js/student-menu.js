@@ -341,7 +341,7 @@ function scheduleTutor(event){
 	
 	
 	//set up the modal pre-populate the course and tutor name
-	$("#tutgtid_sched").attr("value", $(event).attr("value") + " (" $(event).attr("name") + ")");
+	$("#tutgtid_sched").attr("value", $(event).attr("value") + " (" + $(event).attr("name") + ")");
 	$("#schedCourseName").attr("value", selected_course);
 
 	$("#schedule_tutor_modal").modal();

@@ -57,13 +57,24 @@ echo("
 		        <button class="btn btn-lg btn-primary btn-block" type="submit" id="button" name="button" value="ratings">Create Average Ratings Report</button>
 		        <br />
 		        <div id="dropdown">
-		        	<input type="search" name="tutgtid" id="tutgtid" class="form-control typeahead" maxlength="9" placeholder="Tutor GTID or Name" required autofocus>
+		        	<input type="search" name="tutgtid" id="tutgtid" class="form-control typeahead" placeholder="Tutor GTID or Name" required autofocus>
 		        </div>
 		        <button class="btn btn-lg btn-primary btn-block" type="submit" id="button" name="button" value="tutor">Lookup Tutor Schedule</button>    	    	
 			</div>
-			<div class="reports" style="display: none">
-			</div>
-		</div>
+			<div class="modal fade">
+  				<div class="modal-dialog">
+    				<div class="modal-content">
+      					<div class="modal-header">
+        					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        					<h4 class="modal-title"></h4>
+      					</div>
+      					<div class="modal-body reports panel panel-default span12">
+        					
+      					</div>
+   				 </div><!-- /.modal-content -->
+  			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		</div> <!-- /content -->
     </div> <!-- /container -->
 
 

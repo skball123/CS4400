@@ -7,7 +7,6 @@ $summer = $_POST['checkbox3'];  //bool
 $tut_gtid = strtok($_POST['GTID'], " "); // removes name that was at the end 
 $json = array();
 
-
 if($report == 'numbers') {
 	$json['type'] = 'numbers';
 	
@@ -25,8 +24,7 @@ if($report == 'numbers') {
 			if( !( is_null($row[0]) ) ) {
 				$json['fallnumbers'][] = $row;
 			}
-		}
-	mysqli_free_result($result);	
+		}	
 	}
 	
 	if($spring == 'true') {
@@ -36,8 +34,7 @@ if($report == 'numbers') {
 			if( !( is_null($row[0]) ) ) {
 				$json['springnumbers'][] = $row;
 			}
-		}
-	mysqli_free_result($result);	
+		}	
 	}
 	
 	if($summer == 'true') {
@@ -47,10 +44,8 @@ if($report == 'numbers') {
 			if( !( is_null($row[0]) ) ) {
 				$json['summernumbers'][] = $row;
 			}
-		}
-	mysqli_free_result($result);	
+		}	
 	}
-	mysqli_close($con);	
 }
 elseif($report == 'ratings') {
 	$json['type'] = 'rating';
@@ -137,14 +132,17 @@ elseif($report == 'ratings') {
 		mysqli_free_result($result);
 	}
 	
-	
-	mysqli_close($con);
-	
 }
 elseif( $report == 'tutor' ) {
+	$con = mysqli_connect("localhost","kirsch_cs4400","cs4400GT","kirsch_cs4400");
+	// Check connection
+	if (mysqli_connect_errno())
+  		{
+  			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
 	$TutSched = "SELECT Hires.DayTimeSlotHired, User.Name, User.Email, Hires.SchoolName, Hires.CrNumber FROM Hires INNER JOIN User ON Hires.UnGT_ID = User.GT_ID WHERE Hires.TutordGT_ID =$tut_gtid'";
 	$result = mysqli_query($con, $tut_gtid);
-	while( $row = mysqli_fetch_row($result) {
+	while( $row = mysqli_fetch_row($result) ) {
 		$json['slothired'][] = $row[0];
 		$json['name'][] = $row[1];
 		$json['email'][] = $row[2];
@@ -154,6 +152,7 @@ elseif( $report == 'tutor' ) {
 	
 }
 
+mysqli_close($con);
 echo json_encode($json);
 
 ?>

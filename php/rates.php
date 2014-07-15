@@ -6,16 +6,19 @@ $coursenum = $_POST['courseName'];
 $school = strtok($coursenum, " ");
 $coursenum = strtok(" ");
 
-$semester = $_POST['semester'];
-$tut_gtid = $_POST['tutgtid'];
+$semester = 'Summer';
+
+$tut_gtid = strtok($_POST['tutgtid'], " ");
 $stu_gtid = $_SESSION['myusername'];
 
-Checkteach($tut_gtid, $stu_gtid, $coursenum, $school, $semester);  //check if student is being taught by tutor in course
-$bool = Checkalready($tut_gtid, $stu_gtid, $coursenum, $school);  // check if student already rated tutor
-
-
-StuEval($bool, $desc_eval, $num_eval, $tut_gtid, $stu_gtid, $coursenum, $school, $semester);
-
+$checker = Checkteach($tut_gtid, $stu_gtid, $coursenum, $school, $semester);  //check if student is being taught by tutor in course
+if($checker) {
+	$bool = Checkalready($tut_gtid, $stu_gtid, $coursenum, $school);  // check if student already rated tutor
+	StuEval($bool, $desc_eval, $num_eval, $tut_gtid, $stu_gtid, $coursenum, $school, $semester);
+}	
+else {
+echo('no session');
+}
 
 
 function Checkteach($tut_gtid, $stu_gtid, $coursenum, $school, $semester) {
@@ -25,17 +28,18 @@ function Checkteach($tut_gtid, $stu_gtid, $coursenum, $school, $semester) {
   		{
   			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
-	$query = "SELECT TutordGT_ID FROM Hires WHERE Hires.UnGT_ID = '$stu_gtid' AND TutordGT_ID = '$tut_gtid' AND CrNumber = '$coursenum' AND SchoolName = '$school' AND RSemester = '$semester'";
+	$query = "SELECT TutordGT_ID FROM Hires WHERE Hires.UnGT_ID = '$stu_gtid' AND TutordGT_ID = '$tut_gtid' AND CrNumber = '$coursenum' AND SchoolName = '$school' AND SemesterSlotHired = '$semester'";
+	echo($query);
 	$result = mysqli_query($con, $query);	
 	$count = mysqli_num_rows($result);
-	if($count) { return 1; }
+	if($count > 0) { return 1; }
 	else {
 	 echo('<script>alert("You cannot rate this tutor without having a session with them."); window.location = "http://samkirsch.net/cs4400/student-menu.php"</script>');
 	 return 0; }
 	mysqli_close($con);
 }
 
-function Checkalready($tut_gtid, $stu_gtid, $coursenum, $school); {
+function Checkalready($tut_gtid, $stu_gtid, $coursenum, $school) {
 	$con = mysqli_connect("localhost","kirsch_cs4400","cs4400GT","kirsch_cs4400");
 	// Check connection
 	if (mysqli_connect_errno())
@@ -50,7 +54,7 @@ function Checkalready($tut_gtid, $stu_gtid, $coursenum, $school); {
 	mysqli_close($con);
 }
 
-StuEval($bool, $desc_eval, $num_eval, $tut_gtid, $stu_gtid, $coursenum, $school, $semester); {	//takes in bool for choice of update or insert record
+function StuEval($bool, $desc_eval, $num_eval, $tut_gtid, $stu_gtid, $coursenum, $school, $semester) {	//takes in bool for choice of update or insert record
 	$con = mysqli_connect("localhost","kirsch_cs4400","cs4400GT","kirsch_cs4400");
 	// Check connection
 	if (mysqli_connect_errno())
