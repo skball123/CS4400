@@ -36,6 +36,10 @@ $(function(){
 		addListeners();
 	});
 	
+	$("#rates_success_btn").click(function(event){
+		$("#rate_success_modal").modal('hide');
+	});
+	
 	$("#rate_tutor_modal_btn").click(function(event){
 		if(!$("#desc_eval").val()){
 			$("#desc_eval").addClass('warning');
@@ -54,6 +58,24 @@ $(function(){
 		  	})
 		    .fail(function() { alert("Failed to communicate"); })
 		    .always(function() { /*alert("complete"); */});
+	});
+	
+	$("#schedule_tutor_modal_btn").click(function(event){
+		
+		var toPost = $("#modal_schedule_form").serialize();
+		$.ajax({
+		      type: 'POST',
+		      //dataType: 'json',
+		      url: 'php/schedule.php',
+		      data: toPost   
+		  }).done(function(data) { 
+			  	console.log(data);
+			  	//alert(data); 
+			  	afterPostSchedule(data);
+		  	})
+		    .fail(function() { alert("Failed to communicate"); })
+		    .always(function() { /*alert("complete"); */});
+		
 	});
 
 });
@@ -219,6 +241,7 @@ function afterPostP1(data){
 }
 
 function afterPostP2(data){
+	$(".tutor-list").fadeOut();
 	$(".tutor-list").empty();
 	
 	var opener = '<table class="table table-hover">\
@@ -299,14 +322,34 @@ function afterPostP2(data){
 
 function afterPostRating(data){
 	$("#rate_tutor_modal").modal('hide');
+	
+	//IF success then show this modal, currently no real feedback from the post so..... to do
+	$("#rate_success_modal").modal();
+	
+};
+
+function afterPostSchedule(data){
+
 };
 
 function scheduleTutor(event){
 	
+	// post to the server the tutor gtid to get their time availabilities
+	var toPost = 
+	
+	
+	
+	
+	//set up the modal pre-populate the course and tutor name
+	$("#tutgtid_sched").attr("value", $(event).attr("value") + " (" $(event).attr("name") + ")");
+	$("#schedCourseName").attr("value", selected_course);
+
+	$("#schedule_tutor_modal").modal();
+	
 };
 
 function rateTutor(event){
-	//prepopulate the course and tutor name
+	//pre-populate the course and tutor name
 	$("#tutgtid").attr("value", $(event).attr("value") + " (" $(event).attr("name") + ")");
 	$("#rateCourseName").attr("value", selected_course);
 

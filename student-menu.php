@@ -191,14 +191,30 @@ echo('
 			</div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" id="rate_tutor_modal_btn" class="btn btn-primary">Submit</button>
+	        <button type="button" id="schedule_tutor_modal_btn" class="btn btn-primary">Submit</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
-
-
-    
+	
+	<!-- Rate Success Modal -->
+	<div class="modal fade" id="rate_success_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title" id="myModalLabel">Success!</h4>
+	      </div>
+	      <div class="modal-body" id="rate_success_modal_body">
+			<p>Your rating has been submitted.</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="rates_success_btn" class="btn btn-success">
+				<span class="glyphicon glyphicon-ok"></span>
+			</button>
+	      </div>
+	    </div>
+	  </div>
+	</div> <!-- End Rate Success Modal -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
