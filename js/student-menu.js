@@ -280,7 +280,7 @@ function afterPostP2(data){
 			*/
 			
 			if ( !data.email[i]) { continue; } 
-			var row = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.email[i] + '</td> <td>' + data.Pavg[i] + '</td> <td>' + data.Pnum[i] + '</td> <td>' + data.STavg[i] + '</td> <td>' + data.STnum[i] + '</td> <td>' + '<button class="btn btn-success" value="' + data.gtid[i] + '" name = "' + data.tutor[i][0] + '"  onclick="scheduleTutor(event.target)"><span class="glyphicon glyphicon-ok-sign"></span></button>' + '</td> <td>' + '<button class="btn btn-info" value="' + data.gtid[i] + '" name = "' + data.tutor[i][0] + '" onclick="rateTutor(event.target)"><span class="glyphicon glyphicon-comment"></span></button> </td> </tr>';
+			var row = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.email[i] + '</td> <td>' + data.Pavg[i] + '</td> <td>' + data.Pnum[i] + '</td> <td>' + data.STavg[i] + '</td> <td>' + data.STnum[i] + '</td> <td>' + '<button class="btn btn-success" value="' + data.gtid[i] + '" name = "' + data.tutor[i][0] + '"  onclick="scheduleTutor(this)"><span class="glyphicon glyphicon-ok-sign"></span></button>' + '</td> <td>' + '<button class="btn btn-info" value="' + data.gtid[i] + '" name = "' + data.tutor[i][0] + '" onclick="rateTutor(this)"><span class="glyphicon glyphicon-comment"></span></button> </td> </tr>';
 			opener = opener.concat(row);
 		}
 		
@@ -307,6 +307,7 @@ function scheduleTutor(event){
 function rateTutor(event){
 	//prepopulate the course and tutor name
 	alert("tutgtid: " + $(event.target).attr("value"));
+	alert("tutgtid2: " + $(event).attr("value"));
 	$("#tutgtid").attr("value", $(event.target).attr("value"));
 	$("#rateCourseName").attr("value", selected_course);
 
