@@ -225,7 +225,8 @@ function afterPostP2(data){
 								<th>Professors</th>\
 								<th>Stud Rating</th>\
 								<th>Students</th>\
-								<th> </th>\
+								<th>Schedule</th>\
+								<th>Rate</th>\
 							</tr>\
 						</thead>\
 						<tbody>';
