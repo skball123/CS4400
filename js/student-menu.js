@@ -281,8 +281,8 @@ function afterPostP2(data){
 		}
 		*/
 		
-		
-		var row = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.email[i] + '</td> <td>' + data.Pavg[i] + '</td> <td>' + data.Pnum[i] + '</td> <td>' + data.STavg[i] + '</td> <td>' + data.STnum[i] + '</td> <td>' + '<button class="btn btn-info btn-mini" value=' + data.gtid[i] + '>Select</button>' + '</td> </tr>';
+		if ( !data.email[i]) { continue; } 
+		var row = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.email[i] + '</td> <td>' + data.Pavg[i] + '</td> <td>' + data.Pnum[i] + '</td> <td>' + data.STavg[i] + '</td> <td>' + data.STnum[i] + '</td> <td>' + '<button class="btn btn-info btn-mini" value=' + data.gtid[i] + ' name = "' + data.tutor[i][0] + '">Select</button>' + '</td> </tr>';
 		opener = opener.concat(row);
 	}
 	
