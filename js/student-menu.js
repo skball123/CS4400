@@ -78,14 +78,6 @@ function addDayTime(){
 							<option value="20">8:00PM</option>\
 							<option value="21">9:00PM</option>\
 							<option value="22">10:00PM</option>\
-							<option value="23">11:00PM</option>\
-							<option value="0">8:00AM</option>\
-							<option value="1">9:00AM</option>\
-							<option value="2">10:00AM</option>\
-							<option value="3">7:00AM</option>\
-							<option value="4">8:00AM</option>\
-							<option value="5">9:00AM</option>\
-							<option value="6">10:00AM</option>\
 						</select>\
 						\
 					</div>'
@@ -282,7 +274,7 @@ function afterPostP2(data){
 		*/
 		
 		if ( !data.email[i]) { continue; } 
-		var row = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.email[i] + '</td> <td>' + data.Pavg[i] + '</td> <td>' + data.Pnum[i] + '</td> <td>' + data.STavg[i] + '</td> <td>' + data.STnum[i] + '</td> <td>' + '<button class="btn btn-info btn-mini" value=' + data.gtid[i] + ' name = "' + data.tutor[i][0] + '"  onclick="scheduleTutor(event.target)">Schedule</button>' + '</td> <td>' + '<button class="btn btn-info btn-mini" value=' + data.gtid[i] + ' name = "' + data.tutor[i][0] + '" onclick="rateTutor(event.target)">Rate</button>' + '</td> </tr>';
+		var row = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.email[i] + '</td> <td>' + data.Pavg[i] + '</td> <td>' + data.Pnum[i] + '</td> <td>' + data.STavg[i] + '</td> <td>' + data.STnum[i] + '</td> <td>' + '<button class="btn btn-info btn-mini" value=' + data.gtid[i] + ' name = "' + data.tutor[i][0] + '"  onclick="scheduleTutor(event.target)">Schedule</button>' + '</td> <td>' + '<button class="btn btn-info btn-mini" value=' + data.gtid[i] + ' name = "' + data.tutor[i][0] + '" onclick="rateTutor(event.target)">Rate</button> </td> </tr>';
 		opener = opener.concat(row);
 	}
 	
