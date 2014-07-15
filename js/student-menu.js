@@ -335,7 +335,7 @@ function afterPostSchedule(data){
 function scheduleTutor(event){
 	
 	// post to the server the tutor gtid to get their time availabilities
-	var toPost = 
+	//var toPost = 
 	
 	
 	
