@@ -10,7 +10,15 @@ if(!isset($_SESSION['myusername'])) //User is not logged in
 
 include 'functions.php';
 
+$states = FetchTutors();
 
+
+echo("
+<!DOCTYPE html>
+<html>
+<script> var states = " . $states . " </script>
+
+");
 ?>
   <head>
     <meta charset="utf-8">
@@ -46,7 +54,12 @@ include 'functions.php';
 		      			<input type="checkbox" name="semester" id="semester3" value="Sumr">Summer
 		      	</div>
 		      	<button class="btn btn-lg btn-primary btn-block" type="submit" id="button" name="button" value="numbers">Create Course Numbers Report</button>
-		        <button class="btn btn-lg btn-primary btn-block" type="submit" id="button" name="button" value="ratings">Create Average Ratings Report</button>    	
+		        <button class="btn btn-lg btn-primary btn-block" type="submit" id="button" name="button" value="ratings">Create Average Ratings Report</button>
+		        <br />
+		        <div id="dropdown">
+		        	<input type="search" name="tutgtid" id="tutgtid" class="form-control typeahead" maxlength="9" placeholder="Tutor GTID or Name" required autofocus>
+		        </div>
+		        <button class="btn btn-lg btn-primary btn-block" type="submit" id="button" name="button" value="tutor">Lookup Tutor Schedule</button>    	    	
 			</div>
 			<div class="reports" style="display: none">
 			</div>

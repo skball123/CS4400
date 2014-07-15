@@ -4,6 +4,7 @@ $report = $_POST['button'];  //0 for avg ratings , 1 for course numbers
 $fall = $_POST['checkbox1'];  //Bool
 $spring = $_POST['checkbox2'];  //bool
 $summer = $_POST['checkbox3'];  //bool
+$tut_gtid = strtok($_POST['GTID'], " "); // removes name that was at the end 
 $json = array();
 
 
@@ -49,7 +50,7 @@ if($report == 'numbers') {
 		}
 	mysqli_free_result($result);	
 	}
-		
+	mysqli_close($con);	
 }
 elseif($report == 'ratings') {
 	$json['type'] = 'rating';
@@ -138,6 +139,18 @@ elseif($report == 'ratings') {
 	
 	
 	mysqli_close($con);
+	
+}
+elseif( $report == 'tutor' ) {
+	$TutSched = "SELECT Hires.DayTimeSlotHired, User.Name, User.Email, Hires.SchoolName, Hires.CrNumber FROM Hires INNER JOIN User ON Hires.UnGT_ID = User.GT_ID WHERE Hires.TutordGT_ID =$tut_gtid'";
+	$result = mysqli_query($con, $tut_gtid);
+	while( $row = mysqli_fetch_row($result) {
+		$json['slothired'][] = $row[0];
+		$json['name'][] = $row[1];
+		$json['email'][] = $row[2];
+		$json['school'][] = $row[3];
+		$json['crn'][] = $row[4];
+	}
 	
 }
 

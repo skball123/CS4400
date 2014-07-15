@@ -2,8 +2,10 @@
 session_start();
 $num_eval = $_POST['num_eval'];
 $desc_eval = $_POST['desc_eval'];
-$coursenum = $_POST['coursenum'];
-$school = $_POST['school'];
+$coursenum = $_POST['courseName'];
+$school = strtok($coursenum, " ");
+$coursenum = strtok(" ");
+
 $semester = $_POST['semester'];
 $tut_gtid = $_POST['tutgtid'];
 $stu_gtid = $_SESSION['myusername'];
