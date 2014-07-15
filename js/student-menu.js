@@ -37,6 +37,10 @@ $(function(){
 	});
 	
 	$("#rate_tutor_modal_btn").click(function(event){
+		if(!$("#desc_eval").val()){
+			$("#desc_eval").addClass('warning');
+			return;
+		}
 		var toPost = $("#modal_rate_form").serialize();
 		$.ajax({
 		      type: 'POST',
@@ -249,39 +253,46 @@ function afterPostP2(data){
 	var thursdays = [];
 	var fridays = [];
 	var length = data.tutor.length;
-	for(var i = 0; i < length; i++) { 
-		/*
-		var length2 = data.times[i].length;
-		for(var j = 0; j < length2; j++) {
-			var check = data.times[i][j][0] //gets day
-			switch (check) {
-				case 'M':
-					mondays.push( '<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>' );
-					break;
-				case 'T':
-					tuesdays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');	
-					break;
-				case 'W':
-					wednesdays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');
-					break;	
-				case 'R':
-					thursdays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');
-					break;
-				case 'F':
-					fridays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');	
-					break;	
+	if(length > 0){
+		for(var i = 0; i < length; i++) { 
+			/*
+			var length2 = data.times[i].length;
+			for(var j = 0; j < length2; j++) {
+				var check = data.times[i][j][0] //gets day
+				switch (check) {
+					case 'M':
+						mondays.push( '<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>' );
+						break;
+					case 'T':
+						tuesdays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');	
+						break;
+					case 'W':
+						wednesdays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');
+						break;	
+					case 'R':
+						thursdays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');
+						break;
+					case 'F':
+						fridays.push('<button class="btn btn-info btn-mini">' + data.times[i][j].substring(2,data.times[0][0].length) + '</button>');	
+						break;	
+				}
 			}
+			*/
+			
+			if ( !data.email[i]) { continue; } 
+			var row = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.email[i] + '</td> <td>' + data.Pavg[i] + '</td> <td>' + data.Pnum[i] + '</td> <td>' + data.STavg[i] + '</td> <td>' + data.STnum[i] + '</td> <td>' + '<button class="btn btn-success" value=' + data.gtid[i] + ' name = "' + data.tutor[i][0] + '"  onclick="scheduleTutor(event.target)"><span class="glyphicon glyphicon-ok-sign"></span></button>' + '</td> <td>' + '<button class="btn btn-info" value=' + data.gtid[i] + ' name = "' + data.tutor[i][0] + '" onclick="rateTutor(event.target)"><span class="glyphicon glyphicon-comment"></span></button> </td> </tr>';
+			opener = opener.concat(row);
 		}
-		*/
 		
-		if ( !data.email[i]) { continue; } 
-		var row = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.email[i] + '</td> <td>' + data.Pavg[i] + '</td> <td>' + data.Pnum[i] + '</td> <td>' + data.STavg[i] + '</td> <td>' + data.STnum[i] + '</td> <td>' + '<button class="btn btn-info btn-mini" value=' + data.gtid[i] + ' name = "' + data.tutor[i][0] + '"  onclick="scheduleTutor(event.target)">Schedule</button>' + '</td> <td>' + '<button class="btn btn-info btn-mini" value=' + data.gtid[i] + ' name = "' + data.tutor[i][0] + '" onclick="rateTutor(event.target)">Rate</button> </td> </tr>';
-		opener = opener.concat(row);
+		var closer = "</tbody></table>";
+		together = opener.concat(closer);
+		$(".tutor-list").append(together);
+		
+	}else{
+		//inform the user that the search yeilded no results
+		$(".tutor-list").append('<h1>Sorry</h1><p>We could not find a tutor that fits your search criteria.</p>');
 	}
 	
-	var closer = "</tbody></table>";
-	together = opener.concat(closer);
-	$(".tutor-list").append(together);
 	$(".tutor-list").fadeIn();
 };
 
@@ -294,6 +305,7 @@ function scheduleTutor(event){
 };
 
 function rateTutor(event){
+	//prepopulate the course and tutor name
 	$("#tutgtid").attr("value", $(event.target).attr("value"));
 	$("#rateCourseName").attr("value", selected_course);
 

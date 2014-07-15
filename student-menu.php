@@ -132,7 +132,7 @@ echo('
 				</div>
 			</div>
 			<h5>Descriptive Evaluation</h5>
-			<textarea class="form-control" required rows="4" maxlength="300" name="desc_eval"></textarea>
+			<textarea class="form-control" id="desc_eval" required rows="4" maxlength="300" name="desc_eval"></textarea>
 			
 			<div class="radio">
 				<label>
