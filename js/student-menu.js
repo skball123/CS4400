@@ -301,9 +301,9 @@ function scheduleTutor(event){
 };
 
 function rateTutor(event){
-	$("#rate_tutor_modal").modal({
-			keyboard: false,
-			backdrop: 'static'
-	});
+	$("#tutgtid").attr("value", $(event.target).attr("value"));
+	$("#rateCourseName").attr("value", selected_course);
+
+	$("#rate_tutor_modal").modal();
 };
 

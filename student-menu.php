@@ -101,13 +101,13 @@ echo('
 	        		<option value="21">9:00PM</option>
 	        		<option value="22">10:00PM</option>
 	        		<option value="23">11:00PM</option>
-	        		<option value="0">8:00AM</option>
-	        		<option value="1">9:00AM</option>
-	        		<option value="2">10:00AM</option>
-	        		<option value="3">7:00AM</option>
-	        		<option value="4">8:00AM</option>
-	        		<option value="5">9:00AM</option>
-	        		<option value="6">10:00AM</option>
+	        		<option value="0">12:00AM</option>
+	        		<option value="1">1:00AM</option>
+	        		<option value="2">2:00AM</option>
+	        		<option value="3">3:00AM</option>
+	        		<option value="4">4:00AM</option>
+	        		<option value="5">5:00AM</option>
+	        		<option value="6">6:00AM</option>
 	        	</select>
 	        	
 	        </div>
@@ -125,6 +125,7 @@ echo('
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 	        <h4 class="modal-title" id="myModalLabel">Rate this Tutor</h4>
 	      </div>
 	      <div class="modal-body" id="modal_rate_form">
