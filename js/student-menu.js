@@ -282,7 +282,7 @@ function afterPostP2(data){
 		*/
 		
 		if ( !data.email[i]) { continue; } 
-		var row = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.email[i] + '</td> <td>' + data.Pavg[i] + '</td> <td>' + data.Pnum[i] + '</td> <td>' + data.STavg[i] + '</td> <td>' + data.STnum[i] + '</td> <td>' + '<button class="btn btn-info btn-mini" value=' + data.gtid[i] + ' name = "' + data.tutor[i][0] + '">Select</button>' + '</td> </tr>';
+		var row = '<tr><td>' + data.tutor[i][0] + '</td> <td>' + data.email[i] + '</td> <td>' + data.Pavg[i] + '</td> <td>' + data.Pnum[i] + '</td> <td>' + data.STavg[i] + '</td> <td>' + data.STnum[i] + '</td> <td>' + '<button class="btn btn-info btn-mini" value=' + data.gtid[i] + ' name = "' + data.tutor[i][0] + '"  onclick="scheduleTutor(event.target)">Schedule</button>' + '</td> <td>' + '<button class="btn btn-info btn-mini" value=' + data.gtid[i] + ' name = "' + data.tutor[i][0] + '" onclick="rateTutor(event.target)">Rate</button>' + '</td> </tr>';
 		opener = opener.concat(row);
 	}
 	
@@ -293,6 +293,17 @@ function afterPostP2(data){
 };
 
 function afterPostRating(data){
-	$("#student_hours_modal").modal('hide');
+	$("#rate_tutor_modal").modal('hide');
+};
+
+function scheduleTutor(event){
+	
+};
+
+function rateTutor(event){
+	$("#rate_tutor_modal").modal({
+			keyboard: false,
+			backdrop: 'static'
+	});
 };
 
