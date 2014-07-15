@@ -306,9 +306,7 @@ function scheduleTutor(event){
 
 function rateTutor(event){
 	//prepopulate the course and tutor name
-	alert("tutgtid: " + $(event.target).attr("value"));
-	alert("tutgtid2: " + $(event).attr("value"));
-	$("#tutgtid").attr("value", $(event.target).attr("value"));
+	$("#tutgtid").attr("value", $(event).attr("value") + " (" $(event).attr("name") + ")");
 	$("#rateCourseName").attr("value", selected_course);
 
 	$("#rate_tutor_modal").modal();
