@@ -45,7 +45,7 @@ $(function(){
 		$.ajax({
 		      type: 'POST',
 		      //dataType: 'json',
-		      url: 'php/rate_tutor.php',
+		      url: 'php/rates.php',
 		      data: toPost   
 		  }).done(function(data) { 
 			  	console.log(data);
@@ -306,6 +306,7 @@ function scheduleTutor(event){
 
 function rateTutor(event){
 	//prepopulate the course and tutor name
+	alert("tutgtid: " + $(event.target).attr("value"));
 	$("#tutgtid").attr("value", $(event.target).attr("value"));
 	$("#rateCourseName").attr("value", selected_course);
 
