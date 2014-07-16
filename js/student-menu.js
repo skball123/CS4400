@@ -87,7 +87,13 @@ $(function(){
 	$("#s_confirm_yes").click(function(event){
 		var toAppend = '<input type="text" style="display: none" name="selectedTime" value="' + selected_time + '">';
 		$("#sched_post_data").append(toAppend);
+		$("#tutgtid_sched").attr("disabled", "false"); //enable fields so they can be serialized
+		$("#schedCourseName").attr("disabled", "false");
 		var toPost = $("#schedule_form").serialize();
+		
+		$("#tutgtid_sched").attr("disabled", "disabled");
+		$("#schedCourseName").attr("disabled", "disabled");
+		
 		console.log(toPost);
 		$.ajax({
 		      type: 'POST',
@@ -520,7 +526,7 @@ function rateTutor(event){
 
 function addRowListener(){
 	$(".clickRow").click(function(event){
-		selected_time = $(event.target).attr("name");
+		selected_time = $(event).attr("name");
 		$("#confirm_sched_modal").modal();
 	});
 };
