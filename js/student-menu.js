@@ -306,7 +306,11 @@ function afterPostP2(data){
 	var wednesdays = [];
 	var thursdays = [];
 	var fridays = [];
-	var length = data.tutor.length;
+	try{
+		var length = data.tutor.length;
+	}catch(e){
+		var length = 0;
+	}
 	if(length > 0){
 		for(var i = 0; i < length; i++) { 
 			/*
@@ -386,8 +390,8 @@ function scheduleTutor(event){
 	$(toAppend).appendTo('#tutor_info');
 	
 	var cn = $('#tutinfo').serialize();
-	console.log(cn);
 	cn = "" + cn + "&" + course_and_times;
+	console.log(cn);
 	
 	$.ajax({
 		      type: 'POST',
