@@ -1,6 +1,6 @@
 <?php
 
-$report = $_POST['button'];  //0 for avg ratings , 1 for course numbers
+$report = $_POST['button'];  
 $fall = $_POST['checkbox1'];  //Bool
 $spring = $_POST['checkbox2'];  //bool
 $summer = $_POST['checkbox3'];  //bool
@@ -134,14 +134,16 @@ elseif($report == 'ratings') {
 	
 }
 elseif( $report == 'tutor' ) {
+	$json['type'] = 'tutor';
 	$con = mysqli_connect("localhost","kirsch_cs4400","cs4400GT","kirsch_cs4400");
 	// Check connection
 	if (mysqli_connect_errno())
   		{
   			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
-	$TutSched = "SELECT Hires.DayTimeSlotHired, User.Name, User.Email, Hires.SchoolName, Hires.CrNumber FROM Hires INNER JOIN User ON Hires.UnGT_ID = User.GT_ID WHERE Hires.TutordGT_ID =$tut_gtid'";
-	$result = mysqli_query($con, $tut_gtid);
+	
+	$TutSched = "SELECT Hires.DayTimeSlotHired, User.Name, User.Email, Hires.SchoolName, Hires.CrNumber FROM Hires INNER JOIN User ON Hires.UnGT_ID = User.GT_ID WHERE Hires.TutordGT_ID ='$tut_gtid'";
+	$result = mysqli_query($con, $TutSched);
 	while( $row = mysqli_fetch_row($result) ) {
 		$json['slothired'][] = $row[0];
 		$json['name'][] = $row[1];
@@ -153,6 +155,8 @@ elseif( $report == 'tutor' ) {
 }
 
 mysqli_close($con);
+
+
 echo json_encode($json);
 
 ?>

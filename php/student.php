@@ -43,7 +43,7 @@ $result = mysqli_query($con, $query);
 while($row = mysqli_fetch_row($result)) {
 
 	if( in_array($row[0], $tutorsavail) ) {		//if the tutor is avail during submitted times...
-		$query3 = "SELECT TName FROM Tutor WHERE TGT_ID = '$row[0]'";
+		$query3 = "SELECT Name FROM User WHERE GT_ID = '$row[0]'";
 		$result3 = mysqli_query($con, $query3);	
 		$gtid = $row[0];
 		$row[0] = mysqli_fetch_row($result3);  //replaces GTID of retrieved tutor with their name 
