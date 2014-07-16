@@ -96,7 +96,7 @@ $(function(){
 			  	afterPostSchedule(data);
 		  	})
 		    .fail(function() { alert("Failed to communicate"); })
-		    .always(function() { /*alert("complete"); });
+		    .always(function() { /*alert("complete");*/ });
 		
 	});
 	
