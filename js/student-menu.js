@@ -42,6 +42,10 @@ $(function(){
 		$("#rate_success_modal").modal('hide');
 	});
 	
+	$("#s_confirm_no").click(function(event){
+		$("#confirm_sched_modal").modal('hide');
+	});
+	
 	$("#rate_tutor_modal_btn").click(function(event){
 		if(!$("#desc_eval").val()){
 			$("#desc_eval").addClass('warning');
@@ -84,11 +88,11 @@ $(function(){
 		var toAppend = '<input type="text" style="display: none" name="selectedTime" value="' + selected_time + '">';
 		$("#sched_post_data").append(toAppend);
 		var toPost = $("#sched_post_data").serialize();
-		
+		console.log(toPost);
 		$.ajax({
 		      type: 'POST',
 		      //dataType: 'json',
-		      url: 'php/schedule-tutor-2.php',
+		      url: 'php/schedule_tutor_2.php',
 		      data: toPost   
 		  }).done(function(data) { 
 			  	console.log(data);
@@ -363,14 +367,14 @@ function afterPostSchedule(data){
 	 * if there is another reason inform the student through the message
 	 */
 	 
-	 //if(data.success[0] == 1){
+	 if(data.success[0] == 1){
 		$("#schedule_success_modal").modal();
 		
 	 
-	 /*}else{
+	 }else{
 		$("#schedule_fail_modal").modal();
 		$("#schedule_fail_message").text(data.message[0]);
-	 }*/
+	 }
 };
 
 function scheduleTutor(event){

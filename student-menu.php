@@ -191,11 +191,8 @@ echo('
 					</div>
 				</div>
 			</div>
-			<div id="sched_table_div">
+			<div id="sched_table_div" style="padding: 10px;">
 			</div>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" id="schedule_tutor_modal_btn" class="btn btn-primary">Submit</button>
 	      </div>
 	    </div>
 	  </div>
