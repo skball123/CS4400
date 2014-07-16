@@ -180,13 +180,17 @@ echo('
 	      </div>
 	      <div class="modal-body" id="modal_schedule_form">
 		  <div class="row">
-				<div class="span6">
-					<div class="col-lg-3">
-						<input type="text" name="tutgtid" id="tutgtid_sched" class="form-control" maxlength="9" placeholder="Tutor GTID or Name" disabled="disabled">
+				<div id="sched_post_data">
+					<div class="span6">
+						<div class="col-lg-3">
+							<input type="text" name="tutgtid" id="tutgtid_sched" class="form-control" maxlength="9" placeholder="Tutor GTID or Name" disabled="disabled">
+						</div>
+						<div class="col-lg-3">
+							<input type="text" name="courseName" id="schedCourseName" class="form-control" maxlength="9" placeholder="Course Name" disabled="disabled">
+						</div>
 					</div>
-					<div class="col-lg-3">
-						<input type="text" name="courseName" id="schedCourseName" class="form-control" maxlength="9" placeholder="Course Name" disabled="disabled">
-					</div>
+				</div>
+				<div id="sched_table_div">
 				</div>
 			</div>
 	      </div>
@@ -215,6 +219,65 @@ echo('
 	    </div>
 	  </div>
 	</div> <!-- End Rate Success Modal -->
+	
+	<!-- Confirm Scheduling Modal -->
+	<div class="modal fade" id="confirm_sched_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header"></div>
+	      <div class="modal-body" id="rate_success_modal_body">
+			<h4 class="modal-title" id="myModalLabel">Confirm Scheduling</h4>
+			<p>Are you sure you want to schedule this tutoring session?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="s_confirm_yes" class="btn btn-success">
+				<span class="glyphicon glyphicon-ok"></span>
+			</button>
+			<button type="button" id="s_confirm_no" class="btn btn-danger">
+				<span class="glyphicon glyphicon-remove"></span>
+			</button>
+	      </div>
+	    </div>
+	  </div>
+	</div> <!-- Confirm Scheduling Modal -->
+	
+	<!-- Schedule Success Modal -->
+	<div class="modal fade" id="schedule_success_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title" id="myModalLabel">Success!</h4>
+	      </div>
+	      <div class="modal-body" id="schedule_success_modal_body">
+			<p>Your tutoring session has been scheduled.</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="schedule_success_btn" class="btn btn-success" data-dismiss="modal">
+				<span class="glyphicon glyphicon-ok"></span>
+			</button>
+	      </div>
+	    </div>
+	  </div>
+	</div> <!-- End Schedule Success Modal -->
+	
+	<!-- Schedule Fail Modal -->
+	<div class="modal fade" id="schedule_fail_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title" id="myModalLabel">Oops! Something went wrong.</h4>
+	      </div>
+	      <div class="modal-body" id="schedule_fail_modal_body">
+			<p id="schedule_fail_message">Your tutoring session has been scheduled.</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="schedule_fail_btn" class="btn btn-success" data-dismiss="modal">
+				<span class="glyphicon glyphicon-ok"></span>
+			</button>
+	      </div>
+	    </div>
+	  </div>
+	</div> <!-- End Schedule Fail Modal -->
 	
 	<div id="tutor_info" style="display: none;">
 	</div>

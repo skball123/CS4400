@@ -5,6 +5,7 @@ var selected_course = null;
 var selected_tut_name = null;
 var selected_tut_gtid = null;
 var course_and_times = null;
+var selected_time = null;
 $(function(){
 	stud_avail = null;
 	$('.content').fadeIn();
@@ -61,7 +62,7 @@ $(function(){
 		    .always(function() { /*alert("complete"); */});
 	});
 	
-	$("#schedule_tutor_modal_btn").click(function(event){
+	/*$("#schedule_tutor_modal_btn").click(function(event){
 		
 		var toPost = $("#modal_schedule_form").serialize();
 		$.ajax({
@@ -75,10 +76,33 @@ $(function(){
 			  	afterPostSchedule(data);
 		  	})
 		    .fail(function() { alert("Failed to communicate"); })
-		    .always(function() { /*alert("complete"); */});
+		    .always(function() { /*alert("complete"); });
+		
+	});*/
+	
+	$("#s_confirm_yes").click(function(event){
+		var toAppend = '<input type="text" style="display: none" name="selectedTime" value="' + selected_time + '">';
+		$("#sched_post_data").append(toAppend);
+		var toPost = $("#sched_post_data").serialize();
+		
+		$.ajax({
+		      type: 'POST',
+		      //dataType: 'json',
+		      url: 'php/schedule-tutor-2.php',
+		      data: toPost   
+		  }).done(function(data) { 
+			  	console.log(data);
+			  	//alert(data); 
+			  	afterPostSchedule(data);
+		  	})
+		    .fail(function() { alert("Failed to communicate"); })
+		    .always(function() { /*alert("complete"); });
 		
 	});
-
+	
+	$("#s_confirm_yes").click(function(event){
+		$("#confirm_sched_modal").modal("hide");
+	});
 });
 
 function addDayTime(){
@@ -331,7 +355,22 @@ function afterPostRating(data){
 };
 
 function afterPostSchedule(data){
-
+	$("#confirm_sched_modal").modal("hide");
+	$("#schedule_tutor_modal").modal("hide");
+	
+	/* check the data to see if the posting was successful, 
+	 * IF the student has already scheduled a timeslot for this course then it fails
+	 * if there is another reason inform the student through the message
+	 */
+	 
+	 //if(data.success[0] == 1){
+		$("#schedule_success_modal").modal();
+		
+	 
+	 /*}else{
+		$("#schedule_fail_modal").modal();
+		$("#schedule_fail_message").text(data.message[0]);
+	 }*/
 };
 
 function scheduleTutor(event){
@@ -370,7 +409,94 @@ function scheduleTutor(event){
 
 // Function that is run after getting the tutor's availibilities
 function scheduleTutorP2(data) {
+	$("#sched_table_div").empty()
+	var opener = '<table class="table table-hover">\
+						<thead>\
+							<tr>\
+								<th>Day</th>\
+								<th>Hour</th>\
+							</tr>\
+						</thead>\
+						<tbody>';
 
+
+	var day;
+	var time;
+	var o_day;
+	var o_time;
+	var row;
+	var length = data.daytime.length;
+	if( length > 0 ){
+		for( var i = 0; i < length; i++){
+			day = data.daytime[i].substring(0,1);
+			time = data.daytime[i].substring(1,3);
+			o_day = day;
+			o_time = time;
+			switch(day){
+				case "M": day = "Monday";
+							break;
+				case "T": day = "Tuesday";
+							break;
+				case "W": day = "Wednesday";
+							break;
+				case "T": day = "Thursday";
+							break;
+				case "F": day = "Friday";
+							break;
+				case "S": day = "Saturday";
+							break;
+				case "Z": day = "Sunday";
+							break;
+			}
+			
+			switch(time){
+				case "07": day = "7:00 AM";
+							break;
+				case "08": day = "8:00 AM";
+							break;
+				case "09": day = "9:00 AM";
+							break;
+				case "10": day = "10:00 AM";
+							break;
+				case "11": day = "11:00 AM";
+							break;
+				case "12": day = "12:00 PM";
+							break;
+				case "13": day = "1:00 PM";
+							break;
+				case "14": day = "2:00 PM";
+							break;
+				case "15": day = "3:00 PM";
+							break;
+				case "16": day = "4:00 PM";
+							break;
+				case "17": day = "5:00 PM";
+							break;
+				case "18": day = "6:00 PM";
+							break;
+				case "19": day = "7:00 PM";
+							break;
+				case "20": day = "8:00 PM";
+							break;
+				case "21": day = "9:00 PM";
+							break;
+				case "22": day = "10:00 PM";
+							break;
+			}
+			
+			//populate table with the day times
+			row = '<tr class="clickRow" name="' + o_day + o_time + '"><td>' + day + '</td> <td>' + time + '</td> </tr>';
+			opener = opener.concat(row);
+		
+		}
+		var closer = "</tbody></table>";
+		var toAppend = opener.concat(closer);
+		$('#sched_table_div').append(toAppend);
+		addRowListener();
+		
+	} else {
+		alert("this tutor doesn't match your needs");
+	}
 
 };
 
@@ -380,5 +506,12 @@ function rateTutor(event){
 	$("#rateCourseName").attr("value", selected_course);
 
 	$("#rate_tutor_modal").modal();
+};
+
+function addRowListener(){
+	$(".clickRow").click(function(event){
+		selected_time = $(event.target).attr("name");
+		$("#confirm_sched_modal").modal();
+	});
 };
 
