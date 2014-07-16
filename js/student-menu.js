@@ -378,8 +378,10 @@ function scheduleTutor(event){
 	$('#tutor_info').empty();
 	
 	// post to the server the tutor gtid to get their time availabilities
-	var toAppend = '<input type="text" style="display: none" name="tutgtid" value="' +  $(event).attr("value") + '">';
+	var toAppend = '<input type="text" style="display: none" name="tutgtid" value="' +  $(event.target).attr("value") + '">';
 	$(toAppend).appendTo('#tutor_info');
+	alert($(this).attr("value"))
+	
 	
 	var cn = $('#tutor_info').serialize();
 	cn = "" + cn + "&" + course_and_times;
@@ -409,6 +411,7 @@ function scheduleTutor(event){
 
 // Function that is run after getting the tutor's availibilities
 function scheduleTutorP2(data) {
+	console.log(data);
 	$("#sched_table_div").empty()
 	var opener = '<table class="table table-hover">\
 						<thead>\
