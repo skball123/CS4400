@@ -4,6 +4,7 @@ var stud_avail = null;
 var selected_course = null;
 var selected_tut_name = null;
 var selected_tut_gtid = null;
+var course_and_times = null;
 $(function(){
 	stud_avail = null;
 	$('.content').fadeIn();
@@ -66,7 +67,7 @@ $(function(){
 		$.ajax({
 		      type: 'POST',
 		      //dataType: 'json',
-		      url: 'php/schedule.php',
+		      url: 'php/schedule-tutor-1.php',
 		      data: toPost   
 		  }).done(function(data) { 
 			  	console.log(data);
@@ -155,6 +156,7 @@ function searchSubmit(){
 	var toAppend = '<input type="text" style="display: none" name="numTimes" value="' + timeAdded + '">';
 	$(toAppend).appendTo('#modal_form');
 	var cn = $("select, input").serialize();
+	course_and_times = cn;
 	$.ajax({
 		      type: 'POST',
 		      //dataType: 'json',
@@ -333,10 +335,28 @@ function afterPostSchedule(data){
 };
 
 function scheduleTutor(event){
+	//clear the hidden tutorinfo div
+	$('#tutor_info').empty();
 	
 	// post to the server the tutor gtid to get their time availabilities
-	//var toPost = 
+	var toAppend = '<input type="text" style="display: none" name="tutgtid" value="' +  $(event).attr("value") + '">';
+	$(toAppend).appendTo('#tutor_info');
 	
+	var cn = $('#tutor_info').serialize();
+	cn = "" + cn + "&" + course_and_times;
+	
+	$.ajax({
+		      type: 'POST',
+		      //dataType: 'json',
+		      url: 'php/schedule_tutor_1.php',
+		      data: cn   
+		  }).done(function(data) { 
+			  	console.log(data);
+			  	//alert(data); 
+			  	scheduleTutorP2(data);
+		  	})
+		    .fail(function() { alert("Failed to communicate"); })
+		    .always(function() { /*alert("complete"); */});
 	
 	
 	
@@ -346,6 +366,12 @@ function scheduleTutor(event){
 
 	$("#schedule_tutor_modal").modal();
 	
+};
+
+// Function that is run after getting the tutor's availibilities
+function scheduleTutorP2(data) {
+
+
 };
 
 function rateTutor(event){

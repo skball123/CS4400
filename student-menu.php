@@ -215,6 +215,9 @@ echo('
 	    </div>
 	  </div>
 	</div> <!-- End Rate Success Modal -->
+	
+	<div id="tutor_info" style="display: none;">
+	</div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
