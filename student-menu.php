@@ -180,16 +180,18 @@ echo('
 	      </div>
 	      <div class="modal-body" id="modal_schedule_form">
 		  <div class="row">
+			<form id="schedule_form">
 				<div id="sched_post_data">
 					<div class="span6">
 						<div class="col-lg-3">
-							<input type="text" name="tutgtid" id="tutgtid_sched" class="form-control" maxlength="9" placeholder="Tutor GTID or Name" disabled="disabled">
+							<input type="text" name="tutgtid" id="tutgtid_sched" class="form-control" maxlength="9" placeholder="Tutor GTID or Name" readonly>
 						</div>
 						<div class="col-lg-3">
-							<input type="text" name="courseName" id="schedCourseName" class="form-control" maxlength="9" placeholder="Course Name" disabled="disabled">
+							<input type="text" name="courseName" id="schedCourseName" class="form-control" maxlength="9" placeholder="Course Name" readonly>
 						</div>
 					</div>
 				</div>
+			</form>
 			</div>
 			<div id="sched_table_div" style="padding: 10px;">
 			</div>

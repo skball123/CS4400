@@ -87,7 +87,7 @@ $(function(){
 	$("#s_confirm_yes").click(function(event){
 		var toAppend = '<input type="text" style="display: none" name="selectedTime" value="' + selected_time + '">';
 		$("#sched_post_data").append(toAppend);
-		var toPost = $("#sched_post_data").serialize();
+		var toPost = $("#schedule_form").serialize();
 		console.log(toPost);
 		$.ajax({
 		      type: 'POST',
