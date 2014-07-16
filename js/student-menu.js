@@ -402,13 +402,12 @@ function scheduleTutor(event){
 	//set up the modal pre-populate the course and tutor name
 	$("#tutgtid_sched").attr("value", $(event).attr("value") + " (" + $(event).attr("name") + ")");
 	$("#schedCourseName").attr("value", selected_course);
-
-	$("#schedule_tutor_modal").modal();
 	
 };
 
 // Function that is run after getting the tutor's availibilities
 function scheduleTutorP2(data) {
+	console.log(data);
 	$("#sched_table_div").empty()
 	var opener = '<table class="table table-hover">\
 						<thead>\
@@ -497,6 +496,8 @@ function scheduleTutorP2(data) {
 	} else {
 		alert("this tutor doesn't match your needs");
 	}
+	
+	$("#schedule_tutor_modal").modal();
 
 };
 

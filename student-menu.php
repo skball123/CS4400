@@ -190,8 +190,8 @@ echo('
 						</div>
 					</div>
 				</div>
-				<div id="sched_table_div">
-				</div>
+			</div>
+			<div id="sched_table_div">
 			</div>
 	      </div>
 	      <div class="modal-footer">
