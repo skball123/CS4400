@@ -43,29 +43,31 @@ $result = mysqli_query($con, $query);
 while($row = mysqli_fetch_row($result)) {
 
 	if( in_array($row[0], $tutorsavail) ) {		//if the tutor is avail during submitted times...
-		$query3 = "SELECT Name FROM User WHERE GT_ID = '$row[0]'";
+		$query3 = "SELECT Name,Email FROM User WHERE GT_ID = '$row[0]'";
 		$result3 = mysqli_query($con, $query3);	
 		$gtid = $row[0];
-		$row[0] = mysqli_fetch_row($result3);  //replaces GTID of retrieved tutor with their name 
+		$row2 = mysqli_fetch_row($result3);   
+		$row[0] = $row2[0];			//replaces GTID of retrieved tutor with their name
+		$email = $row2[1];
 		if( $row[1] ) { $row[1] = 'Yes'; } else { $row[1] = 'No'; }
 		
-		$query4 = "SELECT Email, COUNT(STNum_Eval), AVG(STNum_Eval), COUNT(Num_Evaluation), AVG(Num_Evaluation) FROM (User INNER JOIN Rates ON GT_ID = TutoGT_ID) INNER JOIN Recommends ON GT_ID = TutGT_ID WHERE GT_ID = '$gtid'";
+		$query4 = "SELECT COUNT(STNum_Eval), AVG(STNum_Eval), COUNT(Num_Evaluation), AVG(Num_Evaluation) FROM (User LEFT OUTER JOIN Rates ON GT_ID = TutoGT_ID) INNER JOIN Recommends ON GT_ID = TutGT_ID  WHERE Email = '$email' GROUP BY GT_ID";
 		$result4 = mysqli_query($con, $query4); 
 		while( $row3 = mysqli_fetch_row($result4) ) {
+			
 			if( $row3[3] == 0 ) {continue;}
 			else {
-				$json['email'][] =  $row3[0];
-				$json['STnum'][] = $row3[1];
-				$json['STavg'][] = $row3[2];
-				$json['Pnum'][] = $row3[3];
-				$json['Pavg'][] = $row3[4];
+				$json['email'][] =  $email;
+				$json['STnum'][] = $row3[0];
+				$json['STavg'][] = $row3[1];
+				$json['Pnum'][] = $row3[2];
+				$json['Pavg'][] = $row3[3];
+				$json['gtid'][] = $gtid;
+				$json['tutor'][] = $row[0];
+				$json['gta'][] = $row[1];
 			}
 		
 		}
-		
-		$json['gtid'][] = $gtid;
-		$json['tutor'][] = $row[0];
-		$json['gta'][] = $row[1];
 	}
 }
 
