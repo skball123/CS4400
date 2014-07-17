@@ -383,7 +383,7 @@ function afterPostRating(data){
 	
 	if(!data.script){
 		// there is an error message
-		$("#rate_fail_message").text(data.script[0]);
+		$("#rate_fail_message").text(data.script);
 		$("#rate_fail_modal").modal();
 		
 	}else{
