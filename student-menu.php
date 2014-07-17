@@ -282,6 +282,25 @@ echo('
 	  </div>
 	</div> <!-- End Schedule Fail Modal -->
 	
+	<!-- Rate Fail Modal -->
+	<div class="modal fade" id="rate_fail_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title" id="myModalLabel">Oops! Something went wrong.</h4>
+	      </div>
+	      <div class="modal-body" id="schedule_fail_modal_body">
+			<p id="rate_fail_message">Ipsum Lapbrumorbum</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="rate_fail_btn" class="btn btn-success" data-dismiss="modal">
+				<span class="glyphicon glyphicon-ok"></span>
+			</button>
+	      </div>
+	    </div>
+	  </div>
+	</div> <!-- End Rate Fail Modal -->
+	
 	<div id="tutor_info" style="display: none;">
 	</div>
 

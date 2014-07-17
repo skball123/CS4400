@@ -117,6 +117,11 @@ $(function(){
 	$("#s_confirm_yes").click(function(event){
 		$("#confirm_sched_modal").modal("hide");
 	});
+	
+	$("#rate_fail_btn").click(function(event){
+		$("#rate_fail_modal").modal("hide");
+	});
+	
 });
 
 function addDayTime(){
@@ -375,8 +380,15 @@ function afterPostP2(data){
 function afterPostRating(data){
 	$("#rate_tutor_modal").modal('hide');
 	
-	//IF success then show this modal, currently no real feedback from the post so..... to do
-	$("#rate_success_modal").modal();
+	if(!data.script[0]){
+		// there is an error message
+		$("#rate_fail_message").text(data.script[0]);
+		$("#rate_fail_modal").modal();
+		
+	}else{
+		//IF success then show this modal, currently no real feedback from the post so..... to do
+		$("#rate_success_modal").modal();
+	}
 	
 };
 
