@@ -86,8 +86,8 @@ $(function(){
 	
 	$("#s_confirm_yes").click(function(event){
 		var toAppend = '<input type="text" style="display: none" name="selectedTime" value="' + selected_time + '">\
-						<input type="text" style="display: none" name="coursename" value="' + $("#tutgtid_sched").attr("value") + '">\
-						<input type="text" style="display: none" name="tutgtid" value="' + $("#schedCourseName").attr("value") + '">';
+						<input type="text" style="display: none" name="tutgtid" value="' + $("#tutgtid_sched").attr("value") + '">\
+						<input type="text" style="display: none" name="courseName" value="' + $("#schedCourseName").attr("value") + '">';
 		$("#sched_post_data").append(toAppend);
 		var toPost = $("#schedule_form").serialize();
 
