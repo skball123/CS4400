@@ -23,11 +23,11 @@ if(checkIfAlreadyScheduled($stu_gtid, $coursenum, $school)){
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 		
-	$query = "INSERT INTO Hires VALUES ('$stu_gtid', '$tut_gtid', '$semester', '$selected_time', '$coursenum', '$school');";
+	$query = "INSERT INTO Hires VALUES ('$stu_gtid', '$tut_gtid', '$semester', '$selected_time', '$coursenum', '$school')";
 	$result = mysqli_query($con, $query);
 	
 	//mark the timeslot as taken
-	$query = "UPDATE TutorTimeSlots SET Taken = '1' WHERE TutorGT_ID = '$tut_gtid' AND Semester = '$semester' AND DayTime = '$selected_time';";
+	$query = "UPDATE TutorTimeSlots SET Taken = '1' WHERE TutorGT_ID = '$tut_gtid' AND Semester = '$semester' AND DayTime = '$selected_time'";
 	$result = mysqli_query($con, $query);
 	mysqli_close($con);
 	
@@ -45,7 +45,7 @@ function checkIfAlreadyScheduled($stu_gtid, $coursenum, $school){
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 		
-	$query = "SELECT UnGT_ID FROM Hires WHERE UnGT_ID = '$stu_gtid' AND CrNumber = '$coursenum' AND SchoolName = '$school' AND SemesterSlotHired = '$semester';";
+	$query = "SELECT UnGT_ID FROM Hires WHERE UnGT_ID = '$stu_gtid' AND CrNumber = '$coursenum' AND SchoolName = '$school' AND SemesterSlotHired = '$semester'";
 	$result = mysqli_query($con, $query);
 	mysqli_close($con);
 	if(mysqli_num_rows($result) > 0){

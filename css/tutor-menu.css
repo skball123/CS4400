@@ -1,0 +1,14 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+.container{
+	max-width: 550px;
+	height: 100%;
+}
+#dropdown .tt-dropdown-menu{
+	max-height: 150px;
+	overflow-y: hidden;
+	width: 100%;
+}
