@@ -85,14 +85,12 @@ $(function(){
 	});*/
 	
 	$("#s_confirm_yes").click(function(event){
-		var toAppend = '<input type="text" style="display: none" name="selectedTime" value="' + selected_time + '">';
+		var toAppend = '<input type="text" style="display: none" name="selectedTime" value="' + selected_time + '">\
+						<input type="text" style="display: none" name="coursename" value="' + $("#tutgtid_sched").attr("value") + '">\
+						<input type="text" style="display: none" name="tutgtid" value="' + $("#schedCourseName").attr("value") + '">';
 		$("#sched_post_data").append(toAppend);
-		$("#tutgtid_sched").attr("disabled", "false"); //enable fields so they can be serialized
-		$("#schedCourseName").attr("disabled", "false");
 		var toPost = $("#schedule_form").serialize();
-		
-		$("#tutgtid_sched").attr("disabled", "disabled");
-		$("#schedCourseName").attr("disabled", "disabled");
+
 		
 		console.log(toPost);
 		$.ajax({
@@ -526,7 +524,8 @@ function rateTutor(event){
 
 function addRowListener(){
 	$(".clickRow").click(function(event){
-		selected_time = $(event).attr("name");
+		selected_time = $(event.target).attr("name");
+		console.log(selected_time);
 		$("#confirm_sched_modal").modal();
 	});
 };
