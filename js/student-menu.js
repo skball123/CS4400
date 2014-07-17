@@ -440,7 +440,7 @@ function scheduleTutorP2(data) {
 	var o_time;
 	var row;
 	try{
-		var length = data.tutor.length;
+		var length = data.daytime.length;
 	}catch(e){
 		var length = 0;
 	}
