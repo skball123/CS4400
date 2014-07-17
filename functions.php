@@ -54,4 +54,10 @@ function FetchTutors() {
 	mysqli_close($con);
 }
 
+function logout() {
+session_destroy();
+header("location:http://samkirsch.net/cs4400");
+
+}
+
 ?>

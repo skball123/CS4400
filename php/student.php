@@ -24,7 +24,7 @@ $con = mysqli_connect("localhost","kirsch_cs4400","cs4400GT","kirsch_cs4400");
 /*
 Get all Tutor GTID's that are avail during submitted times
 */		
-$query2 = "SELECT DISTINCT TutorGT_ID FROM TutorTimeSlots WHERE ";
+$query2 = "SELECT DISTINCT TutorGT_ID FROM TutorTimeSlots WHERE Taken = '0' AND ";
 $arraysize = count($daytime);  //gets length of array
 for( $i = 0; $i < $arraysize; $i++) {
 	$temp = "DayTime = '$daytime[$i]' OR ";
@@ -52,11 +52,14 @@ while($row = mysqli_fetch_row($result)) {
 		$query4 = "SELECT Email, COUNT(STNum_Eval), AVG(STNum_Eval), COUNT(Num_Evaluation), AVG(Num_Evaluation) FROM (User INNER JOIN Rates ON GT_ID = TutoGT_ID) INNER JOIN Recommends ON GT_ID = TutGT_ID WHERE GT_ID = '$gtid'";
 		$result4 = mysqli_query($con, $query4); 
 		while( $row3 = mysqli_fetch_row($result4) ) {
-			$json['email'][] =  $row3[0];
-			$json['STnum'][] = $row3[1];
-			$json['STavg'][] = $row3[2];
-			$json['Pnum'][] = $row3[3];
-			$json['Pavg'][] = $row3[4];
+			if( $row3[3] == 0 ) {continue;}
+			else {
+				$json['email'][] =  $row3[0];
+				$json['STnum'][] = $row3[1];
+				$json['STavg'][] = $row3[2];
+				$json['Pnum'][] = $row3[3];
+				$json['Pavg'][] = $row3[4];
+			}
 		
 		}
 		
