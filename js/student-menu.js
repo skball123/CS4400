@@ -462,42 +462,42 @@ function scheduleTutorP2(data) {
 			}
 			
 			switch(time){
-				case "07": day = "7:00 AM";
+				case "07": time = "7:00 AM";
 							break;
-				case "08": day = "8:00 AM";
+				case "08": time = "8:00 AM";
 							break;
-				case "09": day = "9:00 AM";
+				case "09": time = "9:00 AM";
 							break;
-				case "10": day = "10:00 AM";
+				case "10": time = "10:00 AM";
 							break;
-				case "11": day = "11:00 AM";
+				case "11": time = "11:00 AM";
 							break;
-				case "12": day = "12:00 PM";
+				case "12": time = "12:00 PM";
 							break;
-				case "13": day = "1:00 PM";
+				case "13": time = "1:00 PM";
 							break;
-				case "14": day = "2:00 PM";
+				case "14": time = "2:00 PM";
 							break;
-				case "15": day = "3:00 PM";
+				case "15": time = "3:00 PM";
 							break;
-				case "16": day = "4:00 PM";
+				case "16": time = "4:00 PM";
 							break;
-				case "17": day = "5:00 PM";
+				case "17": time = "5:00 PM";
 							break;
-				case "18": day = "6:00 PM";
+				case "18": time = "6:00 PM";
 							break;
-				case "19": day = "7:00 PM";
+				case "19": time = "7:00 PM";
 							break;
-				case "20": day = "8:00 PM";
+				case "20": time = "8:00 PM";
 							break;
-				case "21": day = "9:00 PM";
+				case "21": time = "9:00 PM";
 							break;
-				case "22": day = "10:00 PM";
+				case "22": time = "10:00 PM";
 							break;
 			}
 			
 			//populate table with the day times
-			row = '<tr class="clickRow" name="' + o_day + o_time + '"><td>' + day + '</td> <td>' + time + '</td> </tr>';
+			row = '<tr class="clickRow" id="' + o_day + o_time + '" name="' + o_day + o_time + '"><td>' + day + '</td> <td>' + time + '</td> </tr>';
 			opener = opener.concat(row);
 		
 		}
@@ -525,7 +525,7 @@ function rateTutor(event){
 function addRowListener(){
 	$(".clickRow").click(function(event){
 		selected_time = $(event.target).attr("name");
-		console.log(selected_time);
+		console.log($(event.target).attr('id'));
 		$("#confirm_sched_modal").modal();
 	});
 };
