@@ -437,7 +437,11 @@ function scheduleTutorP2(data) {
 	var o_day;
 	var o_time;
 	var row;
-	var length = data.daytime.length;
+	try{
+		var length = data.tutor.length;
+	}catch(e){
+		var length = 0;
+	}
 	if( length > 0 ){
 		for( var i = 0; i < length; i++){
 			day = data.daytime[i].substring(0,1);
