@@ -4,6 +4,10 @@ $tut_gtid = strtok($_POST['tutgtid'], " ");
 $coursenum = $_POST['courseName'];
 $stu_gtid = $_SESSION['myusername'];
 $selected_time = $_POST['selectedTime'];
+$json['vars'][] = $tut_gtid;
+$json['vars'][] = $coursenum;
+$json['vars'][] = $stu_gtid;
+$json['vars'][] = $selected_time;
 
 $semester = "Summer";
 
