@@ -4,6 +4,8 @@ $(function(){
 	
 	$("#tutgtid").attr("value",user);
 	
+	createAvailTable();
+	
 	$('.btn').click(function(event) {
 		
 		if( $(this).attr("id") == 'apply') {
@@ -129,6 +131,77 @@ function afterPostP1(data){
 	
 	
 }
+
+function createAvailTable(){
+	var opener = '<table class="table table-bordered">\
+					<tr>\
+						<th>Monday</th>\
+						<th>Tuesday</th>\
+						<th>Wednesday</th>\
+						<th>Thursday</th>\
+						<th>Friday</th>\
+						<th>Saturday</th>\
+						<th>Sunday</th>\
+					</tr>'
+	var day;
+	var time;
+	var row;
+	var padZero;
+	for(var j = 7; j <= 22; j++){
+		switch(j){
+			case 7: time = "7:00 AM"; break;
+			case 8: time = "8:00 AM"; break;
+			case 9: time = "9:00 AM"; break;
+			case 10: time = "10:00 AM"; break;
+			case 11: time = "11:00 AM"; break;
+			case 12: time = "12:00 PM"; break;
+			case 13: time = "1:00 PM"; break;
+			case 14: time = "2:00 PM"; break;
+			case 15: time = "3:00 PM"; break;
+			case 16: time = "4:00 PM"; break;
+			case 17: time = "5:00 PM"; break;
+			case 18: time = "6:00 PM"; break;
+			case 19: time = "7:00 PM"; break;
+			case 20: time = "8:00 PM"; break;
+			case 21: time = "9:00 PM"; break;
+			case 22: time = "10:00 PM"; break;
+		}
+		row = "<tr>";
+	
+		for(var i = 0; i < 7; i++){
+			switch(i){
+				case 0: day = 'M'; break;
+				case 0: day = 'T'; break;
+				case 0: day = 'W'; break;
+				case 0: day = 'R'; break;
+				case 0: day = 'F'; break;
+				case 0: day = 'S'; break;
+				case 0: day = 'Z'; break;
+			}
+			
+			//needed to make sure monday at 7 am is M07 and not M7
+			if(j < 10){
+				padZero = "0";
+			}else{
+				padZero = "";
+			}
+		
+			row = row + '<td>\
+							<div class="checkbox">\
+							<label>\
+							  <input type="checkbox" name="' + day + padZero + j + '">' + time +  '\
+							</label>\
+						  </div>\
+						</td>';
+		}
+		opener = opener + row + '</tr>'
+		
+	}
+				
+	opener = opener + '</table>';
+	$("#avail").append(opener);
+	
+};
 
 
 
