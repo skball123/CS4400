@@ -511,7 +511,8 @@ function scheduleTutorP2(data) {
 		addRowListener();
 		
 	} else {
-		alert("this tutor doesn't match your needs");
+		alert("There was an error ");
+		return;
 	}
 	
 	$("#schedule_tutor_modal").modal();
