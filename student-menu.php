@@ -8,6 +8,24 @@ if(!isset($_SESSION['myusername'])) //User is not logged in
     die("You are not logged in");
 }
 
+if(!($_SESSION['type'] == 'STU')) //User is not logged in
+{
+  $type = $_SESSION['type'];
+	
+	switch($type) {
+		case "TUT":
+			header("location:http://samkirsch.net/cs4400/tutor-menu.php");
+			break;
+		case "PRO":
+			header("location:http://samkirsch.net/cs4400/professor-menu.php");
+			break;		
+		case "ADM":
+			header("location:http://samkirsch.net/cs4400/admin-menu.php");
+			echo("ADM redirect");
+			break;
+	}
+}
+
 include 'functions.php';
 
 $states = FetchClasses();
@@ -41,6 +59,8 @@ echo('
     <![endif]-->
   </head>
   <body>
+  <div id="wrap">
+  	<a href="php/logout.php" class="logout">Logout</a>
      <div class="container">
      	<div class="content">
      		<div class="row">
@@ -62,6 +82,7 @@ echo('
 					<button type="button" class="btn btn-primary search_btn">Search for a Tutor</button>
 				</div>
 			</div>
+			
 		</div>
     </div> <!-- /container -->
     <div class="container-fluid">
@@ -69,6 +90,7 @@ echo('
 			<div class="tutor-list panel panel-default span12" style="display: none; float: none; margin: 0 auto;">
 			</div>
 		</div>
+    </div>
     </div>
     
     <!-- Time Availability Modal -->

@@ -8,6 +8,23 @@ if(!isset($_SESSION['myusername'])) //User is not logged in
     die("You are not logged in");
 }
 
+if(!($_SESSION['type'] == 'TUT')) //User is not logged in
+{
+  $type = $_SESSION['type'];
+	
+	switch($type) {
+		case "STU":
+			header("location:http://samkirsch.net/cs4400/student-menu.php");
+			break;
+		case "PRO":
+			header("location:http://samkirsch.net/cs4400/professor-menu.php");
+			break;		
+		case "ADM":
+			header("location:http://samkirsch.net/cs4400/admin-menu.php");
+			break;
+	}
+}
+
 include 'functions.php';
 echo('<script>var user = "'.$_SESSION['myusername'].'"</script>');
 ?>
@@ -31,6 +48,8 @@ echo('<script>var user = "'.$_SESSION['myusername'].'"</script>');
     <![endif]--> 
   </head>
   <body>
+  <div id="wrap">
+  	<a href="php/logout.php" class="logout">Logout</a>
      <div class="container">
      	<div class="content">
 			  <h2 class="heading">Tutor Menu</h2>
@@ -68,8 +87,11 @@ echo('<script>var user = "'.$_SESSION['myusername'].'"</script>');
    				 </div><!-- /.modal-content -->
   			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
+		
 		</div>
     </div> <!-- /container -->
+    </div>
+    </div>
     
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

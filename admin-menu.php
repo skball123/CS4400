@@ -8,6 +8,23 @@ if(!isset($_SESSION['myusername'])) //User is not logged in
     die("You are not logged in");
 }
 
+if(!($_SESSION['type'] == 'ADM')) 
+{
+  $type = $_SESSION['type'];
+	
+	switch($type) {
+		case "STU":
+			header("location:http://samkirsch.net/cs4400/student-menu.php");
+			break;
+		case "TUT":
+			header("location:http://samkirsch.net/cs4400/tutor-menu.php");
+			break;
+		case "PRO":
+			header("location:http://samkirsch.net/cs4400/professor-menu.php");
+			break;		
+	}
+}
+
 include 'functions.php';
 
 $states = FetchTutors();
@@ -40,6 +57,8 @@ echo("
     <![endif]-->
   </head>
   <body>
+  <div id="wrap">
+  	<a href="php/logout.php" class="logout">Logout</a>
      <div class="container">
      	<div class="content">
 			 <h2 class="heading">Administrator Reports</h2>
@@ -76,6 +95,7 @@ echo("
 		</div><!-- /.modal -->
 		</div> <!-- /content -->
     </div> <!-- /container -->
+    </div>
 
 
     

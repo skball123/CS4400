@@ -8,6 +8,24 @@ if(!isset($_SESSION['myusername'])) //User is not logged in
     die("You are not logged in");
 }
 
+if(!($_SESSION['type'] == 'PRO')) //User is not logged in
+{
+  $type = $_SESSION['type'];
+	
+	switch($type) {
+		case "STU":
+			header("location:http://samkirsch.net/cs4400/student-menu.php");
+			break;
+		case "TUT":
+			header("location:http://samkirsch.net/cs4400/tutor-menu.php");
+			break;	
+		case "ADM":
+			header("location:http://samkirsch.net/cs4400/admin-menu.php");
+			echo("ADM redirect");
+			break;
+	}
+}
+
 include 'functions.php';
 
 $states = FetchTutors();
@@ -40,6 +58,8 @@ echo("
     <![endif]-->
   </head>
   <body>
+  <div id="wrap">
+  	<a href="php/logout.php" class="logout">Logout</a>
      <div class="container">
      	<div class="content">
 			 <h2 class="form-heading">Recommendation</h2>
@@ -77,9 +97,10 @@ echo("
 		      	
 		      	<button class="btn btn-lg btn-primary btn-block" type="submit" >Submit Recommendation</button>
 		            	
-		      </form>
+		      </form>      
 		</div>
     </div> <!-- /container -->
+    </div>
 
 
     
