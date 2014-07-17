@@ -58,7 +58,7 @@ if($count==1) {
 			echo("STU redirect");
 			break;
 		case "TUT":
-			header("location:$redicretURL_TUT");
+			header("location:$redirectURL_TUT");
 			echo("TUT redirect");	
 			break;
 		case "PRO":
