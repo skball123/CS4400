@@ -70,17 +70,7 @@ echo('<script>var user = "'.$_SESSION['myusername'].'"</script>');
 								<input type="text" name="gpa" id="gpa" class="form-control" maxlength="4" placeholder="GPA (x.xx)">
 								<input type="text" name="phone" id="phone" class="form-control" maxlength="10" placeholder="4049991234">
 								<div id="avail">
-									<table class="table table-bordered">
-										<tr>
-											<th>Monday</th>
-											<th>Tuesday</th>
-											<th>Wednesday</th>
-											<th>Thursday</th>
-											<th>Friday</th>
-											<th>Saturday</th>
-											<th>Sunday</th>
-										</tr>
-									</table>
+									
 								</div>
 							<form>
 						</div>
