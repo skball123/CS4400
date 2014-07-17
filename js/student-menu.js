@@ -539,6 +539,8 @@ function rateTutor(event){
 	$("#rateCourseName").attr("value", selected_course);
 
 	$("#rate_tutor_modal").modal();
+	
+	
 };
 
 function addRowListener(){

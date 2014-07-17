@@ -4,6 +4,7 @@ $num_eval = $_POST['num_eval'];
 $desc_eval = $_POST['desc_eval'];
 $tut_gtid = $_POST['tutgtid'];
 $profgtid = $_SESSION['myusername'];
+$desc_eval = str_replace("'","''",$desc_eval);
 
 $tut_gtid = strtok($tut_gtid, " "); // removes name that was at the end 
 

@@ -24,7 +24,7 @@ $con = mysqli_connect("localhost","kirsch_cs4400","cs4400GT","kirsch_cs4400");
 /*
 Get all Tutor GTID's that are avail during submitted times
 */		
-$query2 = "SELECT DISTINCT TutorGT_ID FROM TutorTimeSlots WHERE Taken = '0' AND ";
+$query2 = "SELECT TutorGT_ID, Taken FROM TutorTimeSlots WHERE ";
 $arraysize = count($daytime);  //gets length of array
 for( $i = 0; $i < $arraysize; $i++) {
 	$temp = "DayTime = '$daytime[$i]' OR ";
@@ -35,7 +35,8 @@ $query2 = substr($query2, 0, -4);
 $result2 = mysqli_query($con, $query2);
 $tutorsavail = array();
 while($row2 = mysqli_fetch_row($result2) ) {
-	$tutorsavail[] = $row2[0];	
+	$tutorsavail[] = $row2[0];
+	$json['taken'][] = $row2[1];	
 }			
 	
 $query = "SELECT TutorsGT_ID, GTA FROM TutorsCourse WHERE SName = '$school' AND CNum = '$number'";
@@ -51,22 +52,23 @@ while($row = mysqli_fetch_row($result)) {
 		$email = $row2[1];
 		if( $row[1] ) { $row[1] = 'Yes'; } else { $row[1] = 'No'; }
 		
-		$query4 = "SELECT COUNT(STNum_Eval), AVG(STNum_Eval), COUNT(Num_Evaluation), AVG(Num_Evaluation) FROM (User LEFT OUTER JOIN Rates ON GT_ID = TutoGT_ID) INNER JOIN Recommends ON GT_ID = TutGT_ID  WHERE Email = '$email' GROUP BY GT_ID";
-		$result4 = mysqli_query($con, $query4); 
-		while( $row3 = mysqli_fetch_row($result4) ) {
-			
-			if( $row3[3] == 0 ) {continue;}
-			else {
-				$json['email'][] =  $email;
-				$json['STnum'][] = $row3[0];
-				$json['STavg'][] = $row3[1];
-				$json['Pnum'][] = $row3[2];
-				$json['Pavg'][] = $row3[3];
-				$json['gtid'][] = $gtid;
-				$json['tutor'][] = $row[0];
-				$json['gta'][] = $row[1];
-			}
+		$query4 = "SELECT COUNT(STNum_Eval), AVG(STNum_Eval) FROM Rates WHERE TutoGT_ID = '$gtid'";
+		$result4 = mysqli_query($con, $query4);
+		$query5 = "SELECT COUNT(Num_Evaluation), AVG(Num_Evaluation) FROM Recommends WHERE TutGT_ID = '$gtid'";
+		$result5 = mysqli_query($con, $query5);
 		
+		$row3 = mysqli_fetch_row($result4);
+		$row4 = mysqli_fetch_row($result5);
+		if( $row4[0] == 0 ) {}
+		else {
+			$json['email'][] =  $email;
+			$json['STnum'][] = $row3[0];
+			$json['STavg'][] = $row3[1];
+			$json['Pnum'][] = $row4[0];
+			$json['Pavg'][] = $row4[1];
+			$json['gtid'][] = $gtid;
+			$json['tutor'][] = $row[0];
+			$json['gta'][] = $row[1];
 		}
 	}
 }

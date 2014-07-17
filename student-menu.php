@@ -209,10 +209,10 @@ echo('
 	  <div class="modal-dialog modal-sm">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h4 class="modal-title" id="myModalLabel">Success!</h4>
+	        <h4 class="modal-title" id="rate-heading">Success!</h4>
 	      </div>
 	      <div class="modal-body" id="rate_success_modal_body">
-			<p>Your rating has been submitted.</p>
+			<p id="rate-text">Your rating has been submitted.</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" id="rates_success_btn" class="btn btn-success">
