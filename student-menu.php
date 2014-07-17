@@ -121,6 +121,7 @@ echo('
 	        <h4 class="modal-title" id="myModalLabel">Rate this Tutor</h4>
 	      </div>
 	      <div class="modal-body" id="modal_rate_form">
+		  <form id="rate_form">
 			<div class="row">
 				<div class="span6">
 					<div class="col-lg-3">
@@ -162,6 +163,7 @@ echo('
 					1 Do Not Recommend
 				</label>
 			</div>
+			</form>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" id="rate_tutor_modal_btn" class="btn btn-primary">Submit</button>

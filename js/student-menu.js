@@ -51,7 +51,12 @@ $(function(){
 			$("#desc_eval").addClass('warning');
 			return;
 		}
-		var toPost = $("#modal_rate_form").serialize();
+		
+		var toAppend = '<input type="text" style="display: none" name="tutgtid" value="' + $("#tutgtid").attr("value") + '">\
+						<input type="text" style="display: none" name="courseName" value="' + $(rateCourseName).attr("value") + '">';
+		$("#rate_form").append(toAppend);
+		var toPost = $("#rate_form").serialize();
+		
 		$.ajax({
 		      type: 'POST',
 		      //dataType: 'json',
