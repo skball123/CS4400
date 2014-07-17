@@ -163,6 +163,8 @@ echo('
 					1 Do Not Recommend
 				</label>
 			</div>
+			<div id="rate_extra">
+			</div>
 			</form>
 	      </div>
 	      <div class="modal-footer">
