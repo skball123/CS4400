@@ -63,12 +63,14 @@ echo('<script>var user = "'.$_SESSION['myusername'].'"</script>');
         					<h4 class="modal-title">Tutor Application</h4>
       					</div>
       					<div class="modal-body tutor-apply panel panel-default span12">
-		      				<input type="text" name="tutgtid" id="tutgtid" class="form-control" maxlength="9" disabled="disabled">
-		      			    <input type="text" name="name" id="name" class="form-control" placeholder="Full Name">
-		        			<input type="text" name="email" id="email" class="form-control" placeholder="example@gatech.edu">
-		        			<input type="text" name="gpa" id="gpa" class="form-control" maxlength="4" placeholder="GPA (x.xx)">
-		        			<input type="text" name="phone" id="phone" class="form-control" maxlength="10" placeholder="4049991234">
-      					</div>
+							<form id="tutor_apply_form">
+								<input type="text" name="tutgtid" id="tutgtid" class="form-control" maxlength="9" disabled="disabled">
+								<input type="text" name="name" id="name" class="form-control" placeholder="Full Name">
+								<input type="text" name="email" id="email" class="form-control" placeholder="example@gatech.edu">
+								<input type="text" name="gpa" id="gpa" class="form-control" maxlength="4" placeholder="GPA (x.xx)">
+								<input type="text" name="phone" id="phone" class="form-control" maxlength="10" placeholder="4049991234">
+							<form>
+						</div>
       					<div class="modal-footer">
         					<button type="submit" class="btn btn-primary" id="submit">Submit</button>
       					</div>
