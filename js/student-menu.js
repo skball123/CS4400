@@ -378,12 +378,11 @@ function afterPostP2(data){
 };
 
 function afterPostRating(data){
-	console.log(data);
 	$("#rate_tutor_modal").modal('hide');
 	
 	if(!data.script){
 		// there is an error message
-		$("#rate_fail_message").text(data.script);
+		$("#rate_fail_message").text(data);
 		$("#rate_fail_modal").modal();
 		
 	}else{

@@ -6,7 +6,6 @@ $coursenum = $_POST['courseName'];
 $school = strtok($coursenum, " ");
 $coursenum = strtok(" ");
 
-$json = array();
 
 $semester = 'Summer';
 
@@ -17,7 +16,7 @@ $checker = Checkteach($tut_gtid, $stu_gtid, $coursenum, $school, $semester, $jso
 if($checker) {
 	$bool = Checkalready($tut_gtid, $stu_gtid, $coursenum, $school, $semester, $json);  // check if student already rated tutor
 	StuEval($bool, $desc_eval, $num_eval, $tut_gtid, $stu_gtid, $coursenum, $school, $semester, $json);
-	echo json_encode($json);
+	echo ($json);
 }	
 else {
 echo('no session');
@@ -37,7 +36,7 @@ function Checkteach($tut_gtid, $stu_gtid, $coursenum, $school, $semester, &$json
 	$count = mysqli_num_rows($result);
 	if($count > 0) { return 1; }
 	else {
-	 $json['script'][] ='You cannot rate this tutor without having a session with them.';
+	 $json ='You cannot rate this tutor without having a session with them.';
 	 return 0; }
 	mysqli_close($con);
 }
@@ -67,7 +66,7 @@ function StuEval($bool, $desc_eval, $num_eval, $tut_gtid, $stu_gtid, $coursenum,
   			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 	if($bool) {	
-	$json['script'][] = 'You have already rated this tutor. This new rating will overwrite the old one.';
+	$json = 'You have already rated this tutor. This new rating will overwrite the old one.';
 	$query = "UPDATE Rates SET STDesc_Eval = '$desc_eval', STNum_Eval = '$num_eval', RSemester = '$semester', SchName = '$school', CouNumber = '$coursenum' WHERE TutoGT_ID = '$tut_gtid' AND UndGT_ID = '$stu_gtid'";
 	$result = mysqli_query($con, $query);	
 	}
@@ -75,7 +74,7 @@ function StuEval($bool, $desc_eval, $num_eval, $tut_gtid, $stu_gtid, $coursenum,
 	$query = "INSERT INTO Rates VALUES ('$tut_gtid', '$stu_gtid', '$desc_eval', '$num_eval', '$semester', '$school', '$coursenum')";
 	//echo($query);
 	$result = mysqli_query($con, $query);
-	$json['script'][] = 'Evaluation Submitted.';
+	$json = 'Evaluation Submitted.';
 	
 	}
 	mysqli_close($con);
