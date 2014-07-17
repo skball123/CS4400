@@ -524,8 +524,8 @@ function rateTutor(event){
 
 function addRowListener(){
 	$(".clickRow").click(function(event){
-		selected_time = $(event.target).attr("name");
-		console.log($(event.target).attr('id'));
+		selected_time = $(this).attr("name");
+		console.log($(this).attr('id'));
 		$("#confirm_sched_modal").modal();
 	});
 };
