@@ -55,7 +55,13 @@ echo('<script>var user = "'.$_SESSION['myusername'].'"</script>');
 			  <h2 class="heading">Tutor Menu</h2>
 		      <button class="btn btn-lg btn-primary btn-block" type="button" id="apply">Apply</button>
 		      <button class="btn btn-lg btn-primary btn-block" type="button" id="schedule">Get Schedule</button>
-		<div class="modal fade" id = "apply-modal">
+		
+		
+		</div>
+    </div> <!-- /container -->
+    </div>
+	
+	<div class="modal fade" id = "apply-modal">
   				<div class="modal-dialog">
     				<div class="modal-content">
       					<div class="modal-header">
@@ -92,11 +98,6 @@ echo('<script>var user = "'.$_SESSION['myusername'].'"</script>');
    				 </div><!-- /.modal-content -->
   			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
-		
-		</div>
-    </div> <!-- /container -->
-    </div>
-    </div>
     
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
