@@ -353,20 +353,21 @@ function afterPostP2(data){
 		var length = data.slothired.length;
 		for(var i = 0; i < length; i++) {
 			switch (data.slothired[i][0]) {
+				if ( (data.slothired[i][1] + data.slothired[i][2]) > 12) { time = (data.slothired[i][1] + data.slothired[i][2]) - 12 + ':00 PM'; } else { time = data.slothired[i][1] + data.slothired[i][2] + ':00 AM'; } if( (data.slothired[i][1] + data.slothired[i][2]) == 12 ) { time = data.slothired[i][1] + data.slothired[i][2] + ':00 PM'; }
 				case 'M':
-					mondays.push('<tr><td>Monday</td><td>' + data.slothired[i][1] + data.slothired[i][2] + '</td><td>' + data.name[i] + '</td><td>' + data.email[i] + '</td><td>' + data.school[i] + ' ' + data.crn[i] + '</td></tr>');
+					mondays.push('<tr><td>Monday</td><td>' + time + '</td><td>' + data.name[i] + '</td><td>' + data.email[i] + '</td><td>' + data.school[i] + ' ' + data.crn[i] + '</td></tr>');
 					break;
 				case 'T':
-					tuesdays.push('<tr><td>Tuesday</td><td>' + data.slothired[i][1] + data.slothired[i][2] + '</td><td>' + data.name[i] + '</td><td>' + data.email[i] + '</td><td>' + data.school[i] + ' ' + data.crn[i] + '</td></tr>');
+					tuesdays.push('<tr><td>Tuesday</td><td>' + time + '</td><td>' + data.name[i] + '</td><td>' + data.email[i] + '</td><td>' + data.school[i] + ' ' + data.crn[i] + '</td></tr>');
 					break;
 				case 'W':
-					wednesdays.push('<tr><td>Wednesday</td><td>' + data.slothired[i][1] + data.slothired[i][2] + '</td><td>' + data.name[i] + '</td><td>' + data.email[i] + '</td><td>' + data.school[i] + ' ' + data.crn[i] + '</td></tr>');
+					wednesdays.push('<tr><td>Wednesday</td><td>' + time + '</td><td>' + data.name[i] + '</td><td>' + data.email[i] + '</td><td>' + data.school[i] + ' ' + data.crn[i] + '</td></tr>');
 					break;
 				case 'R':
-					thursdays.push('<tr><td>Thursday</td><td>' + data.slothired[i][1] + data.slothired[i][2] + '</td><td>' + data.name[i] + '</td><td>' + data.email[i] + '</td><td>' + data.school[i] + ' ' + data.crn[i] + '</td></tr>');
+					thursdays.push('<tr><td>Thursday</td><td>' + time + '</td><td>' + data.name[i] + '</td><td>' + data.email[i] + '</td><td>' + data.school[i] + ' ' + data.crn[i] + '</td></tr>');
 					break;
 				case 'F':
-					fridays.push('<tr><td>Friday</td><td>' + data.slothired[i][1] + data.slothired[i][2] + '</td><td>' + data.name[i] + '</td><td>' + data.email[i] + '</td><td>' + data.school[i] + ' ' + data.crn[i] + '</td></tr>');
+					fridays.push('<tr><td>Friday</td><td>' + time + '</td><td>' + data.name[i] + '</td><td>' + data.email[i] + '</td><td>' + data.school[i] + ' ' + data.crn[i] + '</td></tr>');
 					break;				
 			}
 		}
