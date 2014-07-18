@@ -38,7 +38,7 @@ a.muted:focus {
 .logout:hover {
 	text-decoration: none;
 }
-#dropdown .tt-dropdown-menu{
+.dropdown .tt-dropdown-menu{
 	max-height: 150px;
 	overflow-y: hidden;
 	width: 100%;

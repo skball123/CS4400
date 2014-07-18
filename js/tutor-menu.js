@@ -215,7 +215,7 @@ function addCourse(){
 	var toappend = '<div class="row" style="display: none;">\
 					  <div class="col-lg-12">\
 						<div class="input-group">\
-						  <div id="dropdown">\
+						  <div class="dropdown">\
 			     			<input name="course' + timeAdded + '" type="search" class="form-control typeahead" placeholder="Course Name">\
 						  </div>\
 						  <span class="input-group-addon">\
@@ -226,8 +226,8 @@ function addCourse(){
 					</div><!-- /.row-->'
 					
 	$(toappend).appendTo('#canTeach').show('slow');
-	
-	$('#dropdown .typeahead').typeahead({
+	$('.dropdown .typeahead').typeahead('destroy');
+	$('.dropdown .typeahead').typeahead({
 	  hint: true,
 	  highlight: true,
 	  minLength: 1
