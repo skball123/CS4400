@@ -62,5 +62,6 @@ a.muted:focus {
 	text-decoration: none;
 }
 #apply-modal{
-	min-width: 600px;
+	width: 750px;
+	margin-left: -375px;
 }

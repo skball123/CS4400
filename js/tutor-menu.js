@@ -135,7 +135,7 @@ function afterPostP1(data){
 }
 
 function createAvailTable(){
-	var opener = '<table class="table table-bordered">\
+	var table = '<table class="table table-bordered">\
 					<tr>\
 						<th>Monday</th>\
 						<th>Tuesday</th>\
@@ -196,12 +196,12 @@ function createAvailTable(){
 						  </div>\
 						</td>';
 		}
-		opener = opener + row + '</tr>'
+		table = table + row + '</tr>'
 		
 	}
 				
-	opener = opener + '</table>';
-	$("#avail").append(opener);
+	table = table + '</table>';
+	$("#avail").append(table);
 	
 };
 
