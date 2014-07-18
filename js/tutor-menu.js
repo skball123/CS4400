@@ -178,12 +178,12 @@ function createAvailTable(){
 		for(var i = 0; i < 7; i++){
 			switch(i){
 				case 0: day = 'M'; break;
-				case 0: day = 'T'; break;
-				case 0: day = 'W'; break;
-				case 0: day = 'R'; break;
-				case 0: day = 'F'; break;
-				case 0: day = 'S'; break;
-				case 0: day = 'Z'; break;
+				case 1: day = 'T'; break;
+				case 2: day = 'W'; break;
+				case 3: day = 'R'; break;
+				case 4: day = 'F'; break;
+				case 5: day = 'S'; break;
+				case 6: day = 'Z'; break;
 			}
 			
 			//needed to make sure monday at 7 am is M07 and not M7
@@ -245,6 +245,7 @@ function addCourse(){
 	  }
 	 
 	});
+	timeAdded++;
 }
 
 function resetApply(){

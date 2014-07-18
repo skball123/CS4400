@@ -21,7 +21,7 @@ $con = mysqli_connect("localhost","kirsch_cs4400","cs4400GT","kirsch_cs4400");
 		$json['school'][] = $row[3];
 		$json['crn'][] = $row[4];
 	}
-	
+mysqli_close($con);
 echo json_encode($json);	
 
 ?>
