@@ -51,6 +51,10 @@ $(function(){
 			$("#desc_eval").addClass('warning');
 			return;
 		}
+		if(!$("#radio_4").prop('checked') && !$("#radio_3").prop('checked') && !$("#radio_2").prop('checked') && !$("#radio_1").prop('checked') ){
+			alert('A number rating needs to be selected');
+			return;
+		}
 		$("#rate_extra").empty();
 		
 		var toAppend = '<input type="text" style="display: none" name="tutgtid" value="' + $("#tutgtid").attr("value") + '">\
