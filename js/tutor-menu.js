@@ -1,15 +1,16 @@
+var timeAdded = 0;
+
 $(function(){
 	
 	$('.content').fadeIn();
-	
+	console.log(states);
 	$("#tutgtid").attr("value",user);
-	
-	createAvailTable();
-	
+		
 	$('.btn').click(function(event) {
 		
 		if( $(this).attr("id") == 'apply') {
 			$('#apply-modal').modal("show");
+			resetApply();
 		}
 		if( $(this).attr("id") == 'schedule') {
 			//alert($(this).attr("id"));
@@ -45,11 +46,15 @@ $(function(){
 			  }).done(function(data) { 
 				  	console.log(data);
 				  	//alert(data); 
-				  	//afterPostP1(data);
+				  	afterPostApply(data);
 			  	})
 			    .fail(function() { alert("Failed to communicate"); })
 			    .always(function() { /*alert("complete"); */});
 	
+	});
+	
+	$('#addClassBtn').click(function(event) {
+		addCourse();
 	});
 	
 });
@@ -205,6 +210,78 @@ function createAvailTable(){
 	
 };
 
+function addCourse(){
+	var newName = "day" + timeAdded;
+	var toappend = '<div class="row" style="display: none;">\
+					  <div class="col-lg-12">\
+						<div class="input-group">\
+						  <div id="dropdown">\
+			     			<input name="course' + timeAdded + '" type="search" class="form-control typeahead" placeholder="Course Name">\
+						  </div>\
+						  <span class="input-group-addon">\
+							<input type="checkbox" name="GTA' + timeAdded + '"> GTA\
+						  </span>\
+						</div><!-- /input-group -->\
+					  </div><!-- /.col-lg-6 -->\
+					</div><!-- /.row-->'
+					
+	$(toappend).appendTo('#canTeach').show('slow');
+	
+	$('#dropdown .typeahead').typeahead({
+	  hint: true,
+	  highlight: true,
+	  minLength: 1
+	},
+	{
+	  name: 'states',
+	  displayKey: 'value',
+	  source: substringMatcher(states),
+	  templates: {
+		empty: [
+			'<div class="empty-message">',
+			'No tutors match your current query',
+			'</div>'
+		].join('\n')
+	  }
+	 
+	});
+}
 
+function resetApply(){
+	$("#canTeach").empty();
+	$("#avail").empty();
+	timeAdded = 0;
+	addCourse();
+	createAvailTable();
+}
+
+function afterPostApply(data){
+	apply-modal.modal('hide');
+	//Display success/failure
+}
+
+var substringMatcher = function(strs) {
+  return function findMatches(q, cb) {
+    var matches, substringRegex;
+ 
+    // an array that will be populated with substring matches
+    matches = [];
+ 
+    // regex used to determine if a string contains the substring `q`
+    substrRegex = new RegExp(q, 'i');
+ 
+    // iterate through the pool of strings and for any string that
+    // contains the substring `q`, add it to the `matches` array
+    $.each(strs, function(i, str) {
+      if (substrRegex.test(str)) {
+        // the typeahead jQuery plugin expects suggestions to a
+        // JavaScript object, refer to typeahead docs for more info
+        matches.push({ value: str });
+      }
+    });
+ 
+    cb(matches);
+  };
+};
 
 

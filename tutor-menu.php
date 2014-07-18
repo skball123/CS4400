@@ -27,6 +27,12 @@ if(!($_SESSION['type'] == 'TUT')) //User is not logged in
 
 include 'functions.php';
 echo('<script>var user = "'.$_SESSION['myusername'].'"</script>');
+$states = FetchClasses();
+echo('
+<!DOCTYPE html>
+<html lang="en">
+<script> var states = '. $states .' </script>
+');
 ?>
   <head>
     <meta charset="utf-8">
@@ -75,13 +81,16 @@ echo('<script>var user = "'.$_SESSION['myusername'].'"</script>');
 								<input type="text" name="email" id="email" class="form-control" placeholder="example@gatech.edu">
 								<input type="text" name="gpa" id="gpa" class="form-control" maxlength="4" placeholder="GPA (x.xx)">
 								<input type="text" name="phone" id="phone" class="form-control" maxlength="10" placeholder="4049991234">
+								<div id="canTeach" style="padding: 10px;">
+								</div>		
+								<button type="button" class="btn btn-primary" id="addClassBtn">Add Class</button>
 								<div id="avail">
 									
 								</div>
 							<form>
 						</div>
       					<div class="modal-footer">
-        					<button type="submit" class="btn btn-primary" id="submit">Submit</button>
+        					<button type="button" class="btn btn-primary" id="submit">Submit</button>
       					</div>
    				 </div><!-- /.modal-content -->
   			</div><!-- /.modal-dialog -->
