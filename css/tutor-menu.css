@@ -61,7 +61,3 @@ a.muted:focus {
 .logout:hover {
 	text-decoration: none;
 }
-#apply-modal{
-	width: 750px;
-	margin-left: -375px;
-}
