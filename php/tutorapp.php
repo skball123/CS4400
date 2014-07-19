@@ -1,4 +1,5 @@
 <?php
+$semester = "Summer";
 $tut_gtid = $_SESSION['myusername'];
 $name = $_POST['name'];
 $email = $_POST['email'];
@@ -8,23 +9,37 @@ $phone = $_POST['phone'];
 $numClasses = $_POST['numClasses'];
 $daytime = array();
 
-//parrallel arrays storing the courseNums and schools i.e.  courseNums[0], schools[0] go together
-$courseNums = array();
-$schools = array();
-$gta = array();
+// Insert all of the tutors available classes
+$con = mysqli_connect("localhost","kirsch_cs4400","cs4400GT","kirsch_cs4400");
+	// Check connection
+if (mysqli_connect_errno())
+{
+	echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+//First remove the previously listed courses
+$query = "DELETE FROM TutorsCourse WHERE TutorsGT_ID = '$tut_gtid'";
+$result = mysqli_query($con, $query);
 
-// Get the the classes
+// Now add all the courses this tutor listed that they can teach
 for($i = 0; $i < $numClasses; $i++){
-	$schools[] = strtok($_POST['course' . $i], " ");
-	$courseNums[] = strtok(" ");
+	$school = strtok($_POST['course' . $i], " ");
+	$courseNum = strtok(" ");
 	if(is_null($_POST['gta' . $i])){
-		$gta[] = 0;
+		$gta = 0;
 	}else{
-		$gta[] = 1;
+		$gta = 1;
 	}
+	
+	$course = $courseNum . $school;
+	$query = "INSERT INTO TutorsCourse VALUES ('$tut_gtid', '$gta', '$name', '$course')";
+	$result = mysqli_query($con, $query);
 }
 
-// Get the dayTimes by checking if the checkbox exists through all the possible times
+//Remove the previously listed timeslots
+$query = "DELETE FROM TutorTimeSlots WHERE TutorGT_ID = '$tut_gtid'";
+$result = mysqli_query($con, $query);
+
+// Get the dayTimes by checking if the check box exists through all the possible times then insert
 for($i = 7; $i <= 22; $i++){
 	for($j = 0; $j < 7; $j++){
 		switch($j){
@@ -45,25 +60,22 @@ for($i = 7; $i <= 22; $i++){
 				$daytime[] = $day . $i;
 			}
 		}
+		$query = "INSERT INTO TutorTimeSlots VALUES ('$tut_gtid', '$email', '$semester', '0', '$daytime')";
+		$result = mysqli_query($con, $query);
 	}
 }
 
 
+
+
 if(checkForUpdatedInfo($tut_gtid, $name, $email, $gpa, $phone)){
 	//Update info
-	$con = mysqli_connect("localhost","kirsch_cs4400","cs4400GT","kirsch_cs4400");
-	// Check connection
-	if (mysqli_connect_errno())
-  		{
-  			echo "Failed to connect to MySQL: " . mysqli_connect_error();
-		}
-		
 	$query = "UPDATE User SET Name = '$name', Email = '$email', GPA = '$gpa', Phone = '$phone' WHERE GT_ID = '$tut_gtid'";
 	$result = mysqli_query($con, $query);
-	mysqli_close($con);
 }
 
-//insert classes and availabilities
+//close the connection
+mysqli_close($con);
 
 
 function checkForUpdatedInfo($gtid, $n, $e, $g, $p){
