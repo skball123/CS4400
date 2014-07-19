@@ -35,6 +35,9 @@ $(function(){
 	
 	$('#submit').click(function(event) {
 		//var cn = { gtid: $('#tutgtid').attr("value"), name: $('#name').attr("value"), email: $('#email').attr("value"), gpa: $('#gpa').attr("value"), phone: $('#phone').attr("value") };
+		var toAppend = '<input name="numClasses" style="display: none" value="'+ timeAdded +'">'
+		$('#tutor_apply_form').append(toAppend);
+		
 		var toPost = $('#tutor_apply_form').serialize();
 		console.log(toPost);
 		
