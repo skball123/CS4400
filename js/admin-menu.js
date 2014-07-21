@@ -151,7 +151,7 @@ function afterPostP2(data){
 		console.log(remake);
 		var length = remake.length;
 		for(var i = 0; i < length; i++) {
-			console.log('int: ' + i);
+			
 			if( i == 0 ) {
 				if( remake[i][3] == 'GTA' ) {
 					numGTA = parseFloat(remake[i][4]);
@@ -168,7 +168,7 @@ function afterPostP2(data){
 						numTA = numTA + parseFloat(remake[i+1][4]);
 						add = '<td>' + numTA + '</td><td>' + parseFloat(remake[i+1][5]).toPrecision(2) + '</td></tr>';
 						row = row.concat(add);
-						console.log('skip: ' + i);
+						
 						xcontinue = 1;
 					}
 				else {
@@ -195,15 +195,16 @@ function afterPostP2(data){
 							numTA = numTA + parseFloat(remake[i+1][4]);
 							add = '<td>' + numTA + '</td><td>' + parseFloat(remake[i+1][5]).toPrecision(2) + '</td></tr>';
 							row = row.concat(add);
-							console.log('skip: ' + i);
+							
 							xcontinue = 1;
 						}
 						else {
 						add = '<td>' + numTA + '</td><td>0.0</td></tr>';
 						row = row.concat(add);
+						}
 					}
 					else {
-						add = '<td>' + numTA + '</td><td>0.0</td></tr>';
+						add = '<td>' + 0 + '</td><td>0.0</td></tr>';
 						row = row.concat(add);
 					}
 				} // end if same check
@@ -235,15 +236,16 @@ function afterPostP2(data){
 							numTA = numTA + parseFloat(remake[i+1][4]);
 							add = '<td>' + numTA + '</td><td>' + parseFloat(remake[i+1][5]).toPrecision(2) + '</td></tr>';
 							row = row.concat(add);
-							console.log('skip: ' + i);
+							
 							xcontinue = 1;
 						}
 						else {
 						add = '<td>' + numTA + '</td><td>0.0</td></tr>';
 						row = row.concat(add);
+						}
 					}
 					else {
-						add = '<td>' + numTA + '</td><td>0.0</td></tr>';
+						add = '<td>' + 0 + '</td><td>0.0</td></tr>';
 						row = row.concat(add);
 					}
 				}
@@ -378,7 +380,7 @@ function afterPostP2(data){
 		var wednesdays = [];
 		var thursdays = [];
 		var fridays = [];
-		
+		if (!(data.slothired == undefined) ) {
 		var length = data.slothired.length;
 		for(var i = 0; i < length; i++) {
 			if ( (data.slothired[i][1] + data.slothired[i][2]) > 12) { time = (data.slothired[i][1] + data.slothired[i][2]) - 12 + ':00 PM'; } else { time = data.slothired[i][1] + data.slothired[i][2] + ':00 AM'; } if( (data.slothired[i][1] + data.slothired[i][2]) == 12 ) { time = data.slothired[i][1] + data.slothired[i][2] + ':00 PM'; }
@@ -425,6 +427,7 @@ function afterPostP2(data){
 		for(var i = 0; i < fridayLength; i++) {
 			add = fridays[i];
 			row = row.concat(add);
+		}
 		}
 		$('.modal-title').empty();
 		$('.modal-title').append('Tutor Schedule');
