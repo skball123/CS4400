@@ -431,13 +431,14 @@ function afterPostP2(data){
 
 function afterPostRating(data){
 	$("#rate_tutor_modal").modal('hide');
-	if(!(data == 'Evaluation Submitted.') ){
+	console.log(data.success[0]);
+	if(!(data.success[0]) ){
 		// there is an error message
-		$("#rate_fail_message").text(data);
+		$("#rate_fail_message").text(data.message);
 		$("#rate_fail_modal").modal();
 		
 	}else{
-		//IF success then show this modal, currently no real feedback from the post so..... to do
+		//IF success then show this modal
 		$("#rate_success_modal").modal();
 	}
 	
