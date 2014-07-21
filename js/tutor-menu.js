@@ -71,6 +71,11 @@ function checkForm(){
 		$("#tutgtid").focus();
 		return false;
 	}
+	if( !$("#tutgtid").val() != user ){
+		alert("You have entered the wrong GTID");
+		$("#tutgtid").focus();
+		return false;
+	}
 	if( !$("#name").val() ){
 		alert("Please fill in your name");
 		$("#name").focus();
