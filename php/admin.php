@@ -142,6 +142,7 @@ elseif( $report == 'tutor' ) {
   			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 	
+	
 	$TutSched = "SELECT Hires.DayTimeSlotHired, User.Name, User.Email, Hires.SchoolName, Hires.CrNumber FROM Hires INNER JOIN User ON Hires.UnGT_ID = User.GT_ID WHERE Hires.TutordGT_ID ='$tut_gtid' AND SemesterSlotHired = 'Summer'";
 	$result = mysqli_query($con, $TutSched);
 	while( $row = mysqli_fetch_row($result) ) {
@@ -153,6 +154,9 @@ elseif( $report == 'tutor' ) {
 	}
 	
 }
+
+
+
 
 mysqli_close($con);
 

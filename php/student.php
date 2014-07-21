@@ -8,7 +8,8 @@ $daytime = array();
 $length = $_POST['numTimes'];
 
 for($i = 0; $i < ($length + 1); $i++) {
-	$daytime[] = $_POST['day' . $i] . $_POST['time' . $i];  //variable in example 'W15' format for wednesday 3pm 
+	if ( ($_POST['time' . $i]) < 10) { $time =  '0' . $_POST['time' . $i]; } else { $time  = $_POST['time' . $i]; }
+	$daytime[] = $_POST['day' . $i] . $time;  //variable in example 'W15' format for wednesday 3pm 
 }
 
 $school = strtok($course, " ");
@@ -24,7 +25,7 @@ $con = mysqli_connect("localhost","kirsch_cs4400","cs4400GT","kirsch_cs4400");
 /*
 Get all Tutor GTID's that are avail during submitted times
 */		
-$query2 = "SELECT TutorGT_ID, Taken FROM TutorTimeSlots WHERE ";
+$query2 = "SELECT TutorGT_ID FROM TutorTimeSlots WHERE Semester = 'Summer' AND Taken = '0' AND (";
 $arraysize = count($daytime);  //gets length of array
 for( $i = 0; $i < $arraysize; $i++) {
 	$temp = "DayTime = '$daytime[$i]' OR ";
@@ -32,10 +33,13 @@ for( $i = 0; $i < $arraysize; $i++) {
 }
 
 $query2 = substr($query2, 0, -4);
+$query2 = $query2 . ')';
+$json['query'] = $query2;
 $result2 = mysqli_query($con, $query2);
 $tutorsavail = array();
 while($row2 = mysqli_fetch_row($result2) ) {
 	$tutorsavail[] = $row2[0];
+	$json['tutoravail'][] = $row2[0];
 	$json['taken'][] = $row2[1];	
 }			
 	

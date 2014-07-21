@@ -319,21 +319,21 @@ function afterPostP2(data){
 			}
 		}
 		remake.sort();
-		
+		console.log(remake);
 		var length = remake.length;
 		for(var i = 0; i < length; i++) {
 			if( i == 0 ) {
-				add = '<tr><td>' + remake[i][0] + ' ' + remake[i][1] + '</td> <td>' + (remake[i][5]) + '</td> <td>' + remake[i][2] + '</td> <td>' + remake[i][4] + '</td></tr>';
+				add = '<tr><td>' + remake[i][0] + ' ' + remake[i][1] + '</td> <td>' + (remake[i][4]) + '</td> <td>' + remake[i][2] + '</td> <td>' + remake[i][3] + '</td></tr>';
 				row = row.concat(add);
 				numstudents = parseFloat(remake[i][2]);
-				numtutors = parseFloat(remake[i][4]);
+				numtutors = parseFloat(remake[i][3]);
 			}
 			else {
 				if ( (remake[i][0] + remake[i][1]) == (remake[i-1][0] + remake[i-1][1]) ) { //if current class is same as last class
-					add = '<tr><td> </td> <td>' + (remake[i][5]) + '</td> <td>' + remake[i][2] + '</td> <td>' + remake[i][4] + '</td></tr>';
+					add = '<tr><td> </td> <td>' + (remake[i][4]) + '</td> <td>' + remake[i][2] + '</td> <td>' + remake[i][3] + '</td></tr>';
 					row = row.concat(add);
 					numstudents = numstudents + parseFloat(remake[i][2]);
-					numtutors = numtutors+ parseFloat(remake[i][4]);
+					numtutors = numtutors+ parseFloat(remake[i][3]);
 				}
 				else {
 					TotalT+=numtutors;
@@ -343,10 +343,10 @@ function afterPostP2(data){
 					numstudents = 0;
 					numtutors = 0;
 					
-					add = '<tr><td>' + remake[i][0] + ' ' + remake[i][1] + '</td> <td>' + (remake[i][5]) + '</td> <td>' + remake[i][2] + '</td> <td>' + remake[i][4] + '</td></tr>';
+					add = '<tr><td>' + remake[i][0] + ' ' + remake[i][1] + '</td> <td>' + (remake[i][4]) + '</td> <td>' + remake[i][2] + '</td> <td>' + remake[i][3] + '</td></tr>';
 					row = row.concat(add);
 					numstudents = parseFloat(remake[i][2]);
-					numtutors = parseFloat(remake[i][4]);
+					numtutors = parseFloat(remake[i][3]);
 					
 				}
 			}
@@ -362,6 +362,8 @@ function afterPostP2(data){
 	}
 	
 	if(data.type == 'tutor') {
+		if ( states.indexOf($('#tutgtid').val()) > -1 ) {
+		
 		var opener = '<table class="table table-hover">\
 							<thead>\
 								<tr>\
@@ -432,13 +434,18 @@ function afterPostP2(data){
 		$('.modal-title').empty();
 		$('.modal-title').append('Tutor Schedule');
 	
+	
+		} else { alert('The typed GTID is not in the Tutor database.') }
 	}
+	
 	var closer = "</tbody></table>";
 	together = opener.concat(row,closer);
 	$('.reports').empty();	
 	$('.reports').append(together);
 		
 	$('.modal').modal('show');
+	
+	
 };
 
 var substringMatcher = function(strs) {

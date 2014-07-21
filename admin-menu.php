@@ -76,7 +76,7 @@ echo("
 		        <button class="btn btn-lg btn-primary btn-block" type="submit" id="button" name="button" value="ratings">Create Average Ratings Report</button>
 		        <br />
 		        <div id="dropdown">
-		        	<input type="search" name="tutgtid" id="tutgtid" class="form-control typeahead" placeholder="Tutor GTID or Name" required autofocus>
+		        	<input type="search" name="tutgtid" id="tutgtid" class="form-control typeahead" maxlength="9" placeholder="Tutor GTID or Name" required autofocus>
 		        </div>
 		        <button class="btn btn-lg btn-primary btn-block" type="submit" id="button" name="button" value="tutor">Lookup Tutor Schedule</button>    	    	
 			</div>
