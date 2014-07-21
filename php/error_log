@@ -1,0 +1,21 @@
+[17-Jul-2014 08:05:10 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home/kirsch/public_html/cs4400/php/rates.php on line 81
+[17-Jul-2014 08:06:15 America/Chicago] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/kirsch/public_html/cs4400/php/rates.php on line 76
+[17-Jul-2014 08:07:09 America/Chicago] PHP Parse error:  syntax error, unexpected ';' in /home/kirsch/public_html/cs4400/php/rates.php on line 74
+[17-Jul-2014 10:19:14 America/Chicago] PHP Fatal error:  Call-time pass-by-reference has been removed in /home/kirsch/public_html/cs4400/php/rates.php on line 16
+[17-Jul-2014 10:21:59 America/Chicago] PHP Fatal error:  Call-time pass-by-reference has been removed in /home/kirsch/public_html/cs4400/php/rates.php on line 16
+[17-Jul-2014 11:54:26 America/Chicago] PHP Warning:  mysqli_close() expects parameter 1 to be mysqli, null given in /home/kirsch/public_html/cs4400/php/admin.php on line 157
+[21-Jul-2014 14:16:09 America/Chicago] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, boolean given in /home/kirsch/public_html/cs4400/php/tutorapp.php on line 92
+[21-Jul-2014 14:30:42 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/kirsch/public_html/cs4400/php/admin.php on line 74
+[21-Jul-2014 14:30:42 America/Chicago] PHP Warning:  mysqli_free_result() expects parameter 1 to be mysqli_result, boolean given in /home/kirsch/public_html/cs4400/php/admin.php on line 82
+[21-Jul-2014 14:30:42 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/kirsch/public_html/cs4400/php/admin.php on line 88
+[21-Jul-2014 14:30:42 America/Chicago] PHP Warning:  mysqli_free_result() expects parameter 1 to be mysqli_result, boolean given in /home/kirsch/public_html/cs4400/php/admin.php on line 96
+[21-Jul-2014 14:30:42 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/kirsch/public_html/cs4400/php/admin.php on line 99
+[21-Jul-2014 14:30:42 America/Chicago] PHP Warning:  mysqli_free_result() expects parameter 1 to be mysqli_result, boolean given in /home/kirsch/public_html/cs4400/php/admin.php on line 107
+[21-Jul-2014 14:30:42 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/kirsch/public_html/cs4400/php/admin.php on line 113
+[21-Jul-2014 14:30:42 America/Chicago] PHP Warning:  mysqli_free_result() expects parameter 1 to be mysqli_result, boolean given in /home/kirsch/public_html/cs4400/php/admin.php on line 121
+[21-Jul-2014 14:30:42 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/kirsch/public_html/cs4400/php/admin.php on line 124
+[21-Jul-2014 14:30:42 America/Chicago] PHP Warning:  mysqli_free_result() expects parameter 1 to be mysqli_result, boolean given in /home/kirsch/public_html/cs4400/php/admin.php on line 132
+[21-Jul-2014 14:34:08 America/Chicago] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, boolean given in /home/kirsch/public_html/cs4400/php/tutorapp.php on line 92
+[21-Jul-2014 14:35:31 America/Chicago] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, boolean given in /home/kirsch/public_html/cs4400/php/tutorapp.php on line 92
+[21-Jul-2014 14:38:44 America/Chicago] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, boolean given in /home/kirsch/public_html/cs4400/php/tutorapp.php on line 92
+[21-Jul-2014 14:44:48 America/Chicago] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, boolean given in /home/kirsch/public_html/cs4400/php/tutorapp.php on line 92

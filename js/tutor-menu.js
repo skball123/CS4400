@@ -46,9 +46,9 @@ $(function(){
 		
 		$.ajax({
 			      type: 'POST',
-			      dataType: 'json',
+			      //dataType: 'json',
 			      url: 'php/tutorapp.php',
-			      data: toPost,   
+			      data: toPost  
 			  }).done(function(data) { 
 				  	console.log(data);
 				  	//alert(data); 
@@ -71,7 +71,7 @@ function checkForm(){
 		$("#tutgtid").focus();
 		return false;
 	}
-	if( !$("#tutgtid").val() != user ){
+	if( $("#tutgtid").val() != user ){
 		alert("You have entered the wrong GTID");
 		$("#tutgtid").focus();
 		return false;
@@ -102,23 +102,25 @@ function checkForm(){
 	}
 	
 	//now check the validity of the classes they are applying for
-	var classes = $(".courseSelections");
+	var classes = [];
+	classes = $(".courseSelections");
 	var prev = [];
-	for(var i = 0; i < classes.length; i++){
-		if(states.indexOf(classes[i].val()) > -1){
+	for(var i = 1; i < classes.length; i+=2){
+		console.log($(classes[i]).val());
+		if( states.indexOf($(classes[i]).val()) > -1 ){
 			//this class name is valid, now check if there has been a duplicate entry
-			if( prev.indexOf(classes[i].val()) > -1 ){
+			if( prev.indexOf($(classes[i]).val()) > -1 ){
 				//this is a duplicate, so make it so it won't be serialized
-				classes[i].attr("disabled", "disabled");
-				classes[i].attr("name", "");
-				classes[i].attr("value", "");
+				$(classes[i]).attr("disabled", "disabled");
+				$(classes[i]).attr("name", "");
+				$(classes[i]).attr("value", "");
 			}else{
 				// not a duplicate, so add it to the previous list and continue
-				prev[prev.length] = classes[i].val();
+				prev[prev.length] = $(classes[i]).val();
 			}
 		}else{
 			alert("You have entered an invalid class name");
-			classes[i].focus();
+			$(classes[i]).focus();
 			return false;
 		}
 	}
@@ -146,8 +148,12 @@ function afterPostP1(data){
 		var thursdays = [];
 		var fridays = [];
 		var time;
+		var length = 0;
+		try{
+			length = data.slothired.length;
+		}catch(e){
 		
-		var length = data.slothired.length;
+		}
 		for(var i = 0; i < length; i++) {
 			if ( (data.slothired[i][1] + data.slothired[i][2]) > 12) { time = (data.slothired[i][1] + data.slothired[i][2]) - 12 + ':00 PM'; } else { time = data.slothired[i][1] + data.slothired[i][2] + ':00 AM'; } if( (data.slothired[i][1] + data.slothired[i][2]) == 12 ) { time = data.slothired[i][1] + data.slothired[i][2] + ':00 PM'; }
 			switch (data.slothired[i][0]) {
@@ -213,8 +219,6 @@ function createAvailTable(){
 						<th>Wednesday</th>\
 						<th>Thursday</th>\
 						<th>Friday</th>\
-						<th>Saturday</th>\
-						<th>Sunday</th>\
 					</tr>'
 	var day;
 	var time;
@@ -241,15 +245,13 @@ function createAvailTable(){
 		}
 		row = "<tr>";
 	
-		for(var i = 0; i < 7; i++){
+		for(var i = 0; i < 5; i++){
 			switch(i){
 				case 0: day = 'M'; break;
 				case 1: day = 'T'; break;
 				case 2: day = 'W'; break;
 				case 3: day = 'R'; break;
 				case 4: day = 'F'; break;
-				case 5: day = 'S'; break;
-				case 6: day = 'Z'; break;
 			}
 			
 			//needed to make sure monday at 7 am is M07 and not M7
@@ -305,7 +307,7 @@ function addCourse(){
 	  templates: {
 		empty: [
 			'<div class="empty-message">',
-			'No tutors match your current query',
+			'No classes match your current query',
 			'</div>'
 		].join('\n')
 	  }
@@ -323,7 +325,7 @@ function resetApply(){
 }
 
 function afterPostApply(data){
-	apply-modal.modal('hide');
+	$('#apply-modal').modal('hide');
 	//Display success/failure
 }
 
