@@ -326,7 +326,7 @@ function resetApply(){
 
 function afterPostApply(data){
 	$('#apply-modal').modal('hide');
-	//Display success/failure
+	alert("Thanks for applying!");
 }
 
 var substringMatcher = function(strs) {
