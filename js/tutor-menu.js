@@ -34,10 +34,13 @@ $(function(){
 	});
 	
 	$('#submit').click(function(event) {
-		//var cn = { gtid: $('#tutgtid').attr("value"), name: $('#name').attr("value"), email: $('#email').attr("value"), gpa: $('#gpa').attr("value"), phone: $('#phone').attr("value") };
+	
+		if(!checkForm()){	//check that all the fields are filled
+			return;
+		}
+		
 		var toAppend = '<input name="numClasses" style="display: none" value="'+ timeAdded +'">'
 		$('#tutor_apply_form').append(toAppend);
-		
 		var toPost = $('#tutor_apply_form').serialize();
 		console.log(toPost);
 		
@@ -62,6 +65,61 @@ $(function(){
 	
 });
 
+function checkForm(){
+	if( !$("#tutgtid").val() ){
+		alert("Please fill in your GTID");
+		$("#tutgtid").focus();
+		return false;
+	}
+	if( !$("#name").val() ){
+		alert("Please fill in your name");
+		$("#name").focus();
+		return false;
+	}
+	if( !$("#email").val() ){
+		alert("Please fill in your email");
+		$("#email").focus();
+		return false;
+	}
+	if( !$("#gpa").val() ){
+		alert("Please fill in your gpa");
+		$("#gpa").focus();
+		return false;
+	}
+	if( !$("#phone").val() ){
+		alert("Please fill in your phone number");
+		$("#phone").focus();
+		return false;
+	}
+	if($('#tutor_apply_form input[type=checkbox]:checked').length < 5){
+		alert("You must be available for at least 5 hours a day");
+		return false;
+	}
+	
+	//now check the validity of the classes they are applying for
+	var classes = $(".courseSelections");
+	var prev = [];
+	for(var i = 0; i < classes.length; i++){
+		if(states.indexOf(classes[i].val()) > -1){
+			//this class name is valid, now check if there has been a duplicate entry
+			if( prev.indexOf(classes[i].val()) > -1 ){
+				//this is a duplicate, so make it so it won't be serialized
+				classes[i].attr("disabled", "disabled");
+				classes[i].attr("name", "");
+				classes[i].attr("value", "");
+			}else{
+				// not a duplicate, so add it to the previous list and continue
+				prev[prev.length] = classes[i].val();
+			}
+		}else{
+			alert("You have entered an invalid class name");
+			classes[i].focus();
+			return false;
+		}
+	}
+	
+	return true;
+};
 
 function afterPostP1(data){
 	var opener = '<table class="table table-hover">\
@@ -219,7 +277,7 @@ function addCourse(){
 					  <div class="col-lg-12">\
 						<div class="input-group">\
 						  <div class="dropdown">\
-			     			<input name="course' + timeAdded + '" type="search" class="form-control typeahead" placeholder="Course Name">\
+			     			<input name="course' + timeAdded + '" type="search" class="form-control typeahead courseSelections" placeholder="Course Name">\
 						  </div>\
 						  <span class="input-group-addon">\
 							<input type="checkbox" name="GTA' + timeAdded + '"> GTA\

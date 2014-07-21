@@ -73,7 +73,7 @@ function afterPostP2(data){
 		var add = '';
 		var remake = '';				
 	
-		if( !(data.gradfall == undefined) ) {   //if undefined, then there were no results
+		if( !(data.gradfall === undefined) ) {   //if undefined, then there were no results
 			var length = data.gradfall.length;	
 			for(var i = 0; i < length; i++ ) {
 				data.gradfall[i].splice(2,0,'Fall');
@@ -81,7 +81,7 @@ function afterPostP2(data){
 			}
 			remake = data.gradfall;
 		}	
-		if( !(data.undgradfall == undefined) ) {
+		if( !(data.undgradfall === undefined) ) {
 			var length = data.undgradfall.length;
 			for(var i = 0; i < length; i++ ) {
 				data.undgradfall[i].splice(2,0,'Fall');
@@ -94,7 +94,7 @@ function afterPostP2(data){
 				remake = remake.concat(data.undgradfall);	
 			}
 		}
-		if( !(data.gradspring == undefined) ) {
+		if( !(data.gradspring === undefined) ) {
 			var length = data.gradspring.length;	
 			for(var i = 0; i < length; i++ ) {
 				data.gradspring[i].splice(2,0,'Spring');
@@ -107,7 +107,7 @@ function afterPostP2(data){
 				remake = remake.concat(data.gradspring);	
 			}
 		}	
-		if( !(data.undgradspring == undefined) ) {
+		if( !(data.undgradspring === undefined) ) {
 			var length = data.undgradspring.length;	
 			for(var i = 0; i < length; i++ ) {
 				data.undgradspring[i].splice(2,0,'Spring');
@@ -120,7 +120,7 @@ function afterPostP2(data){
 				remake = remake.concat(data.undgradspring);	
 			}
 		}
-		if( !(data.gradsummer == undefined) ) {
+		if( !(data.gradsummer === undefined) ) {
 			var length = data.gradsummer.length;	
 			for(var i = 0; i < length; i++ ) {
 				data.gradsummer[i].splice(2,0,'Summer');
@@ -133,7 +133,7 @@ function afterPostP2(data){
 				remake = remake.concat(data.gradsummer);	
 			}
 		}	
-		if( !(data.undgradsummer == undefined) ) {
+		if( !(data.undgradsummer === undefined) ) {
 			var length = data.undgradsummer.length;	
 			for(var i = 0; i < length; i++ ) {
 				data.undgradsummer[i].splice(2,0,'Summer');
@@ -262,6 +262,8 @@ function afterPostP2(data){
 		var remake = '';
 		var numstudents;
 		var numtutors;
+		var TotalT = 0;
+		var TotalS = 0;
 		
 		if( !(data.fallnumbers == undefined)  ) {
 			var length = data.fallnumbers.length;
@@ -312,6 +314,8 @@ function afterPostP2(data){
 					numtutors = numtutors+ parseFloat(remake[i][3]);
 				}
 				else {
+					TotalT+=numtutors;
+					TotalS+=numstudents;
 					add = '<tr><td> </td> <td>Total</td> <td>' + numstudents + '</td> <td>' + numtutors + '</td></tr>';
 					row = row.concat(add);
 					numstudents = 0;
@@ -321,10 +325,15 @@ function afterPostP2(data){
 					row = row.concat(add);
 					numstudents = parseFloat(remake[i][2]);
 					numtutors = parseFloat(remake[i][3]);
+					
 				}
 			}
 		} 
+		TotalT+=numtutors;
+		TotalS+=numstudents;
 		add = '<tr><td> </td> <td>Total</td> <td>' + numstudents + '</td> <td>' + numtutors + '</td></tr>';
+		row = row.concat(add);
+		add = '<tr><td> </td> <td>Grand Total</td> <td>' + TotalS + '</td> <td>' + TotalT + '</td></tr>';
 		row = row.concat(add);
 		$('.modal-title').empty();
 		$('.modal-title').append('Course Numbers Report');
