@@ -103,10 +103,10 @@ function checkForUpdatedInfo($gtid, $n, $e, $g, $p){
 	
 	mysqli_close($con);
 	
-	$json['dbVars'] = $name_db;
-	$json['dbVars'] = $email_db;
-	$json['dbVars'] = $gpa_db;
-	$json['dbVars'] = $phone_db;
+	$json['dbVars'][] = $name_db;
+	$json['dbVars'][] = $email_db;
+	$json['dbVars'][] = $gpa_db;
+	$json['dbVars'][] = $phone_db;
 	
 	return $name_db == $n && $email_db == $e && $gpa_db == $g && $phone_db == $p;
 }
