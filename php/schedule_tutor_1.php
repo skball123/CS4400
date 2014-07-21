@@ -2,7 +2,7 @@
 session_start();
 $tut_gtid = strtok($_POST['tutgtid'], " ");
 $stu_gtid = $_SESSION['myusername'];
-
+$semester = "Summer";
 $daytime = array();
 $length = $_POST['numTimes'];
 
@@ -17,7 +17,7 @@ $con = mysqli_connect("localhost","kirsch_cs4400","cs4400GT","kirsch_cs4400");
   			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 		
-	$query = "SELECT DayTime FROM TutorTimeSlots WHERE TutorGT_ID = '$tut_gtid' AND Taken = '0' AND ";
+	$query = "SELECT DayTime FROM TutorTimeSlots WHERE TutorGT_ID = '$tut_gtid' AND Taken = '0' AND Semester = '$semester' AND ";
 	$arraysize = count($daytime);  //gets length of array
 	for( $i = 0; $i < $arraysize; $i++) {
 		$temp = "DayTime = '$daytime[$i]' OR ";
