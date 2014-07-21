@@ -49,6 +49,7 @@ $(function(){
 	$("#rate_tutor_modal_btn").click(function(event){
 		if(!$("#desc_eval").val()){
 			$("#desc_eval").addClass('warning');
+			alert('You must enter a descriptive evaluation');
 			return;
 		}
 		if(!$("#radio_4").prop('checked') && !$("#radio_3").prop('checked') && !$("#radio_2").prop('checked') && !$("#radio_1").prop('checked') ){
