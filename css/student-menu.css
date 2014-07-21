@@ -33,7 +33,7 @@ body {
 	margin-top: 50%;
 	margin-bottom: auto;
 }
-#dropdown .tt-dropdown-menu{
+#dropdown .tt-dropdown-menu #dropdown2{
 	max-height: 150px;
 	overflow-y: hidden;
 	width: 100%;

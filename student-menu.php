@@ -29,12 +29,13 @@ if(!($_SESSION['type'] == 'STU')) //User is not logged in
 include 'functions.php';
 
 $states = FetchClasses();
+$states2 = FetchTutors();
 
 echo('
 <!DOCTYPE html>
 <html lang="en">
 <script> var states = '. $states .' </script>
-
+<script> var states2 = '. $states2 .' </script>
 ');
 ?>
 
@@ -80,6 +81,9 @@ echo('
 			<div class="btn-group-wrap">
 				<div class="btn-container btn-group">
 					<button type="button" class="btn btn-primary search_btn">Search for a Tutor</button>
+					<button class="btn btn-info" type="button" id="default_rate">
+						<span class="glyphicon glyphicon-comment"></span>
+					</button>
 				</div>
 			</div>
 			
@@ -147,14 +151,18 @@ echo('
 			<div class="row">
 				<div class="span6">
 					<div class="col-lg-3">
-						<input type="text" name="tutgtid" id="tutgtid" class="form-control" maxlength="9" placeholder="Tutor GTID or Name" disabled="disabled">
+						<div id="dropdown2">
+							<input type="text" name="tutgtid" id="tutgtid" class="form-control typeahead2" maxlength="9" placeholder="Tutor GTID or Name" disabled="disabled">
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="span6">
 					<div class="col-lg-3">
-						<input type="text" name="courseName" id="rateCourseName" class="form-control" maxlength="9" placeholder="Course Name" disabled="disabled">
+						<div id="dropdown">
+							<input type="text" name="courseName" id="rateCourseName" class="form-control typeahead" maxlength="9" placeholder="Course Name" disabled="disabled">
+						</div>
 					</div>
 				</div>
 			</div>

@@ -23,6 +23,19 @@ $(function(){
 		});
 	});
 	
+	$("#default_rate").click(function(event){
+		//enable the fields
+		$("#tutgtid").removeAttr("disabled");
+		$("#rateCourseName").removeAttr("disabled");
+		//clear the values
+		$("#tutgtid").val("");
+		$("#rateCourseName").val("");
+		$("#desc_eval").val("");
+		
+		$("#rate_tutor_modal").modal();
+		
+	});
+	
 	$("#student_hours_modal_btn").click(function(event){
 		$("#student_hours_modal").modal('hide');
 		searchSubmit();
@@ -47,6 +60,20 @@ $(function(){
 	});
 	
 	$("#rate_tutor_modal_btn").click(function(event){
+		//In case of default rating check that the class and tutor are valid
+		if( states2.indexOf($("#tutgtid").val()) < 0 ){
+			//invalid tutor name
+			alert('You have entered an invalid tutor name');
+			$("#tutgtid").focus();
+			return;
+		}
+		if( states.indexOf($("#rateCourseName").val()) < 0 ){
+			//invalid tutor name
+			alert('You have entered an invalid course name');
+			$("#rateCourseName").focus();
+			return;
+		}
+			
 		if(!$("#desc_eval").val()){
 			$("#desc_eval").addClass('warning');
 			alert('You must enter a descriptive evaluation');
@@ -260,6 +287,25 @@ $('#dropdown .typeahead').typeahead({
   name: 'states',
   displayKey: 'value',
   source: substringMatcher(states),
+  templates: {
+  	empty: [
+  		'<div class="empty-message">',
+      	'No classes match your current query',
+      	'</div>'
+  	].join('\n')
+  }
+ 
+});
+
+$('#dropdown2 .typeahead2').typeahead({
+  hint: true,
+  highlight: true,
+  minLength: 1
+},
+{
+  name: 'states2',
+  displayKey: 'value',
+  source: substringMatcher(states2),
   templates: {
   	empty: [
   		'<div class="empty-message">',
@@ -551,10 +597,19 @@ function scheduleTutorP2(data) {
 };
 
 function rateTutor(event){
+	//disable the fields
+	$("#tutgtid").attr("disabled", "disabled");
+	$("#rateCourseName").attr("disabled", "disabled");
+	
+	//clear the fields
+	$("#tutgtid").val("");
+	$("#rateCourseName").val("");
+	
 	//pre-populate the course and tutor name
-	$("#tutgtid").attr("value", $(event).attr("value") + " (" + $(event).attr("name") + ")");
-	$("#rateCourseName").attr("value", selected_course);
-
+	$("#tutgtid").val($(event).attr("value") + " (" + $(event).attr("name") + ")");
+	$("#rateCourseName").val(selected_course);
+	$("#desc_eval").val("");
+	
 	$("#rate_tutor_modal").modal();
 	
 	
