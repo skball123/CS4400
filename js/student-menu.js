@@ -84,12 +84,12 @@ $(function(){
 			return;
 		}
 		$("#rate_extra").empty();
-		
-		var toAppend = '<input type="text" style="display: none" name="tutgtid" value="' + $("#tutgtid").attr("value") + '">\
-						<input type="text" style="display: none" name="courseName" value="' + $(rateCourseName).attr("value") + '">';
+		console.log($("#tutgtid").val());
+		var toAppend = '<input type="text" style="display: none" name="tutgtid" value="' + $("#tutgtid").val() + '">\
+						<input type="text" style="display: none" name="courseName" value="' + $(rateCourseName).val() + '">';
 		$("#rate_extra").append(toAppend);
 		var toPost = $("#rate_form").serialize();
-		
+		console.log(toPost);
 		$.ajax({
 		      type: 'POST',
 		      //dataType: 'json',

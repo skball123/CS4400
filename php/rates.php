@@ -19,13 +19,14 @@ $json['postVar'][] = $school;
 $json['postVar'][] = $coursenum;
 $json['postVar'][] = $tut_gtid;
 $json['postVar'][] = $stu_gtid;
+$json['postVar'][] = $_POST['tutgtid'];
+$json['postVar'][] = $_POST['courseName'];
 
 
 $checker = Checkteach($tut_gtid, $stu_gtid, $coursenum, $school, $semester, $json);  //check if student is being taught by tutor in course
 if($checker) {
 	$bool = Checkalready($tut_gtid, $stu_gtid, $coursenum, $school, $semester, $json);  // check if student already rated tutor
 	StuEval($bool, $desc_eval, $num_eval, $tut_gtid, $stu_gtid, $coursenum, $school, $semester, $json);
-	echo ($json);
 }
 	header('Content-Type: application/json');
 	echo json_encode($json);
@@ -83,9 +84,9 @@ function StuEval($bool, $desc_eval, $num_eval, $tut_gtid, $stu_gtid, $coursenum,
 		//echo($query);
 		$result = mysqli_query($con, $query);
 		$json['message'][] = 'Evaluation Submitted.';
-		$json['success'][] = 1;
 	
 	}
 	mysqli_close($con);
+	$json['success'][] = 1;
 }
 ?>
