@@ -1,4 +1,5 @@
 <?php
+session_start();
 $semester = "Summer";
 $tut_gtid = $_SESSION['myusername'];
 $name = $_POST['name'];
@@ -7,8 +8,8 @@ $gpa = $_POST['gpa'];
 $phone = $_POST['phone'];
 
 $numClasses = $_POST['numClasses'];
-$daytime = array();
 
+$json['postVars'][] = $tut_gtid;
 $json['postVars'][] = $name;
 $json['postVars'][] = $email;
 $json['postVars'][] = $gpa;
@@ -38,14 +39,16 @@ $result = mysqli_query($con, $query);
 for($i = 0; $i < $numClasses; $i++){
 	$school = strtok($_POST['course' . $i], " ");
 	$courseNum = strtok(" ");
-	if(is_null($_POST['gta' . $i])){
+	if(is_null($_POST['GTA' . $i])){
 		$gta = 0;
 	}else{
 		$gta = 1;
 	}
-	
-	$course = $courseNum . $school;
-	$query = "INSERT INTO TutorsCourse VALUES ('$tut_gtid', '$gta', '$name', '$course')";
+	$json['insertVars'][] = $tut_gtid;
+	$json['insertVars'][] = $gta;
+	$json['insertVars'][] = $school;
+	$json['insertVars'][] = $courseNum;
+	$query = "INSERT INTO TutorsCourse VALUES ('$tut_gtid', '$gta', '$school', '$courseNum')";
 	$result = mysqli_query($con, $query);
 }
 
@@ -63,17 +66,21 @@ for($i = 7; $i <= 22; $i++){
 			case 3: $day = 'R'; break;
 			case 4: $day = 'F'; break;
 		}
+		$daytime = null;
 		if($i < 10){
-			if(isset($_POST['$day . "0" . $i'])){
-				$daytime[] = $day . "0" . $i;
+			if(!is_null($_POST[$day . '0' . $i])){
+				$daytime = $day . "0" . $i;
 			}
 		}else{
-			if(isset($_POST['$day . $i'])){
-				$daytime[] = $day . $i;
+			if(!is_null($_POST[$day . $i])){
+				$daytime = $day . $i;
 			}
 		}
-		$query = "INSERT INTO TutorTimeSlots VALUES ('$tut_gtid', '$email', '$semester', '0', '$daytime')";
-		$result = mysqli_query($con, $query);
+		if(!is_null($daytime)){
+			$json['daytimes'][] = $daytime;
+			$query = "INSERT INTO TutorTimeSlots VALUES ('$tut_gtid', '$email', '$semester', '$daytime', 0)";
+			$result = mysqli_query($con, $query);
+		}
 	}
 }
 
