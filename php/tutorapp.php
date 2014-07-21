@@ -21,7 +21,7 @@ if (mysqli_connect_errno())
 {
 	echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
-$bool = checkForUpdatedInfo($tut_gtid, $name, $email, $gpa, $phone);
+$bool = checkForUpdatedInfo($tut_gtid, $name, $email, $gpa, $phone, $json);
 $json['bool'][] = $bool;
 if(!$bool){
 	//Update info
@@ -84,7 +84,7 @@ $json['success'][] = 1;
 header('Content-Type: application/json');
 echo json_encode($json);
 
-function checkForUpdatedInfo($gtid, $n, $e, $g, $p){
+function checkForUpdatedInfo($gtid, $n, $e, $g, $p, &$json){
 	$con = mysqli_connect("localhost","kirsch_cs4400","cs4400GT","kirsch_cs4400");
 	// Check connection
 	if (mysqli_connect_errno())

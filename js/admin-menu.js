@@ -71,13 +71,14 @@ function afterPostP2(data){
 		var calc1 = 0.0;
 		var calc2 = 0.0;	
 		var add = '';
-		var remake = '';				
+		var remake = '';	
+		var xcontinue = 0;			
 	
 		if( !(data.gradfall === undefined) ) {   //if undefined, then there were no results
 			var length = data.gradfall.length;	
 			for(var i = 0; i < length; i++ ) {
 				data.gradfall[i].splice(2,0,'Fall');
-				data.gradfall[i][5] = 'GTA';
+				data.gradfall[i].splice(3,0,'GTA');
 			}
 			remake = data.gradfall;
 		}	
@@ -85,7 +86,7 @@ function afterPostP2(data){
 			var length = data.undgradfall.length;
 			for(var i = 0; i < length; i++ ) {
 				data.undgradfall[i].splice(2,0,'Fall');
-				data.undgradfall[i][5] = 'nTA';
+				data.undgradfall[i].splice(3,0,'nTA');
 			}
 			if( remake.length == 0 ) {
 				remake = data.undgradfall;
@@ -98,7 +99,7 @@ function afterPostP2(data){
 			var length = data.gradspring.length;	
 			for(var i = 0; i < length; i++ ) {
 				data.gradspring[i].splice(2,0,'Spring');
-				data.gradspring[i][5] = 'GTA';
+				data.gradspring[i].splice(3,0,'GTA');
 			}
 			if( remake.length == 0 ) {
 				remake = data.gradspring;
@@ -111,7 +112,7 @@ function afterPostP2(data){
 			var length = data.undgradspring.length;	
 			for(var i = 0; i < length; i++ ) {
 				data.undgradspring[i].splice(2,0,'Spring');
-				data.undgradspring[i][5] = 'nTA';
+				data.undgradspring[i].splice(3,0,'nTA');
 			}
 			if( remake.length == 0 ) {
 				remake = data.undgradspring;
@@ -124,7 +125,7 @@ function afterPostP2(data){
 			var length = data.gradsummer.length;	
 			for(var i = 0; i < length; i++ ) {
 				data.gradsummer[i].splice(2,0,'Summer');
-				data.gradsummer[i][5] = 'GTA';
+				data.gradsummer[i].splice(3,0,'GTA');
 			}
 			if( remake.length == 0 ) {
 				remake = data.gradsummer;
@@ -137,7 +138,7 @@ function afterPostP2(data){
 			var length = data.undgradsummer.length;	
 			for(var i = 0; i < length; i++ ) {
 				data.undgradsummer[i].splice(2,0,'Summer');
-				data.undgradsummer[i][5] = 'nTA';
+				data.undgradsummer[i].splice(3,0,'nTA');
 			}
 			if( remake.length == 0 ) {
 				remake = data.undgradsummer;
@@ -150,44 +151,55 @@ function afterPostP2(data){
 		console.log(remake);
 		var length = remake.length;
 		for(var i = 0; i < length; i++) {
+			console.log('int: ' + i);
 			if( i == 0 ) {
-				if( remake[i][5] == 'GTA' ) {
-					numGTA = parseFloat(remake[i][3]);
-					avgGTA = numGTA * parseFloat((remake[i][4]));
-					add = '<tr><td>' + remake[i][0] + ' ' + remake[i][1] + '</td> <td>' + remake[i][2] + '</td> <td>' + numGTA + '</td> <td>' + parseFloat(remake[i][4]).toPrecision(2) + '</td>';
+				if( remake[i][3] == 'GTA' ) {
+					numGTA = parseFloat(remake[i][4]);
+					avgGTA = numGTA * parseFloat((remake[i][5]));
+					add = '<tr><td>' + remake[i][0] + ' ' + remake[i][1] + '</td> <td>' + remake[i][2] + '</td> <td>' + numGTA + '</td> <td>' + parseFloat(remake[i][5]).toPrecision(2) + '</td>';
 					row = row.concat(add);
 				}
 				else {
 					add = '<tr><td>' + remake[i][0] + ' ' + remake[i][1] + '</td> <td> 0 </td> <td>' + numGTA + '</td> <td>0.0</td>';
 					row = row.concat(add);
 				}
-				if( remake[i][5] == 'nTA') {
-					numTA = parseFloat(remake[i][3]);
-					avgTA = numTA * parseFloat(remake[i][4]);
-					add = '<td>' + numTA + '</td><td>' + parseFloat(remake[i][4]).toPrecision(2) + '</td></tr>';
-					row = row.concat(add);
-				}
+				if( remake[i+1][3] == 'nTA') {
+						avgTA = avgTA + (parseFloat(remake[i+1][4]) * parseFloat(remake[i+1][5]));
+						numTA = numTA + parseFloat(remake[i+1][4]);
+						add = '<td>' + numTA + '</td><td>' + parseFloat(remake[i+1][5]).toPrecision(2) + '</td></tr>';
+						row = row.concat(add);
+						console.log('skip: ' + i);
+						xcontinue = 1;
+					}
 				else {
 					add = '<td>' + numTA + '</td><td>0.0</td></tr>';
 					row = row.concat(add);
 				}
 			} //end if i = 0
 			else {
+				if (xcontinue) { xcontinue = 0; continue; }
 				if( (remake[i][0] + remake[i][1]) == (remake[i-1][0] + remake[i-1][1]) ) { //if current class is same as last class
-					if( remake[i][5] == 'GTA' ) {
-						avgGTA = avgGTA + (parseFloat(remake[i][3]) * parseFloat(parseFloat(remake[i][4]))) ;
-						numGTA = numGTA + parseFloat(remake[i][3]);
-						add = '<tr><td></td> <td>' + remake[i][2] + '</td> <td>' + parseFloat(remake[i][3]) + '</td> <td>' + parseFloat(remake[i][4]).toPrecision(2) + '</td>';
+					if( remake[i][3] == 'GTA' ) {
+						avgGTA = avgGTA + (parseFloat(remake[i][4]) * parseFloat(parseFloat(remake[i][5]))) ;
+						numGTA = numGTA + parseFloat(remake[i][4]);
+						add = '<tr><td></td> <td>' + remake[i][2] + '</td> <td>' + parseFloat(remake[i][4]) + '</td> <td>' + parseFloat(remake[i][5]).toPrecision(2) + '</td>';
 						row = row.concat(add);
 					}
 					else {
 						add = '<tr><td></td> <td>'  + remake[i][2] +  '</td> <td>0</td> <td>0.0</td>';
 						row = row.concat(add);
 					}
-					if( remake[i][5] == 'nTA') {
-						avgTA = avgTA + (parseFloat(remake[i][3]) * parseFloat(remake[i][4]));
-						numTA = numTA + parseFloat(remake[i][3]);
-						add = '<td>' + numTA + '</td><td>' + parseFloat(remake[i][4]).toPrecision(2) + '</td></tr>';
+					if( !(remake[i+1] == undefined) ) {
+						if( remake[i+1][3] == 'nTA') {
+							avgTA = avgTA + (parseFloat(remake[i+1][4]) * parseFloat(remake[i+1][5]));
+							numTA = numTA + parseFloat(remake[i+1][4]);
+							add = '<td>' + numTA + '</td><td>' + parseFloat(remake[i+1][5]).toPrecision(2) + '</td></tr>';
+							row = row.concat(add);
+							console.log('skip: ' + i);
+							xcontinue = 1;
+						}
+						else {
+						add = '<td>' + numTA + '</td><td>0.0</td></tr>';
 						row = row.concat(add);
 					}
 					else {
@@ -206,20 +218,28 @@ function afterPostP2(data){
 					numGTA = 0.0;
 					avgGTA = 0.0;	
 					
-					if( remake[i][5] == 'GTA' ) {
-						avgGTA = avgGTA + (parseFloat(remake[i][3]) * parseFloat(remake[i][4])) ;
-						numGTA = numGTA + parseFloat(remake[i][3]);
-						add = '<tr><td>'+ remake[i][0] + ' ' + remake[i][1]+ '</td> <td>' + remake[i][2] + '</td> <td>' + numGTA + '</td> <td>' + (parseFloat(remake[i][4])).toPrecision(2) + '</td>';
+					if (xcontinue) { xcontinue = 0; continue; }
+					if( remake[i][3] == 'GTA' ) {
+						avgGTA = avgGTA + (parseFloat(remake[i][4]) * parseFloat(remake[i][5])) ;
+						numGTA = numGTA + parseFloat(remake[i][4]);
+						add = '<tr><td>'+ remake[i][0] + ' ' + remake[i][1]+ '</td> <td>' + remake[i][2] + '</td> <td>' + numGTA + '</td> <td>' + (parseFloat(remake[i][5])).toPrecision(2) + '</td>';
 						row = row.concat(add);
 					}
 					else {
 						add = '<tr><td>'+ remake[i][0] + ' ' + remake[i][1]+ '</td> <td>'  + remake[i][2] +  '</td> <td>0</td> <td>0.0</td>';
 						row = row.concat(add);
 					}
-					if( remake[i][5] == 'nTA') {
-						avgTA = avgTA + (parseFloat(remake[i][3]) * parseFloat(remake[i][4]));
-						numTA = numTA + parseFloat(remake[i][3]);
-						add = '<td>' + numTA + '</td><td>' + parseFloat(remake[i][4]).toPrecision(2) + '</td></tr>';
+					if( !(remake[i+1] == undefined) ) {
+						if( remake[i+1][3] == 'nTA') {
+							avgTA = avgTA + (parseFloat(remake[i+1][4]) * parseFloat(remake[i+1][5]));
+							numTA = numTA + parseFloat(remake[i+1][4]);
+							add = '<td>' + numTA + '</td><td>' + parseFloat(remake[i+1][5]).toPrecision(2) + '</td></tr>';
+							row = row.concat(add);
+							console.log('skip: ' + i);
+							xcontinue = 1;
+						}
+						else {
+						add = '<td>' + numTA + '</td><td>0.0</td></tr>';
 						row = row.concat(add);
 					}
 					else {
@@ -301,17 +321,17 @@ function afterPostP2(data){
 		var length = remake.length;
 		for(var i = 0; i < length; i++) {
 			if( i == 0 ) {
-				add = '<tr><td>' + remake[i][0] + ' ' + remake[i][1] + '</td> <td>' + (remake[i][4]) + '</td> <td>' + remake[i][2] + '</td> <td>' + remake[i][3] + '</td></tr>';
+				add = '<tr><td>' + remake[i][0] + ' ' + remake[i][1] + '</td> <td>' + (remake[i][5]) + '</td> <td>' + remake[i][2] + '</td> <td>' + remake[i][4] + '</td></tr>';
 				row = row.concat(add);
 				numstudents = parseFloat(remake[i][2]);
-				numtutors = parseFloat(remake[i][3]);
+				numtutors = parseFloat(remake[i][4]);
 			}
 			else {
 				if ( (remake[i][0] + remake[i][1]) == (remake[i-1][0] + remake[i-1][1]) ) { //if current class is same as last class
-					add = '<tr><td> </td> <td>' + (remake[i][4]) + '</td> <td>' + remake[i][2] + '</td> <td>' + remake[i][3] + '</td></tr>';
+					add = '<tr><td> </td> <td>' + (remake[i][5]) + '</td> <td>' + remake[i][2] + '</td> <td>' + remake[i][4] + '</td></tr>';
 					row = row.concat(add);
 					numstudents = numstudents + parseFloat(remake[i][2]);
-					numtutors = numtutors+ parseFloat(remake[i][3]);
+					numtutors = numtutors+ parseFloat(remake[i][4]);
 				}
 				else {
 					TotalT+=numtutors;
@@ -321,10 +341,10 @@ function afterPostP2(data){
 					numstudents = 0;
 					numtutors = 0;
 					
-					add = '<tr><td>' + remake[i][0] + ' ' + remake[i][1] + '</td> <td>' + (remake[i][4]) + '</td> <td>' + remake[i][2] + '</td> <td>' + remake[i][3] + '</td></tr>';
+					add = '<tr><td>' + remake[i][0] + ' ' + remake[i][1] + '</td> <td>' + (remake[i][5]) + '</td> <td>' + remake[i][2] + '</td> <td>' + remake[i][4] + '</td></tr>';
 					row = row.concat(add);
 					numstudents = parseFloat(remake[i][2]);
-					numtutors = parseFloat(remake[i][3]);
+					numtutors = parseFloat(remake[i][4]);
 					
 				}
 			}

@@ -18,7 +18,7 @@ if($report == 'numbers') {
 		}
 	
 	if($fall == 'true') {
-		$count_fall = "SELECT SchoolName, CRNumber, COUNT(UnGT_ID), COUNT(TutordGT_ID) FROM Hires WHERE SemesterSlotHired = 'Fall' ORDER BY SchoolName, CrNumber";
+		$count_fall = "SELECT SchoolName, CRNumber, COUNT(UnGT_ID), COUNT(TutordGT_ID) FROM Hires WHERE SemesterSlotHired = 'Fall' GROUP BY SchoolName ORDER BY CrNumber";
 		$result = mysqli_query($con, $count_fall);
 		while( $row = mysqli_fetch_row($result) ) {
 			if( !( is_null($row[0]) ) ) {
@@ -28,7 +28,7 @@ if($report == 'numbers') {
 	}
 	
 	if($spring == 'true') {
-		$count_spring = "SELECT SchoolName, CRNumber, COUNT(UnGT_ID), COUNT(TutordGT_ID) FROM Hires WHERE SemesterSlotHired = 'Spring' ORDER BY SchoolName, CrNumber";
+		$count_spring = "SELECT SchoolName, CRNumber, COUNT(UnGT_ID), COUNT(TutordGT_ID) FROM Hires WHERE SemesterSlotHired = 'Spring' GROUP BY SchoolName ORDER BY CrNumber";
 		$result = mysqli_query($con, $count_spring);
 		while( $row = mysqli_fetch_row($result) ) {
 			if( !( is_null($row[0]) ) ) {
@@ -38,7 +38,7 @@ if($report == 'numbers') {
 	}
 	
 	if($summer == 'true') {
-		$count_summer = "SELECT SchoolName, CRNumber, COUNT(UnGT_ID), COUNT(TutordGT_ID) FROM Hires WHERE SemesterSlotHired = 'Summer' ORDER BY SchoolName, CrNumber";
+		$count_summer = "SELECT SchoolName, CRNumber, COUNT(UnGT_ID), COUNT(TutordGT_ID) FROM Hires WHERE SemesterSlotHired = 'Summer' GROUP BY SchoolName ORDER BY CrNumber";
 		$result = mysqli_query($con, $count_summer);
 		while( $row = mysqli_fetch_row($result) ) {
 			if( !( is_null($row[0]) ) ) {
@@ -58,7 +58,7 @@ elseif($report == 'ratings') {
 		}
 	
 	if($fall == 'true') {	
-		$grad_table = "SELECT SName, CNum, COUNT(TutorsGT_ID), AVG(STNum_Eval) FROM TutorsCourse INNER JOIN Rates ON TutoGT_ID = TutorsGT_ID AND SchName = SName AND CouNumber = CNum WHERE RSemester = 'Fall' AND GTA = 1 ORDER BY SName";
+		$grad_table = "SELECT SName, CNum, COUNT(TutorsGT_ID), AVG(STNum_Eval) FROM TutorsCourse INNER JOIN Rates ON TutoGT_ID = TutorsGT_ID AND SchName = SName AND CouNumber = CNum WHERE RSemester = 'Fall' AND GTA = 1 GROUP BY SName";
 		$result = mysqli_query($con, $grad_table);
 		$count=mysqli_num_rows($result);
 		if($count > 0) {	
@@ -69,7 +69,7 @@ elseif($report == 'ratings') {
 			}
 		}
 		mysqli_free_result($result);
-		$undgrad_table = "SELECT SName, CNum, COUNT(TutorsGT_ID), AVG(STNum_Eval) FROM TutorsCourse INNER JOIN Rates ON TutorsGT_ID = TutoGT_ID AND SchName = SName AND CouNumber = CNum WHERE RSemester = 'Fall' AND GTA = 0 ORDER BY SName";
+		$undgrad_table = "SELECT SName, CNum, COUNT(TutorsGT_ID), AVG(STNum_Eval) FROM TutorsCourse INNER JOIN Rates ON TutorsGT_ID = TutoGT_ID WHERE RSemester = 'Fall' AND GTA = 0 GROUP BY SName";
 		$result = mysqli_query($con, $undgrad_table);
 		$count=mysqli_num_rows($result);
 		if($count > 0) {	
@@ -83,7 +83,7 @@ elseif($report == 'ratings') {
 	}
 	
 	if($spring  == 'true') {	
-		$grad_table = "SELECT SName, CNum, COUNT(TutorsGT_ID), AVG(STNum_Eval) FROM TutorsCourse INNER JOIN Rates ON TutorsGT_ID = TutoGT_ID AND SchName = SName AND CouNumber = CNum WHERE RSemester = 'Spring' AND GTA = 1 ORDER BY SName";
+		$grad_table = "SELECT SName, CNum, COUNT(TutorsGT_ID), AVG(STNum_Eval) FROM TutorsCourse INNER JOIN Rates ON TutorsGT_ID = TutoGT_ID WHERE RSemester = 'Spring' AND GTA = 1 GROUP BY SName";
 		$result = mysqli_query($con, $grad_table);	
 		$count=mysqli_num_rows($result);
 		if($count > 0) {	
@@ -94,7 +94,7 @@ elseif($report == 'ratings') {
 			}
 		}
 		mysqli_free_result($result);
-		$undgrad_table = "SELECT SName, CNum, COUNT(TutorsGT_ID), AVG(STNum_Eval) FROM TutorsCourse INNER JOIN Rates ON TutorsGT_ID = TutoGT_ID AND SchName = SName AND CouNumber = CNum WHERE RSemester = 'Spring' AND GTA = 0 ORDER BY SName";
+		$undgrad_table = "SELECT SName, CNum, COUNT(TutorsGT_ID), AVG(STNum_Eval) FROM TutorsCourse INNER JOIN Rates ON TutorsGT_ID = TutoGT_ID WHERE RSemester = 'Spring' AND GTA = 0 GROUP BY SName";
 		$result = mysqli_query($con, $undgrad_table);
 		$count=mysqli_num_rows($result);
 		if($count > 0) {	
@@ -108,7 +108,7 @@ elseif($report == 'ratings') {
 	}
 	
 	if($summer  == 'true') {	
-		$grad_table = "SELECT SName, CNum, COUNT(TutorsGT_ID), AVG(STNum_Eval) FROM TutorsCourse INNER JOIN Rates ON TutorsGT_ID = TutoGT_ID AND SchName = SName AND CouNumber = CNum WHERE RSemester = 'Summer' AND GTA = 1 ORDER BY SName";
+		$grad_table = "SELECT SName, CNum, COUNT(TutorsGT_ID), AVG(STNum_Eval) FROM TutorsCourse INNER JOIN Rates ON TutorsGT_ID = TutoGT_ID WHERE RSemester = 'Summer' AND GTA = 1 GROUP BY SName";
 		$result = mysqli_query($con, $grad_table);	
 		$count=mysqli_num_rows($result);
 		if($count > 0) {	
@@ -119,7 +119,7 @@ elseif($report == 'ratings') {
 			}
 		}
 		mysqli_free_result($result);
-		$undgrad_table = "SELECT SName, CNum, COUNT(TutorsGT_ID), AVG(STNum_Eval) FROM TutorsCourse INNER JOIN Rates ON TutorsGT_ID = TutoGT_ID AND SchName = SName AND CouNumber = CNum WHERE RSemester = 'Summer' AND GTA = 0 ORDER BY SName";
+		$undgrad_table = "SELECT SName, CNum, COUNT(TutorsGT_ID), AVG(STNum_Eval) FROM TutorsCourse INNER JOIN Rates ON TutorsGT_ID = TutoGT_ID WHERE RSemester = 'Summer' AND GTA = 0 GROUP BY SName";
 		$result = mysqli_query($con, $undgrad_table);
 		$count=mysqli_num_rows($result);
 		if($count > 0) {	
