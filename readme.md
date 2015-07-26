@@ -20,3 +20,8 @@ Put in Monday at 12, Monday at 1, and Wednesday at 12, and whatever other times 
 This will populate a list of available tutors at that time along with their average rating number of reviews.
 You can click the green schedule button to pop up a modal for time slot selection, or click the rate button
 to review the tutor.
+
+
+![Tutor Available Times](sample/availtimes.png)
+![Student Menu](sample/studentmenu.png)
+![Professor View](sample/profrec.png) 
